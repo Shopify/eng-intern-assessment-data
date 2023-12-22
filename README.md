@@ -1,6 +1,6 @@
 # Data Engineer Intern Assessment
 
-Welcome to the Data Engineer Intern assessment for [Company Name]! This assessment is designed to evaluate your skills in SQL, data manipulation, and problem-solving. Please follow the instructions below to complete the assessment.
+Welcome to the Data Engineer Intern assessment for Shopify! This assessment is designed to evaluate your skills in SQL, data manipulation, and problem-solving. Please follow the instructions below to complete the assessment.
 
 ## Dataset
 
