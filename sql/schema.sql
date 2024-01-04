@@ -1,3 +1,19 @@
+-- Table: Categories
+CREATE TABLE Categories (
+  category_id INT PRIMARY KEY,
+  category_name VARCHAR(255)
+);
+
+-- Table: Products
+CREATE TABLE Products (
+  product_id INT PRIMARY KEY,
+  product_name VARCHAR(255),
+  description TEXT,
+  price DECIMAL(10, 2),
+  category_id INT,
+  FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+);
+
 -- Table: Users
 CREATE TABLE Users (
   user_id INT PRIMARY KEY,
@@ -26,22 +42,6 @@ CREATE TABLE Order_Items (
   unit_price DECIMAL(10, 2),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id),
   FOREIGN KEY (product_id) REFERENCES Products(product_id)
-);
-
--- Table: Products
-CREATE TABLE Products (
-  product_id INT PRIMARY KEY,
-  product_name VARCHAR(255),
-  description TEXT,
-  price DECIMAL(10, 2),
-  category_id INT,
-  FOREIGN KEY (category_id) REFERENCES Categories(category_id)
-);
-
--- Table: Categories
-CREATE TABLE Categories (
-  category_id INT PRIMARY KEY,
-  category_name VARCHAR(255)
 );
 
 -- Table: Reviews

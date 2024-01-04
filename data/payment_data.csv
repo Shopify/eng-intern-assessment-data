@@ -1,0 +1,3 @@
+payment_id,order_id,payment_date,payment_method,amount
+1,1,2021-01-02,Credit Card,100.00
+2,2,2021-02-02,PayPal,200.00

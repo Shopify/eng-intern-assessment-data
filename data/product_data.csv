@@ -1,0 +1,4 @@
+product_id,product_name,description,price,category_id
+1,Product A,Description A,50.00,1
+2,Product B,Description B,25.00,1
+3,Product C,Description C,30.00,2

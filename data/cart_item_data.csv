@@ -1,0 +1,4 @@
+cart_item_id,cart_id,product_id,quantity
+1,1,1,1
+2,1,2,2
+3,2,3,1

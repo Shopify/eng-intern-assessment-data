@@ -1,0 +1,4 @@
+order_item_id,order_id,product_id,quantity,unit_price
+1,1,1,2,50.00
+2,1,2,1,25.00
+3,2,3,3,30.00

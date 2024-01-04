@@ -1,0 +1,3 @@
+shipping_id,order_id,shipping_date,shipping_address,tracking_number
+1,1,2021-01-03,123 Main St,ABC123
+2,2,2021-02-03,456 Elm St,XYZ789
