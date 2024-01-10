@@ -8,10 +8,11 @@ The assessment is based on a simulated dataset containing sales information from
 
 ## Instructions
 
-1. **Clone the Repository:** Start by cloning this repository to your local machine.
-2. **Data Understanding:** Review the `data.csv` file and understand its structure and columns.
-3. **Write SQL Queries:** Create SQL files (`task1.sql`, `task2.sql`, `task3.sql`) in the `/sql` directory to solve each task mentioned above.
-6. **Submit your Work:** Once completed, create a pull request with your changes to the `main` branch.
+1. **Fork the Repository:** Start by forking this repository to your local machine.
+2. **Create a new Branch:** Create a new branch to store your work in 
+3. **Data Understanding:** Review the `schema.sql` file and data `.csv` files and understand its structure and columns.
+4. **Write SQL Queries:** Create SQL files (`task1.sql`, `task2.sql`, `task3.sql`) in the `/sql` directory to solve each task mentioned above.
+5. **Submit your Work:** Once completed, create a pull request with your changes to the `main` branch and submit the link to your PR
 
 ## Notes
 
