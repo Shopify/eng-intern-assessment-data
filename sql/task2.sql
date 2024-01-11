@@ -3,14 +3,14 @@
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
 
-SELECT p.product_id, p.product_name, r.avgRating AS AverageRating
+SELECT p.product_id, p.product_name, averages.avgRating AS AverageRating
 FROM Products p INNER JOIN (
     SELECT r.product_id, AVG(r.rating) as avgRating
     FROM Reviews r
     GROUP BY r.product_id
 ) averages ON p.product_id = averages.product_id
 WHERE averages.avgRating = (
-    SELECT MAX(r.avgRating)
+    SELECT MAX(avgRating)
     FROM (
         SELECT AVG(r.rating) as avgRating
         FROM Reviews r
@@ -49,7 +49,7 @@ WHERE r.review_id = NULL;
 
 SELECT DISTINCT u.user_id, u.username
 FROM Users u INNER JOIN Orders o ON u.user_id = o.user_id 
-INNER JOIN Orders ord ON u.user_id = ord.user_id
-WHERE o.order_id <> ord.order_id AND o.order_date = ord.order_date + INTERVAL 1 DAY 
-OR o.order_date = ord.order_date - INTERVAL 1 DAY;
+INNER JOIN Orders ord ON u.user_id = ord.user_id  
+WHERE o.order_id <> ord.order_id AND (o.order_date = ord.order_date + 1
+OR o.order_date = ord.order_date - 1);
 
