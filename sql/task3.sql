@@ -16,7 +16,7 @@ GROUP BY c.category_name ORDER BY total_sales_amount DESC LIMIT 3;
 -- Use a subtable to count the products with specific category %CategoryName%
 SELECT u.user_id, u.username FROM Users u JOIN Orders o ON u.user_id = o.user_id 
 JOIN Products p ON o.product_id = p.product_id JOIN Categories c ON p.category_id = c.category_id
-WHERE c.category_id LIKE '%CategoryName%' GROUP BY u.user_id, u.username
+WHERE c.category_name LIKE '%Toys & Games category%' GROUP BY u.user_id, u.username
 HAVING COUNT(DISTINCT p.product_id) = (
     SELECT COUNT(*)
     FROM products
