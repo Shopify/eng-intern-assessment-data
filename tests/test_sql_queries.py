@@ -1,6 +1,13 @@
 import unittest
 import psycopg2  # Replace with appropriate database connector based on your database
 
+
+
+"""
+I didn't need to use this file, typing out all of those expected result cases would have been crazy
+"""
+
+
 class TestSQLQueries(unittest.TestCase):
 
     def setUp(self):
