@@ -5,16 +5,16 @@
 
 SELECT p.product_id, p.product_name, AVG(r.rating) AS avg_rating
 FROM Products p
-JOIN Reviews r ON p.product_id = r.product_id
+JOIN Reviews r ON p.product_id = r.product_id 
 GROUP BY p.product_id, p.product_name
-HAVING AVG(r.rating) = (
-    SELECT MAX(avg_rating)
-    FROM (
+HAVING AVG(r.rating) = ( -- filter for products with the highest average rating
+    SELECT MAX(avg_rating) -- find the highest average rating
+    FROM ( -- subquery to find the average rating for each product
         SELECT p.product_id, p.product_name, AVG(r.rating) AS avg_rating
         FROM Products p
         JOIN Reviews r ON p.product_id = r.product_id
         GROUP BY p.product_id, p.product_name
-    ) AS avg_ratings
+    ) AS avg_ratings 
 );
 
 
@@ -22,7 +22,6 @@ HAVING AVG(r.rating) = (
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or joins to solve this problem.
-
 --steps: Join all the orders with the products and categories, then group by user_id and category_id, then count the number of categories each user has ordered from, then filter for users who have ordered from all categories
 SELECT u.user_id, u.username
 FROM Users u
@@ -31,9 +30,9 @@ JOIN Order_Items oi ON o.order_id = oi.order_id
 JOIN Products p ON oi.product_id = p.product_id
 JOIN Categories c ON p.category_id = c.category_id
 GROUP BY u.user_id, c.category_id
-HAVING COUNT(DISTINCT c.category_id) = (
-    SELECT COUNT(DISTINCT c.category_id)
-    FROM Categories c
+HAVING COUNT(DISTINCT c.category_id) = ( -- filter for users who have ordered from all categories
+    SELECT COUNT(DISTINCT c.category_id) -- count the number of categories
+    FROM Categories c -- join categories with products
 );
 
 -- Problem 7: Retrieve the products that have not received any reviews
