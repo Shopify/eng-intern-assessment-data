@@ -9,7 +9,7 @@ JOIN product_data p ON o.product_id = p.product_id
 JOIN category_data c ON p.category_id = c.category_id 
 GROUP BY c.category_id, c.category_name 
 ORDER BY total_sales_amount DESC
-LIMIT 3
+LIMIT 3;
 
 -- Problem 10: Retrieve the users who have placed orders for all products in a specific category
 -- Write an SQL query to retrieve the users who have placed orders for all products in a specific category.
@@ -43,7 +43,7 @@ JOIN (
     SELECT category_id, MAX(price) AS max_price
     FROM product_data
     GROUP BY category_id
-) AS max_prices ON p.category_id = max_prices.category_id AND p.price = max_prices.max_price
+) AS max_prices ON p.category_id = max_prices.category_id AND p.price = max_prices.max_price;
 
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
@@ -54,4 +54,4 @@ SELECT DISTINCT CAST(u.user_id AS INT) , u.username AS 'username'
 FROM user_data u
 JOIN order_data o1 ON u.user_id = o1.user_id
 JOIN order_data o2 ON u.user_id = o2.user_id AND julianday(o2.order_date) = julianday(o1.order_date) + 1
-JOIN order_data o3 ON u.user_id = o3.user_id AND julianday(o3.order_date) = julianday(o1.order_date) + 2
+JOIN order_data o3 ON u.user_id = o3.user_id AND julianday(o3.order_date) = julianday(o1.order_date) + 2;
