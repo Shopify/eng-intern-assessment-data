@@ -12,7 +12,7 @@ The assessment is based on a simulated dataset containing sales information from
 2. **Create a new Branch:** Create a new branch to store your work in 
 3. **Data Understanding:** Review the `schema.sql` file and data `.csv` files and understand its structure and columns.
 4. **Write SQL Queries:** Create SQL files (`task1.sql`, `task2.sql`, `task3.sql`) in the `/sql` directory to solve each task mentioned above.
-5. **Submit your Work:** Once completed, create a pull request with your changes to the `main` branch and submit the link to your PR
+5. **Submit your Work:** Once completed, create a pull request with your changes to the Shopify `main` branch and submit the link to your PR
 
 ## Notes
 
