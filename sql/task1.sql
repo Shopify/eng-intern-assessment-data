@@ -1,9 +1,11 @@
 -- Problem 1: Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
+-- Thought I should change this to use LIKE since just 'Sports' isn't the name of the category 
 SELECT P.product_id, P.product_name
 FROM Products P
 JOIN Categories C ON P.category_id = C.category_id
-WHERE C.category_name = 'Sports & Outdoors';
+WHERE C.category_name LIKE '%Sports%';
+
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
