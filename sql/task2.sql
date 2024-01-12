@@ -6,7 +6,8 @@
 -- Find each products average rating by define CTE:
 WITH Avg_rating AS (
 SELECT p.product_id, p.product_name, AVG(r.rating) as Average_rating
-FROM Products p INNER JOIN Reviews r ON p.product_id = r.product_id
+FROM Products p 
+INNER JOIN Reviews r ON p.product_id = r.product_id
 GROUP BY r.product_id)
 
 -- Find products with the maximum average rating based on the results in the CTE
