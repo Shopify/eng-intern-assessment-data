@@ -16,7 +16,7 @@ SELECT
 FROM Users u
     LEFT JOIN Orders o
         USING (user_id)
-GROUP BY 1
+GROUP BY 1, 2
 
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
@@ -27,6 +27,7 @@ SELECT
     p.product_name,
     AVG(r.rating) AS average_rating
 FROM Products p
+    -- left join to make sure all products returned
     LEFT JOIN Reviews r
         USING (product_id)
 GROUP BY 1
