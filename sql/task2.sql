@@ -3,6 +3,7 @@
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
 
+-- Average rating for each product
 WITH average_product_ratings AS (
     SELECT
         p.product_id,
@@ -38,6 +39,7 @@ FROM Users u
     RIGHT JOIN Products p
         USING (product_id)
 GROUP BY u.user_id
+-- Check if the number of categories in the user's orders equals the total number of available categories
 HAVING COUNT(DISTINCT p.category_id) = (SELECT COUNT(category_id) FROM Categories)
     
     
@@ -72,6 +74,7 @@ FROM (
         INNER JOIN Orders o 
             USING (user_id)
 )
+-- checks if two consecutive orders are made within a day (consecutive days)
 WHERE day_difference = 1
 
 
