@@ -41,6 +41,7 @@ CREATE TABLE Order_Items (
   quantity INT,
   unit_price DECIMAL(10, 2),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+  --I had to trim values with product_id >= 17 in order to keep this following reference (see Issue #11)
   FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
