@@ -21,11 +21,13 @@ LIMIT 3
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
 
+-- category_id of toys & games, cte for reusability
 WITH toys_and_games_category AS (
     SELECT category_id 
     FROM Categories 
     WHERE category_name = 'Toys & Games'
 ),
+-- number of toys & games products, cte for readability
 num_tg_products AS (
     SELECT COUNT(product_id) AS total_tg_products
     FROM Products
@@ -36,6 +38,7 @@ SELECT
     u.user_id,
     u.username
 FROM toys_and_games_category tg
+    -- isolate orders with toys & games products - massively reduce search space
     INNER JOIN Products p
         ON p.category_id = tg.category_id
     INNER JOIN Order_Items oi
@@ -45,6 +48,7 @@ FROM toys_and_games_category tg
     INNER JOIN Users u
         ON u.user_id = o.user_id
 GROUP BY 1, 2
+-- check if the number of unique products bought equals the total number of toys & games products
 HAVING COUNT(DISTINCT oi.product_id) = (SELECT total_tg_products FROM num_tg_products)
 
 
@@ -87,6 +91,8 @@ FROM (
         INNER JOIN Orders o 
             USING (user_id)
 )
+-- only keep the consecutive-day orders
 WHERE day_difference = 1
 GROUP BY 1, 2
+-- Since we want at least 3 days, we must have at least 2 consecutive-day pairs
 HAVING COUNT(day_difference) >= 2
