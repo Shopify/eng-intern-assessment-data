@@ -20,6 +20,7 @@ WHERE
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
 
+-- I used a LEFT JOIN to get all the users and then a COUNT to get the total number of orders
 SELECT 
     Users.user_id,
     Users.username,
@@ -36,6 +37,7 @@ GROUP BY
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
 
+-- I used a LEFT JOIN to get all the products and then an AVG to get the average rating
 SELECT 
     Products.product_id,
     Products.product_name,
@@ -51,6 +53,9 @@ GROUP BY
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
+
+-- I used a LEFT JOIN to get all the users and then a SUM to get the total amount spent
+-- I then used an ORDER BY to sort the total amount spent in descending order and a LIMIT to get the top 5
 
 SELECT 
     Users.user_id,

@@ -44,29 +44,18 @@ class TestSQLQueries(unittest.TestCase):
         
 
 
-    # def test_task2(self):
-    #     # Task 2: Example SQL query in task2.sql
-    #     with open('sql/task2.sql', 'r') as file:  # Adjust the path as necessary
-    #         all_sql_queries = file.read()
+    def test_task2(self):
+        self.execute_and_test_query('sql/task2.sql', 1, [(1, 'Smartphone X', 5.0), (4, 'Smart TV', 5.0), 
+                                (7, 'Coffee Maker', 5.0), (11, 'Yoga Mat', 5.0), (15, 'Mountain Bike', 5.0)])
+        self.execute_and_test_query('sql/task2.sql', 2, [])
+        self.execute_and_test_query('sql/task2.sql', 3, [])
+        self.execute_and_test_query('sql/task2.sql', 4, [])
 
-    #     # Execute the query and fetch all results
-    #     sql_queries = all_sql_queries.split(';')
-        
-    #     result = []
-        
-    #     for sql_query in sql_queries:
-    #         self.cur.execute(sql_query)
-    #         r = self.cur.fetchall()
-    #         result.append(r)
-            
-    #     # Define expected outcome for Task 2 and compare
-    #     expected_result = [
-    #         # Define expected rows or values here based on the query output
-    #     ]
-
-    #     self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
-
-    # Add more test methods for additional SQL tasks
-
+    def test_task3(self):
+        self.execute_and_test_query('sql/task3.sql', 1, [(8, 'Sports & Outdoors', 155.0), (4, 'Home & Kitchen', 145.0), (1, 'Electronics', 125.0)])
+        self.execute_and_test_query('sql/task2.sql', 2, [])
+        self.execute_and_test_query('sql/task2.sql', 3, [])
+        self.execute_and_test_query('sql/task2.sql', 4, [])
+  
 if __name__ == '__main__':
     unittest.main()

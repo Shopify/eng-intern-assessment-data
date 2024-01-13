@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('shopify_data.db')
+conn = sqlite3.connect('mod_shopify_data.db')
 
 cursor = conn.cursor()
 
@@ -14,6 +14,7 @@ FROM
     Payments
 INNER JOIN 
     Orders ON Payments.order_id = Orders.order_id;
+
 """ 
 
 cursor.execute(query)

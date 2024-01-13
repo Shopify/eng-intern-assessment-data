@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 
 # Connect to SQLite database (it will be created if it doesn't exist)
-conn = sqlite3.connect('shopify_data.db')
+conn = sqlite3.connect('mod_shopify_data.db')
 
 # List of your CSV files and corresponding table names
 csv_files = {
@@ -20,7 +20,7 @@ csv_files = {
 
 # Import each CSV file into a table
 for csv_file, table_name in csv_files.items():
-    file_path = 'data/' + csv_file
+    file_path = 'mod_data/' + csv_file
     df = pd.read_csv(file_path)
     df.to_sql(table_name, conn, if_exists='replace', index=False)
 
