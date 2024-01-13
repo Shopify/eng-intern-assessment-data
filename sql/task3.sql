@@ -64,7 +64,7 @@ FROM
         product_name,
         category_id,
         price,
-        -- we want same rank for ties
+        -- we want same rank for ties, not only the first most expensive product per category
         RANK() OVER(PARTITION BY category_id ORDER BY price DESC) AS price_rank
     FROM Products)
 WHERE price_rank = 1
