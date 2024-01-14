@@ -31,6 +31,7 @@ FROM Order_Items oi
 LEFT JOIN Orders o ON oi.order_id = o.order_id
 LEFT JOIN Products p ON oi.product_id = p.product_id
 LEFT JOIN Users u ON o.user_id = u.user_id
+WHERE p.product_id IN (SELECT product_id FROM ToysAndGamesProducts) 
 GROUP BY u.user_id, u.username
 -- Filter for those with number of distinct product ordered equal to possible total
 HAVING COUNT(DISTINCT p.product_id) = (SELECT COUNT(*) FROM ToysAndGamesProducts);
@@ -40,15 +41,15 @@ HAVING COUNT(DISTINCT p.product_id) = (SELECT COUNT(*) FROM ToysAndGamesProducts
 -- The result should include the product ID, product name, category ID, and price.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
--- Sub-query block to create new column for category price rank
+-- Sub-query block to create new column for a product's price rank within its category
 WITH RankedProducts AS (
-    SELECT product_id, product_name, category_id, price, RANK() OVER (PARTITION BY category_id ORDER BY price DESC) AS product_rank
+    SELECT product_id, product_name, category_id, price, ROW_NUMBER() OVER (PARTITION BY category_id ORDER BY price DESC) AS cateogry_price_rank
     FROM Products
 )
 
 SELECT product_id, product_name, category_id, price
 FROM RankedProducts
-WHERE product_rank = 1;
+WHERE cateogry_price_rank = 1;
 
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.

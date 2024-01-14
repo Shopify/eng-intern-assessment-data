@@ -72,7 +72,7 @@ class TestSQLQueries(unittest.TestCase):
         self.assertEqual(result, expected_result, "Task 1: Query output doesn't match expected result.")
 
     def test_task2(self):
-        # SQL query results from task1.sql
+        # SQL query results from task2.sql
         result = self.execute_sql('sql/task2.sql')
 
         # Define expected results for task2.sql
@@ -88,6 +88,25 @@ class TestSQLQueries(unittest.TestCase):
 
         # Compare real and expected results
         self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
+
+    def test_task3(self):
+        # SQL query results from task3.sql
+        result = self.execute_sql('sql/task3.sql')
+
+        # Define expected results for task3.sql
+        expected_result = [
+            [(8, 'Sports & Outdoors', 155.0), (4, 'Home & Kitchen', 145.0), (1, 'Electronics', 125.0)],
+
+            [(5, 'sarahwilson')],
+
+            [(1, 'Smartphone X', 1, 500.0), (3, 'Laptop Pro', 2, 1200.0), (6, 'Designer Dress', 3, 300.0),(7, 'Coffee Maker', 4, 80.0), 
+             (9, 'Action Camera', 5, 200.0), (12, 'Skincare Set', 6, 150.0), (14, 'Weighted Blanket', 7, 100.0), (15, 'Mountain Bike', 8, 1000.0)],
+
+            []
+        ]
+
+        # Compare real and expected results
+        self.assertEqual(result, expected_result, "Task 3: Query output doesn't match expected result.")
 
 if __name__ == '__main__':
     unittest.main()
