@@ -31,7 +31,7 @@ def run_sql_script(file_path, db_config):
 def run_python_script(file_path, db_config):
     # Modify db_config to include the specific database name
     db_config_with_db = db_config.copy()
-    db_config_with_db['database'] = 'shopify_assessment2'
+    db_config_with_db['database'] = 'shopify_assessment'
     try:
         # Connect to the specific database
         connection = mysql.connector.connect(**db_config_with_db)
@@ -51,5 +51,5 @@ if __name__ == "__main__":
     # Run schema.sql to set up the database schema
     run_sql_script('../sql/schema.sql', db_config)
 
-    # Run script.py to insert data into shopify_assessment2
+    # Run script.py to insert data into shopify_assessment
     run_python_script('../scripts/script.py', db_config)
