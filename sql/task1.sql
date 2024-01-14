@@ -4,19 +4,19 @@ SELECT Products.product_name
 FROM Products
 INNER JOIN Categories
 ON Products.category_id = Categories.category_id
-WHERE Categories.category_name = "Sports";
+WHERE Categories.category_name = 'Sports';
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
 SELECT 
-  Orders.user_id,
+  Users.user_id,
   Users.username,
-  COUNT(Orders.order_id) as "num_orders"
-FROM Orders
-LEFT JOIN Users 
-ON Orders.user_id = Users.user_id
-GROUP BY Orders.user_id, Users.username;
+  COUNT(Orders.order_id) as num_orders
+FROM Users
+LEFT JOIN Orders 
+ON Users.user_id = Orders.user_id
+GROUP BY Users.user_id, Users.username;
 
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
