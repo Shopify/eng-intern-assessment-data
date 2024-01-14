@@ -7,7 +7,7 @@ SELECT c.category_id, c.category_name, SUM(oi.quantity * oi.unit_price) AS total
 FROM Order_Items oi 
 -- Multiple joins to pull in all required data
 LEFT JOIN Products p ON oi.product_id = p.product_id
-LEFT JOIN Categories c ON p.category_id = c.category_id
+INNER JOIN Categories c ON p.category_id = c.category_id
 GROUP BY c.category_id, c.category_name
 ORDER BY total_sales DESC
 LIMIT 3;
@@ -60,7 +60,7 @@ WITH OrderedOrders AS (
     SELECT 
         user_id, 
         order_date, 
-        LAG(order_date) OVER (PARTITION BY user_id ORDER BY order_date) AS prev_order_date 
+        LAG(order_date) OVER (PARTITION BY user_id ORDER BY order_date) AS prev_order_date, 
         LAG(order_date, 2) OVER (PARTITION BY user_id ORDER BY order_date) AS prev2_order_date 
     FROM Orders 
 )
@@ -69,4 +69,4 @@ WITH OrderedOrders AS (
 SELECT DISTINCT u.user_id, u.username 
 FROM Users u JOIN OrderedOrders oo ON u.user_id = oo.user_id 
 -- Filter for orders placed on three consecutive days by checking the time difference with the previous and second previous order dates
-WHERE DATEDIFF(oo.order_date, oo.prev_order_date) = 1 AND DATEDIFF(oo.prev_order_date, oo.prev2_order_date) = 1;
+WHERE oo.order_date - oo.prev_order_date = 1 AND oo.prev_order_date - oo.prev2_order_date = 1;

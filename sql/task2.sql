@@ -10,7 +10,7 @@ WITH AvgRatings AS (
     GROUP BY product_id
 ) 
 
-SELECT p.product_id, p.product_name
+SELECT p.product_id, p.product_name, a.avg_rating
 FROM Products p
 -- Inner join to only look at products with name and ratings
 -- 4 products that have ratings but are not in the Products table are excluded
@@ -30,7 +30,7 @@ LEFT JOIN Products p ON oi.product_id = p.product_id
 LEFT JOIN Users u ON o.user_id = u.user_id
 GROUP BY u.user_id, u.username
 -- Filter for those with number of distinct categories ordered equal to possible total
-HAVING COUNT(DISTINCT p.category_id) = (SELECT COUNT(*) FROM Categories)
+HAVING COUNT(DISTINCT p.category_id) = (SELECT COUNT(*) FROM Categories);
 
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
@@ -57,4 +57,4 @@ WITH OrderedOrders AS (
 SELECT DISTINCT u.user_id, u.username 
 FROM Users u JOIN OrderedOrders oo ON u.user_id = oo.user_id 
 -- Filter for consecutive day orders, where the previous order date is exactly one day before the current order date 
-WHERE DATEDIFF(oo.order_date, oo.prev_order_date) = 1;
+WHERE oo.order_date - oo.prev_order_date = 1;
