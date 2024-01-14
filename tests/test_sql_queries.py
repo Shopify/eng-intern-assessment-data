@@ -1,17 +1,28 @@
 import unittest
-import psycopg2  # Replace with appropriate database connector based on your database
+import sqlite3
+from create_database import create_db
 
 class TestSQLQueries(unittest.TestCase):
 
     def setUp(self):
-        # Establish a connection to your test database
-        self.conn = psycopg2.connect(
-            dbname='your_dbname',
-            user='your_username',
-            password='your_password',
-            host='your_host',
-            port='your_port'
-        )
+        # Create a test database
+        db_name = 'shopify_db'
+        csv_table_mapping = {
+            'data/cart_data.csv': 'Cart',
+            'data/cart_item_data.csv': 'Cart_Items',
+            'data/category_data.csv': 'Categories',
+            'data/order_data.csv': 'Orders',
+            'data/order_items_data.csv': 'Order_Items',
+            'data/product_data.csv': 'Products',
+            'data/payment_data.csv': 'Payments',
+            'data/review_data.csv': 'Reviews',
+            'data/shipping_data.csv': 'Shipping',
+            'data/user_data.csv': 'Users'
+        }
+        create_db(db_name, csv_table_mapping)
+
+        # Establish a connection to the test database
+        self.conn = sqlite3.connect('shopify_db')
         self.cur = self.conn.cursor()
 
     def tearDown(self):

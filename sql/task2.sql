@@ -13,6 +13,7 @@ WITH AvgRatings AS (
 SELECT p.product_id, p.product_name
 FROM Products p
 -- Inner join to only look at products with name and ratings
+-- 4 products that have ratings but are not in the Products table are excluded
 INNER JOIN AvgRatings a ON p.product_id = a.product_id 
 WHERE a.avg_rating = (SELECT MAX(avg_rating) FROM AvgRatings); 
 

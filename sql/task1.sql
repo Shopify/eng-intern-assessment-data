@@ -25,6 +25,7 @@ GROUP BY u.user_id, u.username;
 SELECT p.product_id, p.product_name, AVG(r.rating) AS avg_rating
 FROM Products p
 -- Left join to include all products in the Products table, even those without ratings
+-- 14 products that have ratings but are not in the Products table are excluded
 LEFT JOIN Reviews r ON p.product_id = r.product_id
 GROUP BY p.product_id, p.product_name;
 
