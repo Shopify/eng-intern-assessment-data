@@ -2,26 +2,25 @@
 -- Write an SQL query to retrieve the products with the highest average rating.
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
-SELECT
-  AverageRatings.product_id,
-  AverageRatings.product_name,
-  AverageRatings.average_rating
-
-FROM 
-  (SELECT 
+WITH AverageRatings AS (
+  SELECT 
     Products.product_id,
     Products.product_name,
-    AVG(Reviews.rating) as "average_rating"
+    AVG(Reviews.rating) AS average_rating
   FROM Reviews
   INNER JOIN Products
   ON Reviews.product_id = Products.product_id
-  GROUP BY Products.product_id, Products.product_name) as AverageRatings
-WHERE AverageRatings.average_rating = 
-  (SELECT MAX(AverageRatings.average_rating)
-   FROM (SELECT 
-           AVG(Reviews.rating) as "average_rating"
-         FROM Reviews
-         GROUP BY Reviews.product_id) as AverageRatings);
+  GROUP BY Products.product_id, Products.product_name
+)
+SELECT
+  product_id,
+  product_name,
+  average_rating
+FROM AverageRatings
+WHERE average_rating = (
+  SELECT MAX(average_rating)
+  FROM AverageRatings
+);
 
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
@@ -34,7 +33,7 @@ FROM Users
 INNER JOIN Orders ON Users.user_id = Orders.user_id
 INNER JOIN Order_Items ON Orders.order_id = Order_Items.order_id
 INNER JOIN Products ON Order_Items.product_id = Products.product_id
-GROUP BY Users.user_id, Users,username
+GROUP BY Users.user_id, Users.username
 HAVING COUNT(DISTINCT Products.category_id) =
   (SELECT COUNT(*) FROM Categories);
 
