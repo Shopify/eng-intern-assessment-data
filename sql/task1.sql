@@ -22,7 +22,7 @@ SELECT
   u.user_id,
   u.username,
   -- COUNT aggregate function to get the total number of orders for the user
-  COUNT(o.order_id) as total_num_orders
+  COUNT(o.order_id) AS total_num_orders
 FROM
   users u
   -- LEFT JOIN used to ensure users with 0 orders are returned
@@ -39,11 +39,11 @@ SELECT
   p.product_id,
   p.product_name,
   -- AVG aggregate function to calculate the average rating for each product
-  AVG(r.rating) as avg_rating
+  AVG(r.rating) AS avg_rating
 FROM
   products p
     -- RIGHT JOIN to retrive only the products with an average rating
-  RIGHT JOIN reviews r on p.product_id = r.product_id
+  RIGHT JOIN reviews r ON p.product_id = r.product_id
 GROUP BY
   p.product_id;
 
