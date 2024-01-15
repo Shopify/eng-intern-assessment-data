@@ -6,10 +6,14 @@ SELECT AVG(Reviews.rating), Reviews.product_id, Products.product_name
 FROM Reviews
 LEFT JOIN Products ON Reviews.product_id=Products.product_id
 GROUP BY Reviews.product_id, Products.product_name
-HAVING AVG(Reviews.rating)=(SELECT MAX(avgrate) FROM 
-(SELECT AVG(Reviews.rating) as avgrate 
-FROM Reviews 
-GROUP BY Reviews.product_id, Products.product_name));
+HAVING AVG(Reviews.rating)=(
+    SELECT MAX(avgrate) 
+    FROM (
+        SELECT AVG(Reviews.rating) as avgrate
+        FROM Reviews 
+        GROUP BY Reviews.product_id, Products.product_name
+    )
+);
 
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
@@ -29,7 +33,10 @@ LEFT JOIN Products ON Order_Items.product_id=Products.product_id
 LEFT JOIN Categories ON Products.category_id=Categories.category_id
 LEFT JOIN Users ON Users.user_id=Orders.user_id
 GROUP BY Orders.user_id, Users.username
-HAVING COUNT(DISTINCT Categories.category_id) = (SELECT COUNT(category_id) FROM Categories);
+HAVING COUNT(DISTINCT Categories.category_id) = (
+    SELECT COUNT(category_id) 
+    FROM Categories
+);
 
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
@@ -53,9 +60,9 @@ GROUP BY Products.product_id, Products.product_name;
 --Using the WHERE clause to filter only orders from the same user that differ by 1 day
 --To add the username, I put that in a subquery and JOIN with the Users table
 SELECT A.user_id, Users.username
-from (SELECT A.user_id
+FROM (SELECT A.user_id
 FROM Orders A, Orders B
 WHERE A.user_id = B.user_id
 AND A.order_date - B.order_date = 1
 GROUP BY A.user_id) a 
-JOIN Users ON a.user_id = Users.user_id;
+LEFT JOIN Users ON a.user_id = Users.user_id;

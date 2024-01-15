@@ -64,7 +64,6 @@ class TestSQLQueries(unittest.TestCase):
             else:
                 self.cur.execute(sql_command)
                 result.append(str(self.cur.fetchall()))
-        #print(result)
 
         # Define expected outcome for Task 2 and compare
         expected_result = [
@@ -78,6 +77,32 @@ class TestSQLQueries(unittest.TestCase):
         self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
 
     # Add more test methods for additional SQL tasks
+    def test_task3(self):
+        # Task 2: Example SQL query in task2.sql
+        result = []
+        with open('./sql/task3.sql', 'r') as file:
+            sql_queries = file.read().split(';')
+            #Remove \n at the end
+        sql_queries = sql_queries[:-1]
+        for sql_command in sql_queries:
+            #Adds back the semicolon to the SQL command if it doesn't exist
+            #I converted to string so that I can easily compare with expected_result
+            if not sql_command.endswith(';'):
+                self.cur.execute(sql_command + ';')
+                result.append(str(self.cur.fetchall()))
+            else:
+                self.cur.execute(sql_command)
+                result.append(str(self.cur.fetchall()))
+
+        # Define expected outcome for Task 2 and compare
+        expected_result = [
+            "[(None, None, Decimal('570.00')), (8, 'Sports & Outdoors', Decimal('155.00')), (4, 'Home & Kitchen', Decimal('145.00'))]", "[(5, 'sarahwilson')]", 
+            "[(1, 'Smartphone X', 1, Decimal('50.00')), (3, 'Laptop Pro', 2, Decimal('30.00')), (5, 'Running Shoes', 3, Decimal('20.00')), (8, 'Toaster Oven', 4, Decimal('40.00')), (9, 'Action Camera', 5, Decimal('30.00')), (11, 'Yoga Mat', 6, Decimal('20.00')), (14, 'Weighted Blanket', 7, Decimal('30.00')), (15, 'Mountain Bike', 8, Decimal('40.00')), (35, None, None, None), (33, None, None, None), (31, None, None, None), (34, None, None, None), (32, None, None, None), (36, None, None, None)]", 
+            "[]"
+            # Define expected rows or values here based on the query output
+        ]
+
+        self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
 
 if __name__ == '__main__':
     unittest.main()
