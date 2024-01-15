@@ -21,3 +21,12 @@ The assessment is based on a simulated dataset containing sales information from
 - Feel free to ask any clarifying questions by creating an issue in this repository.
 
 Good luck, and we look forward to reviewing your work!
+
+## Notes from the potential intern
+- I have created a branch called julio-dev-branch
+- Please setup a local database and replace the credentials for everything that needs to be connected to a database
+- Please run setup_database.py
+- ignore script2.py
+- hope you enjoy my solution and can't wait to hear back from you guys!
+
+
