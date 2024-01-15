@@ -32,5 +32,5 @@ SELECT users.user_id, username, SUM(total_amount) as total_amount_spent
 FROM orders
 JOIN users ON orders.user_id = users.user_id
 GROUP BY users.user_id
-ORDER BY SUM(total_amount) DESC
+ORDER BY total_amount_spent DESC
 LIMIT 10;
