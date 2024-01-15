@@ -36,10 +36,10 @@ It is important to learn about data before ingestion. Here are some important in
 - 2. The size of the data files are fairly small, indicating a small number of records. This makes it easy to ingest and work with the data. For this particular reason, simply MySQL workbench is used to ingest the data. It is worth noting that MySQL workbench is considerably slow for big data, however, this is not an issue for this test.
 - 3. By a quick look at the data files (they are not that many therefore easy to read), it is clear that the data is clean and well-structured.
 
-### 3. Data Ingestion and Table Creation:
+### 3. Data Ingestion and Database Creation:
 
 As mention before, the data is imported using MySQL workbench. Alternatives like using the computer's terminal or python scripts would also work perfectly fine.
 
-A database is set up and tables are conveniently created using the schema.sql. Subsequently, the data is imported into the tables using MySQL workbench import wizard. It is important to note that the tables should be populated in a particular order, avoiding any foreign key constraints.
+A database is set up and tables are conveniently created using the make_db.sql using MySQL. Subsequently, the data is imported into the tables using MySQL workbench import wizard. It is important to note that the tables should be populated in a particular order, avoiding any foreign key constraints.
 
 ### 4. Queries:
