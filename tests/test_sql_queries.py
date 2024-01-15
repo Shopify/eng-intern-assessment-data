@@ -30,7 +30,7 @@ class TestSQLQueries(unittest.TestCase):
         self.cur.close()
         self.conn.close()
     
-    def execute_sql(self, task_file_path):
+    def execute_indiv_queries(self, task_file_path):
         # Read queries in task
         with open(task_file_path, 'r') as file:
             # Use ; to separate queries. Remove last element, which is empty
@@ -47,7 +47,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task1(self):
         # SQL query results from task1.sql
-        result = self.execute_sql('sql/task1.sql')
+        result = self.execute_indiv_queries('sql/task1.sql')
 
         # Define expected results for task1.sql
         expected_result = [
@@ -73,7 +73,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task2(self):
         # SQL query results from task2.sql
-        result = self.execute_sql('sql/task2.sql')
+        result = self.execute_indiv_queries('sql/task2.sql')
 
         # Define expected results for task2.sql
         expected_result = [
@@ -91,7 +91,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task3(self):
         # SQL query results from task3.sql
-        result = self.execute_sql('sql/task3.sql')
+        result = self.execute_indiv_queries('sql/task3.sql')
 
         # Define expected results for task3.sql
         expected_result = [
