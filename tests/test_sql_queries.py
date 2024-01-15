@@ -1,16 +1,16 @@
 import unittest
-import psycopg2  # Replace with appropriate database connector based on your database
+# import psycopg2 
+import mysql.connector
 
 class TestSQLQueries(unittest.TestCase):
-
     def setUp(self):
-        # Establish a connection to your test database
-        self.conn = psycopg2.connect(
-            dbname='your_dbname',
-            user='your_username',
-            password='your_password',
-            host='your_host',
-            port='your_port'
+        # Establish a connection to shopify local database
+        self.conn =  mysql.connector.connect(
+            database='shopify_test',
+            user='sam-admin',
+            passwd='14121822sS@',
+            host='127.0.0.1',
+            port='3306'
         )
         self.cur = self.conn.cursor()
 
@@ -19,8 +19,8 @@ class TestSQLQueries(unittest.TestCase):
         self.cur.close()
         self.conn.close()
 
+    # Tests task 1
     def test_task1(self):
-        # Task 1: Example SQL query in task1.sql
         with open('/sql/task1.sql', 'r') as file:
             sql_query = file.read()
 
@@ -34,8 +34,8 @@ class TestSQLQueries(unittest.TestCase):
 
         self.assertEqual(result, expected_result, "Task 1: Query output doesn't match expected result.")
 
+    # Tests task 2
     def test_task2(self):
-        # Task 2: Example SQL query in task2.sql
         with open('/sql/task2.sql', 'r') as file:
             sql_query = file.read()
 
@@ -48,8 +48,21 @@ class TestSQLQueries(unittest.TestCase):
         ]
 
         self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
+    
+    # Tests task 3
+    def test_task3(self):
+        with open('/sql/task3.sql', 'r') as file:
+            sql_query = file.read()
 
-    # Add more test methods for additional SQL tasks
+        self.cur.execute(sql_query)
+        result = self.cur.fetchall()
+
+        # Define expected outcome for Task 3 and compare
+        expected_result = [
+            # Define expected rows or values here based on the query output
+        ]
+
+        self.assertEqual(result, expected_result, "Task 3: Query output doesn't match expected result.")
 
 if __name__ == '__main__':
     unittest.main()
