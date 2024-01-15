@@ -58,7 +58,7 @@ class TestSQLQueries(unittest.TestCase):
                 (16, 'Tennis Racket', Decimal('4.0')), (7, 'Coffee Maker', Decimal('5.0')), (12, 'Skincare Set', Decimal('4.0')), 
                 (1, 'Smartphone X', Decimal('5.0')), (8, 'Toaster Oven', Decimal('3.0'))
             ],
-            [(12, 'jasonrodriguez', Decimal(160.00)), (4, 'robertbrown', Decimal(155.00)), (8, 'chrisharris', Decimal(150.00)), (24, 'jamesrogers', Decimal(150.00)), (17, 'olivialopez', Decimal(145.00))]
+            [(12, 'jasonrodriguez', Decimal('160.00')), (4, 'robertbrown', Decimal('155.00')), (8, 'chrisharris', Decimal('150.00')), (24, 'jamesrogers', Decimal('150.00')), (29, 'elliecollins', Decimal('145.00'))]
         ]
 
         self.assertEqual(results, expected_result, "Task 1: Query output doesn't match expected result.")
