@@ -14,6 +14,16 @@ WHERE `category_id` IN (
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
 
+-- Purpose: Retrieve information about users and their number of orders
+-- This query joins the orders and users, then groups the data on user_id.
+SELECT `users`.`user_id`,
+       `users`.`username`,
+        COUNT(`orders`.`order_id`) AS `total_orders`
+FROM `users`
+JOIN `orders` ON  `users`.`user_id` = `orders`.`user_id`
+GROUP BY (`users`.`user_id`) ;
+
+
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
