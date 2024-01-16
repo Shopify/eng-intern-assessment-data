@@ -6,7 +6,8 @@ SELECT Products.product_id, product_name, AVG(rating) AS average_rating -- compu
 FROM Products 
 JOIN Reviews ON Products.product_id = Reviews.product_id
 GROUP BY Products.product_id
-ORDER BY average_rating DESC; -- sort by average rating from highest to lowest
+ORDER BY average_rating DESC -- sort by average rating from highest to lowest
+;
 
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
@@ -19,7 +20,8 @@ JOIN Order_Items ON Orders.order_id = Order_Items.order_id
 JOIN Products ON Order_Items.product_id = Products.product_id
 JOIN Categories ON Products.category_id = Categories.category_id
 GROUP BY Users.user_id
-HAVING COUNT(DISTINCT Categories.category_id) = (SELECT COUNT(DISTINCT Categories.category_id) FROM Categories); -- select only users who have ordered from all categories
+HAVING COUNT(DISTINCT Categories.category_id) = (SELECT COUNT(DISTINCT Categories.category_id) FROM Categories) -- select only users who have ordered from all categories
+;
 
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
@@ -29,7 +31,8 @@ SELECT Products.product_id, Products.product_name
 FROM Products
 LEFT JOIN Reviews ON Products.product_id = Reviews.product_id -- use LEFT JOIN to include all products even though with no review data
 GROUP BY Reviews.product_id
-WHERE Reviews.review_id IS NULL; -- select only products that have no reviews
+WHERE Reviews.review_id IS NULL -- select only products that have no reviews
+;
 
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
@@ -51,4 +54,5 @@ FROM
     JOIN Orders ON Users.user_id = Orders.user_id
 ) AS subquery
 GROUP BY user_id
-HAVING 'days_since_last_order' = 1; -- select only users who have ordered on consecutive days (date difference = 1)
+HAVING 'days_since_last_order' = 1 -- select only users who have ordered on consecutive days (date difference = 1)
+;
