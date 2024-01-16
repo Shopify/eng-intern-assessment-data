@@ -67,3 +67,20 @@ WHERE `product_id` IN (
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
+
+-- Purpose: Retrieve users that made orders in at least two consecutive days
+-- This query builds a table with order days and last previous order days using LAG.
+-- Then grabs distinct users where the difference ebetween the two column is 1 day.
+
+WITH `ConsecutiveOrders` AS (
+    SELECT
+        `user_id`,
+        `order_date`,
+        LAG(`order_date`) OVER (PARTITION BY `user_id` ORDER BY `order_date`) AS `prev_order_date`
+    FROM
+        `orders`
+)
+SELECT DISTINCT `ConsecutiveOrders`.`user_id`, `users`.`username`
+FROM `ConsecutiveOrders`
+JOIN `users` ON `ConsecutiveOrders`.`user_id` = `users`.`user_id`
+WHERE DATEDIFF(`order_date`, `prev_order_date`) = 1;
