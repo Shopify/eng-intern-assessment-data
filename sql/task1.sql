@@ -10,10 +10,10 @@ WHERE category_name = 'Sports & Outdoors';
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
 
-SELECT users.user_id, username, COUNT(order_id) as total_number_of_orders
+SELECT users.user_id, users.username, COUNT(order_id) as total_number_of_orders
 FROM orders
 JOIN users ON orders.user_id = users.user_id
-GROUP BY users.user_id;
+GROUP BY users.user_id, users.username;
 
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
