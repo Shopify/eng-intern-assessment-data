@@ -35,6 +35,7 @@ It is important to learn about data before ingestion. Here are some important in
 - 1. The data for this test is all available in csv format which is a structured data format, and fortunately, SQL works best with structured data.
 - 2. The size of the data files are fairly small, indicating a small number of records. This makes it easy to ingest and work with the data. For this particular reason, simply MySQL workbench is used to ingest the data. It is worth noting that MySQL workbench is considerably slow for big data, however, this is not an issue for this test.
 - 3. By a quick look at the data files (they are not that many therefore easy to read), it is clear that the data is clean and well-structured.
+- 4. There seem to be missing data from the products table. Unfortunately, the missing IDs are reference in other tables such as review, cart_item, and order_items. The initial solutions here is to drop all the references made to the missing data. This is done to move forward with the assignment.
 
 ### 3. Data Ingestion and Database Creation:
 
