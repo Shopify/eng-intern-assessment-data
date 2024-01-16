@@ -6,7 +6,7 @@ class TestSQLQueries(unittest.TestCase):
     def setUp(self):
         # Establish a connection to shopify local database
         self.conn =  mysql.connector.connect(
-            database='shopify_test',
+            database='shopify_test2',
             user='sam-admin',
             passwd='14121822sS@',
             host='127.0.0.1',
@@ -27,9 +27,9 @@ class TestSQLQueries(unittest.TestCase):
         self.cur.execute(sql_query)
         result = self.cur.fetchall()
 
-        # Define expected outcome for Task 1 and compare
         expected_result = [
-            # Define expected rows or values here based on the query output
+            (value1_row1, value2_row1, ...),  # Row 1
+            (value1_row2, value2_row2, ...),  # Row 2
         ]
 
         self.assertEqual(result, expected_result, "Task 1: Query output doesn't match expected result.")

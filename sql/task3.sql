@@ -5,7 +5,7 @@
 
 -- Purpose: Retrieve the top 3 categories with the highest total sales amount
 -- This query uses CTE to design a table with aggregated sales based on products.
--- then the products are grouped by category and total sales are summed up upon aggregation.
+-- then the products are grouped by category, and total sales are summed up upon aggregation.
 WITH `CategorySales` AS (
     SELECT
 		`products`.`product_id`,
@@ -35,8 +35,8 @@ LIMIT 3;
 -- Purpose: Retrieve users who ordered every product in Toys & Games category
 -- This query joins users and orders based on user_id, then joins orders and order_items on order_id,
 -- then joins order_items and products on product_id, conditioned on only orders in 'Toys & Games'.
--- This will leave us with a table that connects users with their order only in 'Toys & Games' ategory.
--- Next all the distinct user order in 'Toys & Games' is considered and compared to the total number of
+-- This will leave us with a table that connects users with their order only in 'Toys & Games' category.
+-- Next, all the distinct user orders in 'Toys & Games' are considered and compared to the total number of
 -- products in this category. This is enabled by aggregating based on user_id.
 SELECT `users`.`user_id`, `users`.`username` FROM `orders`
 JOIN `users` ON `orders`.`user_id` = `users`.`user_id`
@@ -64,7 +64,7 @@ HAVING COUNT(DISTINCT `products`.`product_id`) = (
 
 -- Purpose: Retrieve the products that have the highest price within each category
 -- This query partitions the products table on category_id and orders them by the price high to low. 
--- Each category now has rows with the highest item price at row 1.
+-- Each category now has rows with the highest item price in row 1.
 SELECT `product_id`, `product_name`, `category_id`, `price` FROM (
   SELECT
     `product_id`,
@@ -84,9 +84,9 @@ WHERE `row_num` = 1;
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
 -- Purpose: Retrieve users that made orders in at least three consecutive days
--- This query builds a table with current order day, last previous order day (using LAG), and first next
--- order day (using lead) for each user. Then grabs distinct users where the difference between both current
--- and previous, as well as current and next is 1 day.
+-- This query builds a table with the current order day, the last previous order day (using LAG), and the first next
+-- order day (using lead) for each user. Then, it grabs distinct users where the difference between the current
+-- and previous, as well as current and next is one day.
 WITH `ThreeConsecutiveOrders` AS (
     SELECT
         `user_id`,

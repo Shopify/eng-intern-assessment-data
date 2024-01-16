@@ -38,7 +38,7 @@ ORDER BY `average_rating` DESC;
 -- Purpose: Retrieve users with one or more orders in every single category
 -- This query joins users and orders based on user_id, then joins orders and order_items on order_id,
 -- then joins order_items and products on product_id. Later groups them by user_id given that the count of
--- distinct products bought by the user is equal to every category that exists.
+-- distinct products bought by the user are equal to every category that exists.
 SELECT `users`.`user_id`, `users`.`username` FROM `orders`
 JOIN `users` ON `orders`.`user_id` = `users`.`user_id`
 JOIN `order_items` ON `orders`.`order_id` = `order_items`.`order_id`
@@ -54,7 +54,7 @@ HAVING COUNT(DISTINCT `products`.`category_id`) = (
 -- The result should include the product ID and product name.
 -- Hint: You may need to use subqueries or left joins to solve this problem.
 
--- Purpose: Retrieve information of products which have yet to receive a review
+-- Purpose: Retrieve information on products which have yet to receive a review
 -- This query, subqueries through product reviews grouped by product_id and filtered on the count of reviews.
 SELECT `product_id`, `product_name` FROM `products`
 WHERE `product_id` IN (
@@ -69,8 +69,8 @@ WHERE `product_id` IN (
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 
 -- Purpose: Retrieve users that made orders in at least two consecutive days
--- This query builds a table with order days and last previous order days using LAG.
--- Then grabs distinct users where the difference ebetween the two column is 1 day.
+-- This query builds a table with order days and the previous order days using LAG.
+-- Then, it grabs distinct users where the difference between the two columns is one day.
 
 WITH `ConsecutiveOrders` AS (
     SELECT

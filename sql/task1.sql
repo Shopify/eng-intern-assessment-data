@@ -15,7 +15,7 @@ WHERE `category_id` IN (
 -- The result should include the user ID, username, and the total number of orders.
 
 -- Purpose: Retrieve information about users and their number of orders
--- This query joins the orders and users, then groups the data on user_id.
+-- This query joins the orders and users and then groups the data on user_id.
 SELECT `users`.`user_id`,
        `users`.`username`,
         COUNT(`orders`.`order_id`) AS `total_orders`
@@ -28,8 +28,8 @@ GROUP BY (`users`.`user_id`) ;
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
 
--- Purpose: Retrieve information about average rating for each product
--- This query joins products and reviews, then groups the products calcualting each products average rate.
+-- Purpose: Retrieve information about the average rating for each product
+-- This query joins products and reviews, then groups the products, calculating each product's average rate.
 SELECT
     `products`.`product_id`,
     `products`.`product_name`,
@@ -43,10 +43,11 @@ GROUP BY `products`.`product_id`;
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
--- Purpose: Retrieve information about user with highest total order amounts. We assume orders here
--- means combination of all orders (considering each user might have had more than one order)
+
+-- Purpose: Retrieve information about the user with the highest total order amounts. We assume orders here
+-- means the combination of all orders (considering each user might have had more than one order)
 -- This query joins users and orders, groups data by user_id and sums the total_amount upon aggregation.
--- At the end orders the records by total_amount_spent in desceding order and only shows first 5 records.
+-- At the end, order the records by total_amount_spent in descending order and only show the first five records.
 SELECT
     `users`.`user_id`,
     `users`.`username`,
