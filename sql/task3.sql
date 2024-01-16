@@ -32,6 +32,31 @@ LIMIT 3;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
 
+-- Purpose: Retrieve users who ordered every product in Toys & Games category
+-- This query joins users and orders based on user_id, then joins orders and order_items on order_id,
+-- then joins order_items and products on product_id, conditioned on only orders in 'Toys & Games'.
+-- This will leave us with a table that connects users with their order only in 'Toys & Games' ategory.
+-- Next all the distinct user order in 'Toys & Games' is considered and compared to the total number of
+-- products in this category. This is enabled by aggregating based on user_id.
+SELECT `users`.`user_id`, `users`.`username` FROM `orders`
+JOIN `users` ON `orders`.`user_id` = `users`.`user_id`
+JOIN `order_items` ON `orders`.`order_id` = `order_items`.`order_id`
+JOIN `products` ON `order_items`.`product_id` = `products`.`product_id`
+WHERE `products`.`category_id` = (
+	SELECT `category_id` FROM `categories`
+	WHERE `category_name` = 'Toys & Games'
+)
+GROUP BY `orders`.`user_id`
+HAVING COUNT(DISTINCT `products`.`product_id`) = (
+	SELECT COUNT(*) FROM `products`
+    WHERE `category_id` = (
+		SELECT `category_id` FROM `categories`
+		WHERE `category_name` = 'Toys & Games'
+	)
+);
+
+
+
 -- Problem 11: Retrieve the products that have the highest price within each category
 -- Write an SQL query to retrieve the products that have the highest price within each category.
 -- The result should include the product ID, product name, category ID, and price.
