@@ -1,5 +1,4 @@
 import psycopg2
-import csv
 
 def get_connection():
     conn = psycopg2.connect(
@@ -84,18 +83,8 @@ def add_all_data(cur, conn):
 
 cur, conn = get_connection()
 
-#create_tables(cur, conn)
-#add_all_data(cur, conn)
-
-with open('./sql/task1.sql', 'r') as file:
-    sql_query = file.read().split(';')[:-1]
-
-cur.execute(sql_query)
-result = cur.fetchall()
-
-print(len(result))
-print(result[0])
-print(result[1])
+create_tables(cur, conn)
+add_all_data(cur, conn)
 
 cur.close()
 conn.close()

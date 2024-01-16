@@ -21,8 +21,8 @@ LIMIT 3;
 SELECT user_id, username
 FROM users
 WHERE (
-    SELECT COUNT(Distinct order_item.product_id) 
-    FROM orders_items
+    SELECT COUNT(Distinct order_items.product_id) 
+    FROM order_items
     JOIN orders
     ON orders.order_id = order_items.order_id 
     JOIN products 
@@ -52,7 +52,7 @@ SELECT product_id, product_name, products.category_id, max_price
 FROM products
 JOIN MaxPrice
 ON products.category_id = MaxPrice.category_id
-WHERE price = max_price
+WHERE price = max_price;
 
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
