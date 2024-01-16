@@ -3,7 +3,7 @@ name: Data Engineer Assessment
 on:
   pull_request:
     branches:
-      - master  # Consider changing the branch name if needed
+      - master # Consider changing the branch name if needed
 
 jobs:
   assessment:
@@ -16,18 +16,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # Choose appropriate Python version
+          python-version: "3.8"
 
-      - name: Set up PostgreSQL  # Replace with appropriate database setup steps
+      - name: Set up MySQL
         run: |
           sudo apt-get update
-          sudo apt-get install postgresql
+          sudo apt-get install mysql-connector-python mysql-connector pandas
           # Additional setup commands for creating a test database and loading data
 
       - name: Run SQL Tests
         run: |
-          # Execute SQL test scripts against the test database
-          # Validate SQL queries and transformations
+          python3 tests/test_sql_queries.py
 
       - name: Run Problem-solving Tests
         run: |
