@@ -62,6 +62,22 @@ HAVING COUNT(DISTINCT `products`.`product_id`) = (
 -- The result should include the product ID, product name, category ID, and price.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
+-- Purpose: Retrieve the products that have the highest price within each category
+-- This query partitions the products table on category_id and orders them by the price high to low. 
+-- Each category now has rows with the highest item price at row 1.
+SELECT `product_id`, `product_name`, `category_id`, `price` FROM (
+  SELECT
+    `product_id`,
+	`product_name`,
+    `category_id`,
+    `price`,
+    ROW_NUMBER() OVER (PARTITION BY `category_id` ORDER BY `price` DESC) AS `row_num`
+  FROM `products`
+) AS `ranked`
+WHERE `row_num` = 1;
+-- ORDER BY `price` DESC; -- optionally to see highest category from top to bottom
+
+
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
 -- The result should include the user ID and username.
