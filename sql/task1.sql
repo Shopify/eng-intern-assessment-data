@@ -28,6 +28,18 @@ GROUP BY (`users`.`user_id`) ;
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
 
+-- Purpose: Retrieve information about average rating for each product
+-- This query joins products and reviews, then groups the products calcualting each products average rate.
+SELECT
+    `products`.`product_id`,
+    `products`.`product_name`,
+    AVG(`reviews`.`rating`) AS `average_rating`
+FROM `products`
+JOIN `reviews` ON `products`.`product_id` = `reviews`.`product_id`
+GROUP BY `products`.`product_id`;
+
+
+
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
