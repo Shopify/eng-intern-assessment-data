@@ -1,3 +1,7 @@
+DROP SCHEMA IF EXISTS onlineShopping CASCADE;
+CREATE SCHEMA onlineShopping;
+SET SEARCH_PATH TO onlineShopping;
+
 -- Table: Categories
 CREATE TABLE Categories (
   category_id INT PRIMARY KEY,
