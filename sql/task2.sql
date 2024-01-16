@@ -35,6 +35,20 @@ ORDER BY `average_rating` DESC;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or joins to solve this problem.
 
+-- Purpose: Retrieve users with one or more orders in every single category
+-- This query joins users and orders based on user_id, then joins orders and order_items on order_id,
+-- then joins order_items and products on product_id. Later groups them by user_id given that the count of
+-- distinct products bought by the user is equal to every category that exists.
+SELECT `users`.`user_id`, `users`.`username` FROM `orders`
+JOIN `users` ON `orders`.`user_id` = `users`.`user_id`
+JOIN `order_items` ON `orders`.`order_id` = `order_items`.`order_id`
+JOIN `products` ON `order_items`.`product_id` = `products`.`product_id`
+GROUP BY `orders`.`user_id`
+HAVING COUNT(DISTINCT `products`.`category_id`) = (
+	SELECT COUNT(*) FROM `categories`
+);
+
+
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
 -- The result should include the product ID and product name.
