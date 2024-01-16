@@ -54,6 +54,15 @@ HAVING COUNT(DISTINCT `products`.`category_id`) = (
 -- The result should include the product ID and product name.
 -- Hint: You may need to use subqueries or left joins to solve this problem.
 
+-- Purpose: Retrieve information of products which have yet to receive a review
+-- This query, subqueries through product reviews grouped by product_id and filtered on the count of reviews.
+SELECT `product_id`, `product_name` FROM `products`
+WHERE `product_id` IN (
+	SELECT `product_id` FROM `reviews`
+	GROUP BY `product_id` HAVING COUNT(`product_id`) > 0
+);
+
+
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
 -- The result should include the user ID and username.
