@@ -3,7 +3,7 @@ name: Data Engineer Assessment
 on:
   pull_request:
     branches:
-      - master # Consider changing the branch name if needed
+      - master # Could be main or solution-samyar-farjam
 
 jobs:
   assessment:
@@ -18,9 +18,13 @@ jobs:
         with:
           python-version: "3.8"
 
-      - name: Set up MySQL
+      - name: Setup System and Install Dependencies
         run: |
           sudo apt-get update
+          pip install -r requirements.txt
+
+      - name: Set up MySQL
+        run: |
           sudo apt-get install mysql-connector-python mysql-connector pandas
           # Additional setup commands for creating a test database and loading data
 
