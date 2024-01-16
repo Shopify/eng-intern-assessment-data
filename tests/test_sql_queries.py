@@ -23,7 +23,7 @@ class TestSQLQueries(unittest.TestCase):
     # Tests task 1
     def test_task1(self):
         task_num = 1
-        with open(f'/sql/task{task_num}.sql', 'r') as file:
+        with open(f'./sql/task{task_num}.sql', 'r') as file:
             sql_query = file.read()
 
         queries = self.sql_query_separator(sql_query)
@@ -39,7 +39,7 @@ class TestSQLQueries(unittest.TestCase):
     # Tests task 2
     def test_task2(self):
         task_num = 2
-        with open(f'/sql/task{task_num}.sql', 'r') as file:
+        with open(f'./sql/task{task_num}.sql', 'r') as file:
             sql_query = file.read()
 
         queries = self.sql_query_separator(sql_query)
@@ -55,7 +55,7 @@ class TestSQLQueries(unittest.TestCase):
     # Tests task 3
     def test_task3(self):
         task_num = 3
-        with open(f'/sql/task{task_num}.sql', 'r') as file:
+        with open(f'./sql/task{task_num}.sql', 'r') as file:
             sql_query = file.read()
 
         queries = self.sql_query_separator(sql_query)
@@ -74,6 +74,9 @@ class TestSQLQueries(unittest.TestCase):
         all_queries = []
         query = []
         for line in lines:
+            if line.startswith("--"):
+                continue
+            line = line.strip()
             query.append(line)
             if line.endswith(";"):
                 all_queries.append("\n".join(query))
@@ -81,16 +84,14 @@ class TestSQLQueries(unittest.TestCase):
         return all_queries
     
     def expected_results(task_num, problem):
+        problem_num = 4 * (task_num - 1) + problem
         # Read CSV file into a pandas DataFrame, excluding the header
-        data = pd.read_csv(f'./results/{problem}.csv', header=None)
+        data = pd.read_csv(f'./tests/results/{problem_num}.csv', header=None)
 
         # Convert the DataFrame to the test readable format
         formatted_data = [tuple(row) for row in data.values]
 
         return formatted_data
-
-
-
 
 
 if __name__ == '__main__':
