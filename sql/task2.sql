@@ -26,7 +26,6 @@ JOIN Order_Items oi ON o.order_id = oi.order_id
 JOIN Products p ON oi.product_id = p.product_id
 JOIN Categories c ON p.category_id = c.category_id
 GROUP BY u.user_id 
--- Ensuring that the number of distinct categories for each user is equal to the total number of categories.
 -- Checks if the user has ordered at least one product from every category.
 HAVING COUNT(DISTINCT c.category_id) = (SELECT COUNT(*) FROM Categories)
 
@@ -37,7 +36,8 @@ HAVING COUNT(DISTINCT c.category_id) = (SELECT COUNT(*) FROM Categories)
 -- Hint: You may need to use subqueries or left joins to solve this problem.
 SELECT p.product_id, p.product_name
 FROM Products p
-LEFT JOIN Reviews r ON p.product_id = r.product_id -- LEFT JOIN will include all products, even those without reviews.
+-- LEFT JOIN will include all products, even those without reviews.
+LEFT JOIN Reviews r ON p.product_id = r.product_id 
 WHERE r.review_id IS NULL;
 
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
@@ -52,6 +52,5 @@ FROM (
     FROM Orders o
 ) AS orders_with_prev_date
 JOIN Users u ON orders_with_prev_date.user_id = u.user_id
--- Filtering for cases where the order dates are consecutive (difference of 1 day).
--- DATEDIFF is used to find the difference in days between the current and previous order dates.
+-- Filtering for cases where the order dates are consecutive using DATEDIFF.
 WHERE DATEDIFF(order_date, prev_order_date) = 1;
