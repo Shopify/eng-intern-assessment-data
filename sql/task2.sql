@@ -3,6 +3,33 @@
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
 
+-- Purpose: Retrieve the products with the highest average rating
+-- This query joins products and reviews, grouping records on product_id and averaging ratings upon aggregation.
+-- Option 1: using join
+SELECT
+    `products`.`product_id`,
+    `products`.`product_name`,
+    AVG(`rating`) AS `average_rating`
+FROM `products`
+JOIN `reviews` ON `products`.`product_id` = `reviews`.`product_id`
+GROUP BY `products`.`product_id`
+ORDER BY `average_rating` DESC;
+-- LIMIT 1; -- Optionally to retrieve the highest record
+
+-- Option 2: using subqueries
+SELECT 
+	`products`.`product_id`,
+    `products`.`product_name`,
+    (
+		SELECT AVG(`reviews`.`rating`)
+		FROM `reviews`
+		WHERE `reviews`.`product_id` = `products`.`product_id`
+	) AS `average_rating`
+FROM `products`
+ORDER BY `average_rating` DESC;
+-- LIMIT 1; -- Optionally to retrieve the highest record
+
+
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
 -- The result should include the user ID and username.
