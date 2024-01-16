@@ -82,3 +82,22 @@ WHERE `row_num` = 1;
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
+
+-- Purpose: Retrieve users that made orders in at least three consecutive days
+-- This query builds a table with current order day, last previous order day (using LAG), and first next
+-- order day (using lead) for each user. Then grabs distinct users where the difference between both current
+-- and previous, as well as current and next is 1 day.
+WITH `ThreeConsecutiveOrders` AS (
+    SELECT
+        `user_id`,
+        `order_date`,
+        LAG(`order_date`) OVER (PARTITION BY `user_id` ORDER BY `order_date`) AS `prev_order_date`,
+        LEAD(`order_date`) OVER (PARTITION BY `user_id` ORDER BY `order_date`) AS `next_order_date`
+    FROM `orders`
+)
+SELECT DISTINCT `users`.`user_id`, `users`.`username`
+FROM `ThreeConsecutiveOrders`   
+JOIN `users` ON `ThreeConsecutiveOrders`.`user_id` = `users`.`user_id`
+WHERE 
+    DATEDIFF(next_order_date, order_date) = 1
+    AND DATEDIFF(order_date, prev_order_date) = 1;
