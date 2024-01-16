@@ -1,0 +1,9 @@
+product_id,product_name,category_id,price
+1,"Smartphone X",1,500.00
+3,"Laptop Pro",2,1200.00
+6,"Designer Dress",3,300.00
+7,"Coffee Maker",4,80.00
+9,"Action Camera",5,200.00
+12,"Skincare Set",6,150.00
+14,"Weighted Blanket",7,100.00
+15,"Mountain Bike",8,1000.00
