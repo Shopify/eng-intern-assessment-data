@@ -8,7 +8,8 @@ JOIN Products ON Categories.category_id = Products.category_id
 JOIN Order_Items ON Products.product_id = Order_Items.product_id
 GROUP BY Categories.category_id
 ORDER BY total_sales_amount DESC -- sort by total sales amount from highest to lowest
-LIMIT 3; -- select top 3 categories with highest total sales amount
+LIMIT 3 -- select top 3 categories with highest total sales amount
+;
 
 -- Problem 10: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
@@ -22,7 +23,8 @@ JOIN Products ON Order_Items.product_id = Products.product_id
 JOIN Categories ON Products.category_id = Categories.category_id
 WHERE Categories.category_id = 5 -- category_id = 5 corresponds to 'Toys & Games'
 GROUP BY Users.user_id
-HAVING COUNT(DISTINCT Products.product_id) = (SELECT COUNT(DISTINCT product_id) FROM Products WHERE category_id = 5); -- select only users who have ordered all products in 'Toys & Games' category
+HAVING COUNT(DISTINCT Products.product_id) = (SELECT COUNT(DISTINCT product_id) FROM Products WHERE category_id = 5) -- select only users who have ordered all products in 'Toys & Games' category
+;
 
 -- Problem 11: Retrieve the products that have the highest price within each category
 -- Write an SQL query to retrieve the products that have the highest price within each category.
@@ -58,4 +60,5 @@ FROM
     JOIN Orders ON Users.user_id = Orders.user_id
 ) AS subquery
 GROUP BY user_id
-HAVING 'days_since_lagged_order_1' = 1 AND 'days_since_lagged_order_2' = 2; -- select only users who have ordered on consecutive days for at least 3 days (date difference = 1 and 2)
+HAVING 'days_since_lagged_order_1' = 1 AND 'days_since_lagged_order_2' = 2 -- select only users who have ordered on consecutive days for at least 3 days (date difference = 1 and 2)
+;
