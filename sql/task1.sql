@@ -3,8 +3,7 @@
 
 SELECT  * 
 FROM Products p 
-LEFT JOIN Categories c 
-ON p.category_id = c.category_id 
+LEFT JOIN Categories c ON p.category_id = c.category_id 
 WHERE c.category_name = 'Sports & Outdoors'; 
 
 -- Problem 2: Retrieve the total number of orders for each user
@@ -23,8 +22,7 @@ ORDER BY u.user_id;
 
 SELECT p.product_id, p.product_name, AVG(r.rating) AS average_rating 
 FROM Products p 
-LEFT JOIN Reviews r 
-ON p.product_id = r.product_id 
+LEFT JOIN Reviews r ON p.product_id = r.product_id 
 GROUP BY p.product_id, p.product_name 
 ORDER BY p.product_id;
 
