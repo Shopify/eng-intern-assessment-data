@@ -3,7 +3,8 @@
 SELECT * 
 FROM Products 
 JOIN Categories ON Products.category_id = Categories.category_id
-WHERE Categories.category_name = 'Sports & Outdoors'; -- specify category name = 'Sports & Outdoors'
+WHERE Categories.category_name = 'Sports & Outdoors' -- specify category name = 'Sports & Outdoors'
+;
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
@@ -28,4 +29,5 @@ SELECT Orders.user_id, username, total_amount AS 'total_amount_spent'
 FROM Orders 
 JOIN Users ON Orders.user_id = Users.user_id 
 ORDER BY total_amount DESC -- sort by total amount spent from highest to lowest
-LIMIT 5; -- select top 5 users with highest total amount spent
+LIMIT 5 -- select top 5 users with highest total amount spent
+;
