@@ -3,17 +3,18 @@
 -- The result should include the category ID, category name, and the total sales amount.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
 
+-- Will return no results if there are no orders
 SELECT
-    Categories.category_id,
-    Categories.category_name,
-    SUM(Order_Items.quantity * Order_Items.unit_price) AS total_sales_amount
+    c.category_id,
+    c.category_name,
+    SUM(oi.quantity * oi.unit_price) AS total_sales_amount
 FROM
-    Categories
-    INNER JOIN Products ON Categories.category_id = Products.category_id
-    INNER JOIN Order_Items ON Products.product_id = Order_Items.product_id
+    Categories AS c
+    INNER JOIN Products AS p ON c.category_id = p.category_id
+    INNER JOIN Order_Items AS oi ON p.product_id = oi.product_id
 GROUP BY
-    Categories.category_id,
-    Categories.category_name
+    c.category_id,
+    c.category_name
 ORDER BY
     total_sales_amount DESC
 LIMIT
@@ -24,6 +25,8 @@ LIMIT
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
 
+-- Toys & Games category has category_id = 5
+-- Will return no results if there are no products in the Toys & Games category
 WITH
     ToysAndGamesProductCount AS (
         SELECT
@@ -31,31 +34,23 @@ WITH
         FROM
             Products
         WHERE
-            Products.category_id = 5
+            category_id = 5
     ),
-    UserToysAndGamesProducts AS (
-        SELECT DISTINCT
-            Users.user_id,
-            Users.username,
-            Products.product_id
-        FROM
-            Users
-            INNER JOIN Orders ON Users.user_id = Orders.user_id
-            INNER JOIN Order_Items ON Orders.order_id = Order_Items.order_id
-            INNER JOIN Products ON Order_Items.product_id = Products.product_id
-        WHERE
-            Products.category_id = 5
-    ),
-    UsersByToysAndGamesProductCount AS (
+    UsersToysAndGamesProductCount AS (
         SELECT
-            user_id,
-            username,
-            COUNT(*) AS toys_and_games_count
+            u.user_id,
+            u.username,
+            COUNT(DISTINCT p.product_id) AS toys_and_games_count
         FROM
-            UserToysAndGamesProducts
+            Users AS u
+            INNER JOIN Orders AS o ON u.user_id = o.user_id
+            INNER JOIN Order_Items AS oi ON o.order_id = oi.order_id
+            INNER JOIN Products AS p ON oi.product_id = p.product_id
+        WHERE
+            p.category_id = 5
         GROUP BY
-            user_id,
-            username
+            u.user_id,
+            u.username
     )
 
 -- Find the users who have placed orders for all products in the Toys & Games category
@@ -63,14 +58,16 @@ SELECT
     user_id,
     username
 FROM
-    UsersByToysAndGamesProductCount
-    INNER JOIN ToysAndGamesProductCount ON UsersByToysAndGamesProductCount.toys_and_games_count = ToysAndGamesProductCount.product_count;
+    UsersToysAndGamesProductCount AS utgpc
+    INNER JOIN ToysAndGamesProductCount AS tgpc ON utgpc.toys_and_games_count = tgpc.product_count;
 
 -- Problem 11: Retrieve the products that have the highest price within each category
 -- Write an SQL query to retrieve the products that have the highest price within each category.
 -- The result should include the product ID, product name, category ID, and price.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
+-- Will return no results if there are no products
+-- Will not return results for categories that have no products
 WITH
     HighestPricePerCategory AS (
         SELECT
@@ -84,14 +81,14 @@ WITH
 
 -- Find the products that have the highest price within each category
 SELECT
-    Products.product_id,
-    Products.product_name,
-    Products.category_id,
-    Products.price
+    p.product_id,
+    p.product_name,
+    p.category_id,
+    p.price
 FROM
-    Products
-    INNER JOIN HighestPricePerCategory ON Products.category_id = HighestPricePerCategory.category_id
-    AND Products.price = HighestPricePerCategory.highest_price;
+    Products AS p
+    INNER JOIN HighestPricePerCategory AS hppc ON p.category_id = hppc.category_id
+    AND p.price = hppc.highest_price;
 
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
@@ -101,14 +98,14 @@ FROM
 WITH
     UserOrdersByDate AS (
         SELECT DISTINCT
-            Users.user_id,
-            Users.username,
-            Orders.order_date
+            u.user_id,
+            u.username,
+            o.order_date
         FROM
-            Users
-            INNER JOIN Orders ON Users.user_id = Orders.user_id
+            Users AS u
+            INNER JOIN Orders AS o ON u.user_id = o.user_id
     ),
-    UserOrdersByDateLag AS (
+    UserOrdersByDateLagAndLead AS (
         SELECT
             user_id,
             username,
@@ -118,29 +115,23 @@ WITH
                     user_id
                 ORDER BY
                     order_date
-            ) AS previous_order_date
+            ) AS previous_order_date,
+            LEAD (order_date) OVER (
+                PARTITION BY
+                    user_id
+                ORDER BY
+                    order_date
+            ) AS next_order_date
         FROM
             UserOrdersByDate
-    ),
-    ConsecutiveUserOrdersCount AS (
-        SELECT
-            user_id,
-            username,
-            COUNT(*) AS consecutive_orders_count
-        FROM
-            UserOrdersByDateLag
-        WHERE
-            order_date = previous_order_date + INTERVAL '1 day'
-        GROUP BY
-            user_id,
-            username
     )
 
--- Find the users who have placed orders on consecutive days for at least 3 days
-SELECT
+-- Find the users who have placed orders for at least 3 consecutive days
+SELECT DISTINCT
     user_id,
     username
 FROM
-    ConsecutiveUserOrdersCount
+    UserOrdersByDateLagAndLead
 WHERE
-    consecutive_orders_count >= 3;
+    order_date = previous_order_date + INTERVAL '1 day'
+    AND order_date = next_order_date - INTERVAL '1 day';

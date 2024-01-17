@@ -1,7 +1,7 @@
 -- Problem 1: Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
--- Sports category has category_id = 8.
 
+-- Sports category has category_id = 8
 SELECT
     *
 FROM
@@ -14,42 +14,45 @@ WHERE
 -- The result should include the user ID, username, and the total number of orders.
 
 SELECT
-    Users.user_id,
-    Users.username,
+    u.user_id,
+    u.username,
     COUNT(*) AS total_orders
 FROM
-    Orders
-    LEFT JOIN Users ON Orders.user_id = Users.user_id
+    Users AS u
+    LEFT JOIN Orders AS o ON u.user_id = o.user_id
 GROUP BY
-    Users.user_id;
+    u.user_id;
 
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
 
+-- Products with no reviews will have an average rating of NULL
 SELECT
-    Products.product_id,
-    Products.product_name,
+    p.product_id,
+    p.product_name,
     AVG(Reviews.rating) AS average_rating
 FROM
-    Products
-    LEFT JOIN Reviews ON Products.product_id = Reviews.product_id
+    Products AS p
+    LEFT JOIN Reviews as r ON p.product_id = r.product_id
 GROUP BY
-    Products.product_id;
+    p.product_id;
 
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
 
+-- Will return no results if there are no orders
 SELECT
-    Users.user_id,
-    Users.username,
-    SUM(Orders.total_amount) AS total_amount_spent
+    u.user_id,
+    u.username,
+    SUM(o.total_amount) AS total_amount_spent
 FROM
-    Orders
-    LEFT JOIN Users ON Orders.user_id = Users.user_id
+    Users AS u
+    INNER JOIN Orders AS o ON u.user_id = o.user_id
 GROUP BY
-    Users.user_id
+    u.user_id,
+    u.username
 ORDER BY
     total_amount_spent DESC
 LIMIT
