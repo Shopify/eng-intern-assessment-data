@@ -85,7 +85,7 @@ HAVING COUNT(R.review_id) = 0;
 -- a review, COUNT(R.review_id) will be 0. We group by product to enable the use
 -- of the COUNT function for the records for each product. 
 -- ASIDE:
--- If I remember correctly, some RDMS's may not handle counting null values this
+-- If I remember correctly, some RDBMS's may not handle counting null values this
 -- way. I have not done an exhaustive search to verify this, however this solution
 -- certainly works in Postgres.
 
