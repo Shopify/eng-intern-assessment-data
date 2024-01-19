@@ -1,5 +1,5 @@
 -- ------------------------------------------------------------------------------------
--- Performed sanity testing for all 12 tasks on local mysql with the given csv files 
+-- Performed sanity testing for all 12 problems on local mysql with the given csv files 
 --  (and some more test cases added) to ensure if the code compiles properly
 -- ------------------------------------------------------------------------------------
 
