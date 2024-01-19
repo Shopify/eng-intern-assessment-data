@@ -7,7 +7,6 @@ select p.product_id, p.product_name, avg(r.rating) as rating
 from Products p, Reviews r
 where p.product_id = r.product_id
 group by p.product_id, p.product_name
-order by rating desc
 where rating = (
     select max(rating) from (
         select avg(r.rating) as rating 
@@ -16,7 +15,6 @@ where rating = (
         group by p.product_id, p.product_name
     )
 );
-
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
 -- The result should include the user ID and username.
@@ -25,6 +23,7 @@ where rating = (
 select u.user_id, u.username 
 from Users u, Orders o, Order_Items oi, Products p
 where u.user_id = o.user_id and o.order_id = oi.order_id and oi.product_id = p.product_id
+group by u.user_id, u.username 
 having count(distinct p.category_id) = (select count(*) from Categories);
 
 -- Problem 7: Retrieve the products that have not received any reviews
