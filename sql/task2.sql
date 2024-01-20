@@ -11,7 +11,7 @@ with avg_ratings as (
 select ar.product_id, ar.product_name, ar.avg_rating
 from avg_ratings ar
 where ar.avg_rating = (
-	select max(ar.avg_rating) 
+	select max(ar.avg_rating) -- get the max value from the avg_ratings CTE above
 	from avg_ratings ar
 );
 
@@ -51,10 +51,10 @@ where p.product_id
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 select distinct ua.user_id, ua.username
 from (
-	select u.user_id, u.username, 
+	select u.user_id, u.username, -- return the id and username paired with the date difference per order
 		datediff(o.order_date, lag(o.order_date, 1) over (partition by u.user_id order by o.order_date)) as diff
 	from users u, orders o 
 	where u.user_id = o.user_id 
 ) ua
-where ua.diff is not null and ua.diff = 1
+where ua.diff is not null and ua.diff = 1 -- only return if it was one consequtive day
 	
