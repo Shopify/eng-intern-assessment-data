@@ -78,13 +78,16 @@ WHERE
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 
--- This query identifies users who have placed orders on consecutive days using a self-join on the Orders table.
+-- This query utilizes a self-join on the Orders table to find orders that are exactly one day apart.
+-- The DISTINCT keyword ensures each user is listed only once.
+-- The query joins the Users table to include user details in the result.
 SELECT DISTINCT
-    usr.user_id,
-    usr.username
+    Users.user_id,
+    Users.username
 FROM 
-    Orders ord1
+    Orders AS OrdersToday
 JOIN 
-    Orders ord2 ON ord1.user_id = ord2.user_id AND ord2.order_date = DATEADD(day, 1, ord1.order_date)
+    Orders AS OrdersNextDay ON OrdersToday.user_id = OrdersNextDay.user_id 
+                              AND OrdersNextDay.order_date = DATEADD(day, 1, OrdersToday.order_date)
 JOIN 
-    Users usr ON ord1.user_id = usr.user_id;
+    Users ON OrdersToday.user_id = Users.user_id;
