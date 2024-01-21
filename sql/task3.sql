@@ -5,8 +5,8 @@
 
 -- This query calculates the total sales amount for each category and retrieves the top 3 categories.
 -- It joins Categories, Products, and Order_Items tables to calculate the total sales.
--- The GROUP BY clause groups the results by category, and the ORDER BY with LIMIT 3 selects the top 3 categories.
-SELECT 
+-- The GROUP BY clause groups the results by category, and the ORDER BY with TOP 3 selects the top 3 categories.
+SELECT TOP 3
     Categories.category_id,
     Categories.category_name,
     SUM(Order_Items.quantity * Order_Items.unit_price) AS "Total Sales"
@@ -19,8 +19,7 @@ JOIN
 GROUP BY 
     Categories.category_id, Categories.category_name
 ORDER BY 
-    "Total Sales" DESC
-LIMIT 3;
+    "Total Sales" DESC;
 
 -- Problem 10: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
