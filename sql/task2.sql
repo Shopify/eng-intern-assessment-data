@@ -51,11 +51,7 @@ WHERE r.review_id IS NULL;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 
-WITH USERCONSECUTIVEORDERS AS (
-  SELECT user_id, order_date, LAG(order_date) OVER (PARTITION BY user_id ORDER BY order_date) AS prev_order
-  FROM ORDERS
-)
 SELECT DISTINCT u.user_id, u.username
 FROM USERS u
-JOIN USERCONSECUTIVEORDERS uco ON u.user_id = uco.user_id
-WHERE uco.order_date = uco.prev_order + 1 ;
+JOIN ORDERS o1 ON u.user_id = o1.user_id
+JOIN ORDERS o2 ON u.user_id = o2.user_id AND o2.order_date = o1.order_date + 1;
