@@ -74,20 +74,14 @@ WHERE
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 
-SELECT
-    user_id,
-    username
-FROM (
+WITH OrderedDates AS (
     SELECT
         user_id,
-        username,
-        LAG(order_date) OVER (PARTITION BY user_id ORDER BY order_date) AS prev_order_date,
-        LAG(order_date, 2) OVER (PARTITION BY user_id ORDER BY order_date) AS prev_prev_order_date
-    FROM
-        Users u
-    JOIN Orders o ON u.user_id = o.user_id
-) consecutive_orders
-WHERE
-    prev_order_date = DATEADD(prev_prev_order_date , INTERVAL'1' day);
-
-
+        order_date,
+        LAG(order_date) OVER (PARTITION BY user_id ORDER BY order_date) AS previous_date
+    FROM Orders
+)
+SELECT DISTINCT u.user_id, u.username
+FROM OrderedDates od
+JOIN Users u ON od.user_id = u.user_id
+WHERE DATEDIFF(day, od.previous_date, od.order_date) = 1;
