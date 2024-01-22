@@ -16,7 +16,7 @@ JOIN
     FROM Orders
     GROUP BY user_id) as O
 ON 
-    U.user_id = O.user_id
+    U.user_id = O.user_id;
 
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
@@ -30,7 +30,7 @@ JOIN
     FROM Reviews
     GROUP BY product_id) as R
 ON 
-    P.product_id = R.product_id
+    P.product_id = R.product_id;
 
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
@@ -47,4 +47,4 @@ ON
     U.user_id = O.user_id
 ORDER BY
     o.total_amount DESC
-LIMIT 5
+LIMIT 5;
