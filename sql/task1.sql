@@ -1,8 +1,9 @@
 -- Problem 1: Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
+-- ASSUMPTION: a category is a Sports category if the name has 'sport' in it
 SELECT *
 FROM Products
-WHERE category_id = (SELECT category_id FROM Categories WHERE category_name = 'Sports & Outdoors');
+WHERE category_id = (SELECT category_id FROM Categories WHERE UPPER(category_name) LIKE UPPER('%Sports%'));
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
