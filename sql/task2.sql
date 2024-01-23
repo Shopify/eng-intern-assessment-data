@@ -9,7 +9,9 @@ WITH AveragProductRating AS (
         AVG(Reviews.rating) AS average_rating
     FROM Products
     LEFT JOIN Reviews ON Products.product_id = Reviews.product_id
-    GROUP BY Products.product_id, Products.product_name
+    GROUP BY 
+        Products.product_id, 
+        Products.product_name
 )
 
 SELECT

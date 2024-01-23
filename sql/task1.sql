@@ -3,7 +3,11 @@
 -- A) Retrieve Sports category
     -- Declare and assign a variable to store the ID for the 'Sports' Category
     DECLARE @sportsCategoryID;
-    SET @sportsCategoryID = (SELECT category_id FROM Categories WHERE category_name = 'Sports');
+    SET @sportsCategoryID = (
+        SELECT category_id 
+        FROM Categories 
+        WHERE category_name = 'Sports'
+    );
     -- Retrieve all products in the Sports category using the variable above
     SELECT *
     FROM Products
@@ -12,7 +16,12 @@
 -- B) Retrieve any specific category
     -- Declare and assign a variable to store the ID for a specific category
     DECLARE @categoryName VARCHAR(255);
-    SET @categoryName = (SELECT category_id FROM Categories WHERE category_name = 'desired category name');
+    SET @categoryName = (
+        SELECT category_id 
+        FROM Categories 
+        WHERE category_name = 'desired category name'
+    );
+
     -- Retreive all products in the category specified above
     SELECT *
     FROM Products
@@ -28,7 +37,9 @@ SELECT
     COUNT(Orders.order_id) AS number_of_orders
 FROM Users
 LEFT JOIN Orders ON Users.user_id = Orders.user_id
-GROUP BY Users.user_id, Users.username;
+GROUP BY 
+    Users.user_id, 
+    Users.username;
 
 
 -- Problem 3: Retrieve the average rating for each product
@@ -40,7 +51,9 @@ SELECT
     AVG(Reviews.rating) AS average_rating
 FROM Products
 LEFT JOIN Reviews ON Products.product_id = Reviews.product_id
-GROUP BY Products.product_id, Products.product_name;
+GROUP BY 
+    Products.product_id, 
+    Products.product_name;
 
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
