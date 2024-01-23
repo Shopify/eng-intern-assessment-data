@@ -61,19 +61,22 @@ ORDER BY product_id ASC;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 
--- Use CTE to set dates to be same if there are consecutive orders
+-- Use CTE to set dates to be same while keeping track of the number of orders on each day
 WITH date_differences AS (
     -- use window functions to set the row numbers for each person and subtract so they will be equal if the dates are consecutive
-    SELECT user_id, username, order_date - CAST(ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY order_date) AS INT) as row_num
+    -- and also keep track of the number of orders
+    SELECT user_id, username, count(order_date) as num_orders, order_date - CAST(ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY order_date) AS INT) as row_num
     FROM users natural join orders
+    group by order_date, user_id, username
 )
 SELECT user_id, username
 FROM (
     -- Get the total number where all the days computed are the same, in other words consecutive
-    SELECT count(*) as num_days, user_id, username
+    SELECT count(*) as num_days, user_id, username, num_orders
     FROM date_differences
-    GROUP BY row_num, username, user_id
+    GROUP BY row_num, username, user_id, num_orders
      ) as num_consec_days
--- Checks for more than 1 day in a row (consecutive orders)
-WHERE num_days > 1
+-- Checks for more than 1 day in a row (consecutive days)
+-- and check that they made more than one order on the same day (consecutive orders)
+WHERE num_days > 1 AND num_orders > 1
 ORDER BY user_id ASC;

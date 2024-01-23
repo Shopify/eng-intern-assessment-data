@@ -3,11 +3,11 @@ import psycopg2  # Replace with appropriate database connector based on your dat
 
 
 class TestSQLQueries(unittest.TestCase):
-    dbname = 'patelh'
-    user = 'patelh'
+    dbname = ''
+    user = ''
     password = ''
-    host = 'localhost'
-    port = '5431'
+    host = ''
+    port = ''
 
     def setUp(self):
         # Establish a connection to your test database
@@ -122,7 +122,7 @@ class TestSQLQueries(unittest.TestCase):
         # expected_result = [(15, 'Mountain Bike'), (16, 'Tennis Racket')]
 
         # Task 8:
-        expected_result = [(29, 'elliecollins'), (30, 'williamwood')]
+        expected_result = [(29, 'elliecollins')]
 
         self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
 
