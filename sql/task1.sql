@@ -2,12 +2,12 @@
 -- Write an SQL query to retrieve all products in a specific category.
     SELECT *
     FROM products
-    WHERE category_id = 8;
+    WHERE category_id = 8; -- category # of Sports&Outdoor is 8
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
-    SELECT u.user_id, u.username, COUNT(o.order_id) AS total_orders
+    SELECT u.user_id, u.username, COUNT(o.order_id) AS total_orders -- COUNT used for calculating the total number of orders for each user
     FROM Users u
     JOIN Orders o ON u.user_id = o.user_id
     GROUP BY u.user_id, u.username;
@@ -15,7 +15,7 @@
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
-    SELECT p.product_id, p.product_name, AVG(r.rating) AS avg_rating
+    SELECT p.product_id, p.product_name, AVG(r.rating) AS avg_rating -- AVG used for calculating average rating
     FROM Products p
     JOIN Reviews r ON p.product_id =  r.product_id
     GROUP BY p.product_id, p.product_name;
@@ -23,11 +23,11 @@
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
-    SELECT u.user_id, u.username, SUM(o.total_amount) AS total_amt_spent
+    SELECT u.user_id, u.username, SUM(o.total_amount) AS total_amt_spent -- SUM used for calculating total amt spent using
     FROM Users u
     JOIN Orders o ON u.user_id = o.order_id
     GROUP BY u.user_id, u.username
-    ORDER BY total_amt_spent DESC
-    LIMIT 5;
+    ORDER BY total_amt_spent DESC -- sort the result baed on total amt spent
+    LIMIT 5; -- top 5 users
 
 
