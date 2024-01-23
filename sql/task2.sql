@@ -55,7 +55,7 @@
 -- Hint: You may need to use subqueries or window functions to solve this problem.
     WITH ConsecOrders AS (
         SELECT user_id, order_id, order_date, LAG(order_date) OVER 
-                                                    ( PARTITION BY user_id 
+                                                    (PARTITION BY user_id 
                                                     ORDER BY order_date)
                                                     AS prev_order_date
         FROM Orders
