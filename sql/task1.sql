@@ -2,12 +2,12 @@
 -- Write an SQL query to retrieve all products in a specific category.
     SELECT * FROM Products p
     JOIN Categories c ON p.category_id == c.category_id
-    WHERE c.category_name == 'Electronics';
+    WHERE c.category_name == 'Electronics'; -- I chose electronics, it can be changed for any other category
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
     SELECT u.user_id, u.username, COUNT(o.order_id) as total_orders
-    FROM users u LEFT JOIN orders o
+    FROM users u LEFT JOIN orders o -- Only include entries where the user exists
     ON u.user_id == o.user_id
     GROUP BY u.user_id;
 -- Problem 3: Retrieve the average rating for each product

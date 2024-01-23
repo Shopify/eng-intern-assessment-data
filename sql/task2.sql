@@ -18,15 +18,15 @@
     JOIN products p ON oi.product_id == p.product_id
     JOIN categories c ON p.category_id == c.category_id
     GROUP BY u.user_id
-    HAVING COUNT(DISTINCT c.category_id) == (SELECT COUNT(*) FROM categories);
+    HAVING COUNT(DISTINCT c.category_id) == (SELECT COUNT(*) FROM categories); -- Make sure the user has purchased the same amount of products in distinct categories as there are in the categories table
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
 -- The result should include the product ID and product name.
 -- Hint: You may need to use subqueries or left joins to solve this problem.
     SELECT p.product_id, p.product_name
-    FROM products p LEFT JOIN reviews r
+    FROM products p LEFT JOIN reviews r -- Include all products, including ones without reviews
     ON p.product_id == r.product_id
-    WHERE r.rating IS NULL;
+    WHERE r.rating IS NULL; -- We only include products that don't have reviews
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
 -- The result should include the user ID and username.

@@ -2,7 +2,7 @@
 -- Write an SQL query to retrieve the top 3 categories with the highest total sales amount.
 -- The result should include the category ID, category name, and the total sales amount.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
-    SELECT c.category_id, c.category_name, SUM(oi.quantity * oi.unit_price) as total_sales
+    SELECT c.category_id, c.category_name, SUM(oi.quantity * oi.unit_price) as total_sales -- We want the total sales amount, so multiply the quantity and unit price
     FROM categories c JOIN products p ON c.category_id == p.category_id
     JOIN order_items oi ON p.product_id == oi.product_id
     GROUP BY c.category_id
