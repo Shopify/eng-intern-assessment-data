@@ -139,16 +139,25 @@ class TestSQLQueries(unittest.TestCase):
         # Define expected outcome for Task 3 and compare
 
         # Task 9:
-        # expected_result = []
+        # expected_result = [(4, 'Home & Kitchen', 275.00),
+        #                    (2, 'Books', 255.00),
+        #                    (5, 'Toys & Games', 245.00)]
 
         # Task 10:
-        # expected_result = []
+        # expected_result = [(5, 'sarahwilson'), (13, 'ashleytaylor')]
 
         # Task 11:
-        # expected_result = []
+        # expected_result = [(1, 'Smartphone X', 1, 500.00),
+        #                    (3, 'Laptop Pro', 2, 1200.00),
+        #                    (6, 'Designer Dress', 3, 300.00),
+        #                    (7, 'Coffee Maker', 4, 80.00),
+        #                    (9, 'Action Camera', 5, 200.00),
+        #                    (12, 'Skincare Set', 6, 150.00),
+        #                    (14, 'Weighted Blanket', 7, 100.00),
+        #                    (15, 'Mountain Bike', 8, 1000.00)]
 
         # Task 12:
-        expected_result = []
+        expected_result = [(30, 'williamwood')]
 
         self.assertEqual(result, expected_result, "Task 3: Query output doesn't match expected result.")
 

@@ -74,5 +74,6 @@ FROM (
     FROM date_differences
     GROUP BY row_num, username, user_id
      ) as num_consec_days
+-- Checks for more than 1 day in a row (consecutive orders)
 WHERE num_days > 1
 ORDER BY user_id ASC;
