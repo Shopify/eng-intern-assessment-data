@@ -1,6 +1,7 @@
 import unittest
 import psycopg2  # Replace with appropriate database connector based on your database
 
+
 class TestSQLQueries(unittest.TestCase):
     dbname = 'patelh'
     user = 'patelh'
@@ -33,6 +34,7 @@ class TestSQLQueries(unittest.TestCase):
         result = self.cur.fetchall()
 
         # Define expected outcome for Task 1 and compare
+
         # Task 1:
         # expected_result = [(15, 'Mountain Bike', 'Conquer the trails with this high-performance mountain bike.',
         #                     1000.00, 8),
@@ -71,7 +73,7 @@ class TestSQLQueries(unittest.TestCase):
         #                    (29, 'elliecollins', 1),
         #                    (30, 'williamwood', 2)]
 
-        # # Task 3:
+        # Task 3:
         # expected_result = [(1, 'Smartphone X', 4),
         #                    (2, 'Wireless Headphones', 4.5),
         #                    (3, 'Laptop Pro', 2.5),
@@ -88,7 +90,6 @@ class TestSQLQueries(unittest.TestCase):
         #                    (14, 'Weighted Blanket', 3.5),
         #                    (15, 'Mountain Bike', 5),
         #                    (16, 'Tennis Racket', 4)]
-
 
         # Task 4:
         expected_result = [(30, 'williamwood', 170.00),
@@ -108,13 +109,49 @@ class TestSQLQueries(unittest.TestCase):
         result = self.cur.fetchall()
 
         # Define expected outcome for Task 2 and compare
-        expected_result = [
-            # Define expected rows or values here based on the query output
-        ]
+
+        # Task 5:
+        # expected_result = [(4, 'Smart TV', 4.5),
+        #                    (7, 'Coffee Maker', 4.5),
+        #                    (9, 'Action Camera', 4.5)]
+
+        # Task 6:
+        # expected_result = [(9, 'emilythompson'), (15, 'sophiawalker')]
+
+        # Task 7:
+        # expected_result = [(15, 'Mountain Bike'), (16, 'Tennis Racket')]
+
+        # Task 8:
+        expected_result = [(29, 'elliecollins'), (30, 'williamwood')]
 
         self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
 
     # Add more test methods for additional SQL tasks
+
+    def test_task3(self):
+        # Task 3: Example SQL query in task3.sql
+        with open('../sql/task3.sql', 'r') as file:
+            sql_query = file.read()
+
+        self.cur.execute(sql_query)
+        result = self.cur.fetchall()
+
+        # Define expected outcome for Task 3 and compare
+
+        # Task 9:
+        # expected_result = []
+
+        # Task 10:
+        # expected_result = []
+
+        # Task 11:
+        # expected_result = []
+
+        # Task 12:
+        expected_result = []
+
+        self.assertEqual(result, expected_result, "Task 3: Query output doesn't match expected result.")
+
 
 if __name__ == '__main__':
     unittest.main()

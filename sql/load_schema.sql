@@ -34,7 +34,7 @@ DELIMITER ','
 CSV HEADER;
 
 COPY cart_items(cart_item_id, cart_id, product_id, quantity)
-FROM '/Users/patelh/Documents/Jobs/ShopifyDataEngOA2024eng-intern-assessment-data/data/cart_item_data.csv'
+FROM '/Users/patelh/Documents/Jobs/ShopifyDataEngOA2024/eng-intern-assessment-data/data/cart_item_data.csv'
 DELIMITER ','
 CSV HEADER;
 
