@@ -1,4 +1,4 @@
-# Data Engineer Intern Assessment
+# Queries are written using PostGreSQL!!!
 
 Welcome to the Data Engineer Intern assessment for Shopify! This assessment is designed to evaluate your skills in SQL, data manipulation, and problem-solving. Please follow the instructions below to complete the assessment.
 
