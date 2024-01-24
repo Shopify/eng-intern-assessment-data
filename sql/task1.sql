@@ -16,7 +16,7 @@
 -- Problem 1 --
 SELECT product_id, product_name, description, price, product_data.category_id FROM product_data -- Only include the product name in the query output
 INNER JOIN category_data ON product_data.category_id = category_data.category_id
-WHERE category_name = "Sports & Outdoors"; -- Only retrieve products in the sports category 
+WHERE category_name = "Sports"; -- Only retrieve products in the "Sports" category 
 
 -- Problem 2 --
 SELECT user_data.user_id, user_data.username, COUNT(*) AS total_number_of_orders FROM order_data
