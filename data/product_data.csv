@@ -16,19 +16,6 @@ product_id,product_name,description,price,category_id
 15,Mountain Bike,Conquer the trails with this high-performance mountain bike.,1000.00,8
 16,Tennis Racket,Take your tennis game to the next level with this professional-grade racket.,54.00,8
 17,product 17,Description for Product 17,15.00,9
-18,9,18,1,10.00
-19,10,19,3,30.00
-20,10,20,1,25.00
-21,11,21,2,20.00
-22,11,22,1,15.00
-23,12,23,3,25.00
-24,12,24,1,30.00
-25,13,25,2,40.00
-26,13,26,1,35.00
-27,14,27,3,15.00
-28,14,28,1,10.00
-29,15,29,2,30.00
-30,15,30,1,25.00 ,9
 18,product 18,Description for Product 18,10.00,9
 19,product 19,Description for Product 19,30.00,10
 20,product 20,Description for Product 20,25.00,10
