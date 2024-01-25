@@ -1,4 +1,9 @@
+-- CREATE DATABASE SHOPIFY;
+-- USE SHOPIFY;
+-- show databases;
 -- Table: Categories
+
+
 CREATE TABLE Categories (
   category_id INT PRIMARY KEY,
   category_name VARCHAR(255)
@@ -92,3 +97,4 @@ CREATE TABLE Shipping (
   tracking_number VARCHAR(255),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
+
