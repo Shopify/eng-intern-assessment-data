@@ -5,6 +5,7 @@
 
 -- Using a subquery to compute average rating (using an aggregation function) per product
 -- and a window function - dense_rank for results/values with ties
+
 SELECT
        product_id,
        product_name,
@@ -32,6 +33,7 @@ WHERE avg_rating_rank =1
 -- second cte gives the total number of categories per product ordered per user
 -- last select statement joins the two aforementioned ctes on common column and
 -- on condition that total number of categories per product match
+
 
 WITH categories_products AS (
 SELECT
@@ -75,6 +77,7 @@ FROM  orders_product_categories opc
 -- query outputs products without reviews by  filtering out ("where not exists)
 -- products that have a review; Select 1  will output constant 1 for every row of the query
 -- to determine if records matches "where" clause in subquery in a less expensive way (p.o.v. query performance)
+
 
 SELECT
     p.product_id,

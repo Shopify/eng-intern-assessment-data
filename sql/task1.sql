@@ -3,6 +3,7 @@
 
 -- Query outputs all columns from Products tables that meet
 -- the condition specified in "WHERE" filter
+
 SELECT
        p.*
 FROM Products p
@@ -32,6 +33,7 @@ LEFT JOIN Orders o USING(user_id)
 -- Query outputs the average rating for each product
 -- it uses a window function instead of a simple aggregation function to average ratings
 -- in order to avoid "group by"  (which is computationally expensive) and get products ordered by product_id
+
 SELECT
        p.product_id,
        p.product_name,
@@ -45,6 +47,7 @@ LEFT JOIN Reviews r USING (product_id)
 
 -- Using a subquery to compute total amount spent (using an aggregation function) on orders per user
 -- and a window function - dense_rank for results/values with ties
+
 SELECT
      user_id,
      username,

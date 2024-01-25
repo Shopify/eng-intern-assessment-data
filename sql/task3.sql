@@ -9,6 +9,7 @@
 -- of category and rank tem based on the aforementioned amount
 -- used dense_rank for values with ties
 
+
 WITH ranked_categories AS (
 SELECT
    category_id,
@@ -43,6 +44,7 @@ WHERE ranked_category <= 3
 -- second cte five the total number of categories per product sold
 -- finally, joining the two aforementioned ctes on condition that
 -- the number of categories per product match
+
 WITH categories_products AS (
 SELECT
 p.product_id,
@@ -79,6 +81,7 @@ WHERE cp.total_categories = op.total_categories
 
 -- cte outputs category maximum price per product
 -- last select statement outputs the price per product that matches the maximum category price
+
 WITH max_prices AS (
 SELECT
          p.product_id,
@@ -107,6 +110,7 @@ WHERE p.price = mp.max_price
 -- for each user.
 -- based on the aforementioned subquery, filter users who have consecutive orders (1 day difference between orders)
 -- and a previous and a next order - to account for minimum 3 consecutive orders
+
 SELECT
      o.user_id,
      u.username
