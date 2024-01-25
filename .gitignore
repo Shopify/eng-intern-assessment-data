@@ -1,0 +1,4 @@
+
+*.db
+/venv
+.DS_Store
