@@ -8,7 +8,7 @@ FROM products p
 LEFT JOIN reviews r ON p.product_id = r.product_id
 GROUP BY p.product_id 
 ORDER BY average_rating DESC 
-LIMIT 5
+LIMIT 5;
 
 
 -- Problem 6: Retrieve the users who have made at least one order in each category
@@ -27,7 +27,7 @@ WITH UserProductInfo AS (
 SELECT upi.user_id, upi.username
 FROM UserProductInfo upi
 GROUP BY upi.user_id, upi.username
-HAVING(COUNT(DISTINCT upi.category_id) = (SELECT COUNT(DISTINCT category_id) FROM categories))
+HAVING (COUNT(DISTINCT upi.category_id) = (SELECT COUNT(DISTINCT category_id) FROM categories));
 
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
@@ -37,7 +37,7 @@ HAVING(COUNT(DISTINCT upi.category_id) = (SELECT COUNT(DISTINCT category_id) FRO
 SELECT p.product_id, p.product_name
 FROM products p 
 LEFT JOIN reviews r on p.product_id = r.product_id
-WHERE r.product_id IS NULL
+WHERE r.product_id IS NULL;
 
 
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
@@ -54,4 +54,4 @@ SELECT DISTINCT u.user_id,u.username
 FROM ConsecutiveOrders co 
 LEFT JOIN users u ON co.user_id = u.user_id
 WHERE co.previous_order_date IS NOT NULL AND
-      co.order_date = co.previous_order_date + INTERVAL '1 day'
+      co.order_date = co.previous_order_date + INTERVAL '1 day';
