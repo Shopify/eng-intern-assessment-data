@@ -52,7 +52,11 @@ WHERE r.review_id IS NULL;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 WITH consec_orders AS (
-	SELECT u.user_id, u.username, o.order_date, LAG(o.order_date) OVER (PARTITION BY u.user_id ORDER BY o.order_date) AS previous_order_date
+	SELECT 
+        u.user_id, 
+        u.username, 
+        o.order_date, 
+        LAG(o.order_date) OVER (PARTITION BY u.user_id ORDER BY o.order_date) AS previous_order_date
 	FROM user_data AS u
 	JOIN order_data  AS o
 	ON u.user_id = o.user_id
