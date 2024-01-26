@@ -14,19 +14,19 @@
 -- The result should include the user ID, username, and the total amount spent.
 
 -- Problem 1 Solution
-SELECT P.product_id, P.product_name, P.description, P.price 
+SELECT DISTINCT P.product_id, P.product_name, P.description, P.price 
 FROM Products P LEFT JOIN Categories C
 ON P.category_id = C.category_id
 WHERE P.category_id = 8;
 
 -- Problem 2 Solution
-SELECT U.user_id, U.username, COUNT(U.user_id) AS num_orders
+SELECT DISTINCT U.user_id, U.username, COUNT(U.user_id) AS num_orders
 FROM Users U LEFT JOIN Orders O
 ON U.user_id = O.user_id
 GROUP BY U.user_id;
 
 -- Problem 3 Solution
-SELECT P.product_id, P.product_name, AVG(R.rating) AS avg_rating
+SELECT DISTINCT P.product_id, P.product_name, AVG(R.rating) AS avg_rating
 FROM Products P LEFT JOIN Reviews R
 ON P.product_id = R.product_id
 GROUP BY P.product_id;
