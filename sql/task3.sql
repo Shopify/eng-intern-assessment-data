@@ -14,7 +14,7 @@ FROM categories c
 LEFT JOIN TotalProduct tp ON c.category_id = tp.category_id
 GROUP BY c.category_id, c.category_name
 ORDER BY total_sales_amount DESC
-LIMIT 3
+LIMIT 3;
 
 -- Problem 10: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
@@ -39,7 +39,7 @@ SELECT upi.user_id, upi.username
 FROM UserProductInfo upi
 WHERE upi.product_id IN (SELECT product_id FROM CategoryProductIDs)
 GROUP BY upi.user_id, upi.username
-HAVING COUNT(DISTINCT upi.product_id) = (SELECT COUNT(*) FROM CategoryProductIDs)
+HAVING COUNT(DISTINCT upi.product_id) = (SELECT COUNT(*) FROM CategoryProductIDs);
 
 -- Problem 11: Retrieve the products that have the highest price within each category
 -- Write an SQL query to retrieve the products that have the highest price within each category.
@@ -72,4 +72,4 @@ LEFT JOIN users u ON co.user_id = u.user_id
 WHERE co.previous_order_date IS NOT NULL AND
     co.previous_order_date_2 IS NOT NULL AND
     co.order_date = co.previous_order_date + INTERVAL '1 day' AND 
-    co.previous_order_date = co.previous_order_date_2 + INTERVAL '1 day'
+    co.previous_order_date = co.previous_order_date_2 + INTERVAL '1 day';
