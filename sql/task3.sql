@@ -78,13 +78,13 @@ category_id,
 price
 from
 (
-		select
-		p.product_id,
-		product_name,
-		category_id,
-		price,
+	select
+	p.product_id,
+	product_name,
+	category_id,
+	price,
 		
-		rank() over(partition by category_id order by price desc) as price_rank from  Products as p
+	rank() over(partition by category_id order by price desc) as price_rank from  Products as p
 		--on p.product_id=oi.product_id
 ) as b
 
@@ -97,10 +97,10 @@ where price_rank=1;
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 with nextdayorder AS (
     select
-        user_id,
-        order_date,
-        lead(order_date, 1) over (PARTITION BY user_id ORDER BY order_date) AS next_order,
-        lead(order_date, 2) OVER (PARTITION BY user_id ORDER BY order_date) AS next_order_2 -- lead - 2 column to track third order
+    user_id,
+    order_date,
+    lead(order_date, 1) over (PARTITION BY user_id ORDER BY order_date) AS next_order,
+    lead(order_date, 2) OVER (PARTITION BY user_id ORDER BY order_date) AS next_order_2 -- lead - 2 column to track third order
     FROM Orders
 )
 
