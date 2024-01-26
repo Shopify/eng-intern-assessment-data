@@ -19,13 +19,13 @@ WHERE avg_rating = (SELECT MAX(avg_rating) FROM product_avg_ratings);
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or joins to solve this problem.
 WITH total_categories AS (
-	SELECT COUNT(*) AS total_categories
+    SELECT COUNT(*) AS total_categories
     FROM category_data AS c
 ), 
 
 user_category_count AS (
-	SELECT u.user_id, u.username, COUNT(DISTINCT  p.category_id) as category_count
-	FROM user_data AS u
+    SELECT u.user_id, u.username, COUNT(DISTINCT p.category_id) as category_count
+    FROM user_data AS u
     JOIN order_data AS o ON u.user_id = o.user_id
     JOIN order_items_data oi ON o.order_id = oi.order_id
     JOIN product_data p ON oi.product_id = p.product_id
