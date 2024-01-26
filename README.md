@@ -1,3 +1,6 @@
+# Declaration
+The solutions to this assessment is entirely done by Yufei Liu. All solutions are written in PostgreSQL.
+
 # Data Engineer Intern Assessment
 
 Welcome to the Data Engineer Intern assessment for Shopify! This assessment is designed to evaluate your skills in SQL, data manipulation, and problem-solving. Please follow the instructions below to complete the assessment.
