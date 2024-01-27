@@ -11,7 +11,7 @@ average_rating,
 from
 (   
     select product_id,
-	round(AVG(rating),1) as average_rating
+	round(AVG(rating),2) as average_rating
 	from Reviews
 	group by product_id  
 

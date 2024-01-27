@@ -2,7 +2,6 @@
 -- Write an SQL query to retrieve the top 3 categories with the highest total sales amount.
 -- The result should include the category ID, category name, and the total sales amount.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
---Doubtful
 with cat_purchase as
 (
 	select c.category_id,
@@ -24,10 +23,13 @@ total_sales from
 	category_id,
 	category_name,
 	total_sales,
-	dense_rank() over(order by total_sales desc) as rank_cat -- Using dense rank to resolve the tie and give continuous ranking
+	row_number() over(order by total_sales desc) as rank_cat --Replacing dense rank with row _number (given test setting)-- Using dense rank to resolve the tie and give continuous ranking
 	from cat_purchase
 ) as cp
 where rank_cat<4 and category_id is not null;
+
+
+
 
 -- Problem 10: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
