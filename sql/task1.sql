@@ -1,6 +1,15 @@
 -- Problem 1: Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
-SELECT 
+SELECT product_id, category_id, (LENGTH(category_id) - LENGTH(REPLACE(category_ids), ',','')) + 1)as category_cnt FROM (
+    SELECT product_id, GROUP_CONCAT(category_id) as category_ids FROM (
+        SELECT `e`.product_id, `at_category_id`.`category_id` 
+        FROM `catalog_product_entity` AS `e` 
+        LEFT JOIN `catalog_category_product` AS `at_category_id`
+        ON (at_category_id.`product_id`=e.entity_id)
+    ) sub_query
+    GROUP BY product_id
+) final_query
+HAVING category_cnt > 2
 
 
 -- Problem 2: Retrieve the total number of orders for each user
