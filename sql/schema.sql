@@ -1,10 +1,12 @@
 -- Table: Categories
+-- imported
 CREATE TABLE Categories (
   category_id INT PRIMARY KEY,
   category_name VARCHAR(255)
 );
 
 -- Table: Products
+-- imported
 CREATE TABLE Products (
   product_id INT PRIMARY KEY,
   product_name VARCHAR(255),
@@ -15,6 +17,7 @@ CREATE TABLE Products (
 );
 
 -- Table: Users
+-- imported
 CREATE TABLE Users (
   user_id INT PRIMARY KEY,
   username VARCHAR(255),
@@ -25,6 +28,7 @@ CREATE TABLE Users (
 );
 
 -- Table: Orders
+-- imported
 CREATE TABLE Orders (
   order_id INT PRIMARY KEY,
   user_id INT,
@@ -34,6 +38,7 @@ CREATE TABLE Orders (
 );
 
 -- Table: Order_Items
+-- imported
 CREATE TABLE Order_Items (
   order_item_id INT PRIMARY KEY,
   order_id INT,
@@ -45,6 +50,7 @@ CREATE TABLE Order_Items (
 );
 
 -- Table: Reviews
+-- imported
 CREATE TABLE Reviews (
   review_id INT PRIMARY KEY,
   user_id INT,
@@ -57,6 +63,7 @@ CREATE TABLE Reviews (
 );
 
 -- Table: Cart
+-- imported
 CREATE TABLE Cart (
   cart_id INT PRIMARY KEY,
   user_id INT,
@@ -64,6 +71,7 @@ CREATE TABLE Cart (
 );
 
 -- Table: Cart_Items
+-- imported
 CREATE TABLE Cart_Items (
   cart_item_id INT PRIMARY KEY,
   cart_id INT,
@@ -74,6 +82,7 @@ CREATE TABLE Cart_Items (
 );
 
 -- Table: Payments
+-- imported
 CREATE TABLE Payments (
   payment_id INT PRIMARY KEY,
   order_id INT,
@@ -84,6 +93,7 @@ CREATE TABLE Payments (
 );
 
 -- Table: Shipping
+-- imported
 CREATE TABLE Shipping (
   shipping_id INT PRIMARY KEY,
   order_id INT,
