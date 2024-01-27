@@ -69,16 +69,15 @@ JOIN
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
-    WITH OrdersWithDistinctDate AS (
+WITH OrdersWithDistinctDate AS (
     SELECT
         DISTINCT
         user_id,
         order_date
     FROM Orders
 ) -- some users may make more than one order per day, this CTE only get distinct date per order
-    select DISTINCT U.user_id, U.username
+    SELECT DISTINCT U.user_id, U.username
     from (SELECT
-          DISTINCT
         user_id,
         order_date,
         DATEDIFF(day, order_date , LEAD(order_date,2) OVER (PARTITION BY user_id ORDER BY order_date)) AS next_order_date
