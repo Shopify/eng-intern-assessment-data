@@ -26,7 +26,8 @@ total_sales from
 	row_number() over(order by total_sales desc) as rank_cat --Replacing dense rank with row _number (given test setting)-- Using dense rank to resolve the tie and give continuous ranking
 	from cat_purchase
 ) as cp
-where rank_cat<4 and category_id is not null;
+where rank_cat<4 and category_id is not null
+order by total_sales desc ;
 
 
 

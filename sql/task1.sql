@@ -56,4 +56,5 @@ r.total_amount_spent
 from rank_cust_spend as r
 join Users as u
 on r.user_id=u.user_id
-where r.rank_num<6; 
+where r.rank_num<6
+order by total_amount_spent desc ; 
