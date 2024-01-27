@@ -21,7 +21,7 @@ HAVING AVG(R.rating) =(SELECT TOP 1  AVG (R.rating) AS average_rating
                                 
                             ORDER BY
                                 average_rating DESC
-                            )    
+                            );    
 
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
@@ -35,7 +35,7 @@ HAVING AVG(R.rating) =(SELECT TOP 1  AVG (R.rating) AS average_rating
         FROM Users U, Products P, Orders O, Order_Items I
         Where U.user_id = O.user_id and  O.order_id = I.order_id and I.product_id = P.product_id
         GROUP BY U.user_id, U.username) AS T
-    WHERE ordered_category = (select count (*) from Categories) 
+    WHERE ordered_category = (select count (*) from Categories);
 
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
@@ -57,10 +57,17 @@ WHERE
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 
-   select U.user_id, U.username FROM
+   WITH OrdersWithDistinctDate AS (
+    SELECT
+        DISTINCT
+        user_id,
+        order_date
+    FROM Orders
+)-- some users may make more than one order per day, this CTE only get distinct date per order
+  select DISTINCT U.user_id, U.username FROM
    (SELECT
         user_id,
         order_date,
         DATEDIFF(day, order_date, LEAD(order_date,1) OVER (PARTITION BY user_id ORDER BY order_date)) as date_diff
-    FROM Orders) as T,  Users AS U
+    FROM OrdersWithDistinctDate ) as T,  Users AS U
     where T.date_diff = 1 AND T.user_id = U.user_id;

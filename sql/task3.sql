@@ -18,7 +18,7 @@ LEFT JOIN
 GROUP BY
     C.category_id, C.category_name
 ORDER BY
-    total_sales_amount DESC
+    total_sales_amount DESC;
 
 -- Problem 10: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
@@ -69,10 +69,18 @@ JOIN
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
-    select U.user_id, U.username
+    WITH OrdersWithDistinctDate AS (
+    SELECT
+        DISTINCT
+        user_id,
+        order_date
+    FROM Orders
+) -- some users may make more than one order per day, this CTE only get distinct date per order
+    select DISTINCT U.user_id, U.username
     from (SELECT
+          DISTINCT
         user_id,
         order_date,
         DATEDIFF(day, order_date , LEAD(order_date,2) OVER (PARTITION BY user_id ORDER BY order_date)) AS next_order_date
-        FROM Orders) as T, Users AS U
-    WHERE T.next_order_date >=2 AND U.user_id =T.user_id 
+        FROM OrdersWithDistinctDate) as T, Users AS U
+    WHERE T.next_order_date >=2 AND U.user_id =T.user_id; 
