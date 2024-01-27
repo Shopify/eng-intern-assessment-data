@@ -6,7 +6,7 @@ SELECT
  c.category_id, 
  c.category_name, 
  SUM(oi.quantity * oi.unit_price) AS total_sales_amount 
-FROM Categories AS c JOIN Products AS p ON c.category_id = p.category
+FROM Categories AS c JOIN Products AS p ON c.category_id = p.category_id
                      JOIN Order_Items AS oi ON p.product_id = oi.product_id 
 GROUP BY c.category_id, c.category_name 
 ORDER BY total_sales_amount DESC 
@@ -73,7 +73,7 @@ lead_date AS (
     username, 
     order_date, 
     LEAD(order_date, 1) OVER (PARTITION BY user_id ORDER BY order_date) AS order_date_1, 
-    LEAD(order_date, 2) OVER (PARTITION BY user_id ORDER BY order_date) AS order_date_2,
+    LEAD(order_date, 2) OVER (PARTITION BY user_id ORDER BY order_date) AS order_date_2
   FROM unique_date 
 ) 
 SELECT 
