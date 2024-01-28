@@ -3,6 +3,12 @@
 -- The result should include the category ID, category name, and the total sales amount.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
 
+SELECT category_id, category_name, sum(quantity * unit_price) as total_sales
+FROM Order_Items NATURAL JOIN Products NATURAL JOIN Categories
+GROUP BY category_id, category_name
+ORDER BY total_sales DESC
+LIMIT 3;
+
 -- Problem 10: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
 -- The result should include the user ID and username.
