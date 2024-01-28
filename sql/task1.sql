@@ -1,7 +1,7 @@
 -- Problem 1: Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
 
--- SOLUTION: Straightforward. Could have also hardcoded ID but that's fragile
+-- SOLUTION: Straightforward. Used a nested query insteaed of hardcoding the category id
 SELECT * FROM Products WHERE category_id = (SELECT category_id FROM Categories WHERE category_name = 'Sports & Outdoors');
 
 -- Problem 2: Retrieve the total number of orders for each user
