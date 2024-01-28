@@ -5,25 +5,15 @@ import os
 class TestSQLQueries(unittest.TestCase):
 
     def setUp(self):
-        # Establish a connection to your test database
-        # self.conn = psycopg2.connect(
-        #     dbname='your_dbname',
-        #     user='your_username',
-        #     password='your_password',
-        #     host='your_host',
-        #     port='your_port'
-        # )
-        # self.cur = self.conn.cursor()
-
+        Establish a connection to your test database
         self.conn = psycopg2.connect(
-            dbname='postgres',
-            user='tester',
-            password='password',
-            host='localhost',
-            port='5432'
+            dbname='your_dbname',
+            user='your_username',
+            password='your_password',
+            host='your_host',
+            port='your_port'
         )
         self.cur = self.conn.cursor()
-
         
 
     def tearDown(self):
