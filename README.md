@@ -21,3 +21,5 @@ The assessment is based on a simulated dataset containing sales information from
 - Feel free to ask any clarifying questions by creating an issue in this repository.
 
 Good luck, and we look forward to reviewing your work!
+
+I created a setup_schema.py and a add_csv.sh in the sql and data directories respectively. Used those to setup the schema and import the csv's
