@@ -81,10 +81,10 @@ SELECT DISTINCT
 FROM 
     Users
 JOIN 
-    Orders o1 ON Users.user_id = o1.user_id
+    Orders o1 ON Users.user_id = o1.user_id -- Joins Users with Orders (first instance)
 JOIN 
-    Orders o2 ON Users.user_id = o2.user_id AND DATEDIFF(o2.order_date, o1.order_date) = 1
+    Orders o2 ON Users.user_id = o2.user_id AND DATEDIFF(o2.order_date, o1.order_date) = 1 -- Joins Users with Orders (second instance) and checks for consecutive days
 JOIN 
-    Orders o3 ON Users.user_id = o3.user_id AND DATEDIFF(o3.order_date, o2.order_date) = 1
+    Orders o3 ON Users.user_id = o3.user_id AND DATEDIFF(o3.order_date, o2.order_date) = 1 -- Joins Users with Orders (third instance) and checks for consecutive days
 WHERE 
-    o1.order_id <> o2.order_id AND o2.order_id <> o3.order_id;
+    o1.order_id <> o2.order_id AND o2.order_id <> o3.order_id; -- Ensures different orders are compared
