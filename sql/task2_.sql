@@ -20,6 +20,10 @@ LEFT JOIN review_data r ON p.product_id = r.product_id
 WHERE r.rating IS NULL AND r.review_text IS NULL;
 
 --Problem 8
+--Selecting id and username of users from user_data tables
+--Joining the order_data table and user_data table with primary key user_id
+--Second join is to compare two dates from the same user_id's
+--Having count makes sure the users made consecutive orders on consecutive days
 SELECT u.user_id, u.username
 FROM user_data u
 JOIN order_data o1 on u.user_id = o1.user_id
