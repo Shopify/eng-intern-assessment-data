@@ -25,22 +25,22 @@ LIMIT 1;
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or joins to solve this problem.
-SELECT
-  Users.user_id,
-  Users.username
-FROM Users
-JOIN Orders ON Users.user_id = Orders.user_id
-JOIN (
-  SELECT DISTINCT Users.user_id, Categories.category_id
-  FROM Users
-  CROSS JOIN Categories
-) UserCategories ON Users.user_id = UserCategories.user_id
-LEFT JOIN (
-  SELECT DISTINCT Users.user_id, Orders.category_id
-  FROM Users
-  JOIN Orders ON Users.user_id = Orders.user_id
-) UserOrders ON Users.user_id = UserOrders.user_id AND UserCategories.category_id = UserOrders.category_id
-WHERE UserOrders.category_id IS NOT NULL;
+SELECT DISTINCT
+  u.user_id,
+  u.username
+FROM Users u
+WHERE EXISTS (
+  SELECT 1
+  FROM Categories c
+  WHERE NOT EXISTS (
+    SELECT 1
+    FROM Orders o
+    JOIN Order_Items oi ON o.order_id = oi.order_id
+    JOIN Products p ON oi.product_id = p.product_id
+    WHERE u.user_id = o.user_id AND p.category_id = c.category_id
+  )
+);
+
 
 
 -- Problem 7: Retrieve the products that have not received any reviews
@@ -72,4 +72,5 @@ SELECT DISTINCT
   Users.username
 FROM UserConsecutiveOrders UC1
 JOIN Users ON UC1.user_id = Users.user_id
-WHERE UC1.next_order_date = DATE_ADD(UC1.order_date, INTERVAL 1 DAY);
+WHERE UC1.next_order_date = UC1.order_date + INTERVAL '1 day' OR UC1.next_order_date IS NULL;
+
