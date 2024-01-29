@@ -1,4 +1,4 @@
-1. Understanding the Task: I begin by examining the instructions provided by Shopify. 
+1. Understanding the Task: I begin by examining the instructions provided by Shopify in README.md. 
 
 2. Analyzing the Database Schema: After gaining a clear understanding of the instructions, I proceed to analyze the schema.sql file. 
 This file provide structure, including the tables it comprises and the relationships between them.
