@@ -5,7 +5,7 @@
 -- Specifying the category name to retrieve all the products from that category
 SELECT pd.product_id, pd.product_name, pd.description, pd.price, cd.category_name FROM product_data pd
 JOIN category_data cd ON pd.category_id = cd.category_id
-WHERE cd.category_name = 'Sports & Outdoors'
+WHERE cd.category_name = 'Sports & Outdoors';
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Assigning the user data table an alias and selecting all the columns that need to be retrieved, from the user data table 
@@ -37,4 +37,4 @@ SELECT ud.user_id, ud.username, od.total_amount FROM user_data ud
 JOIN order_data od ON ud.user_id = od.user_id
 GROUP BY ud.user_id, ud.username, od.total_amount
 ORDER BY od.total_amount DESC
-LIMIT 5
+LIMIT 5;
