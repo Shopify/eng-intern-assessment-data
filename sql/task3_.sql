@@ -8,7 +8,14 @@ ORDER BY total_sales_amount DESC
 LIMIT 3;
 
 --Problem 10
-
+SELECT u.user_id, u.username
+FROM user_data u
+JOIN order_data o ON u.user_id = o.user_id
+JOIN order_items_data oi ON o.order_id = oi.order_id
+JOIN product_data p ON oi.product_id = p.product_id
+JOIN category_data c ON p.category_id = c.category_id
+WHERE c.category_name = 'Toys & Games'
+GROUP BY u.user_id, u.username
 
 --Problem 11
 
