@@ -8,6 +8,10 @@ ORDER BY total_sales_amount DESC
 LIMIT 3;
 
 --Problem 10
+--Selecting id and username of users from user_data tables
+--Joining the order_data table and user_data table with primary key user_id
+--Second join is to check the second day of buying a product from the same user_id
+--Third join is to check the third day of buying a product from the same user_id
 SELECT u.user_id, u.username
 FROM user_data u
 JOIN order_data o ON u.user_id = o.user_id
@@ -18,7 +22,27 @@ WHERE c.category_name = 'Toys & Games'
 GROUP BY u.user_id, u.username
 
 --Problem 11
-
+--Create a cte and within the cte use a window function to assign a row number in price descending
+--Outside the cte, select everything to be shown, get it from ranked products where the row number has the highest price stored for each category
+WITH RankedProducts AS (
+    SELECT
+        product_id,
+        product_name,
+        category_id,
+        price,
+        ROW_NUMBER() OVER (PARTITION BY category_id ORDER BY price DESC) AS row_num
+    FROM
+        product_data
+)
+SELECT
+    product_id,
+    product_name,
+    category_id,
+    price
+FROM
+    RankedProducts
+WHERE
+    row_num = 1;
 
 --Problem 12
 --Selecting id and username of users from user_data tables
