@@ -9,7 +9,7 @@ class TestSQLQueries(unittest.TestCase):
             dbname='shopify',
             user='postgres',
             password='axerox56K',
-            host='local_host',
+            host='localhost',
             port='5432'
         )
         self.cur = self.conn.cursor()
@@ -21,7 +21,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task1(self):
         # Task 1: Example SQL query in task1.sql
-        with open('/sql/task1.sql', 'r') as file:
+        with open('C:\\Users\\aryan\\Desktop\\eng-intern-assessment-data\\sql\\task1.sql', 'r') as file:
             sql_query = file.read()
 
         self.cur.execute(sql_query)
@@ -36,7 +36,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task2(self):
         # Task 2: Example SQL query in task2.sql
-        with open('/sql/task2.sql', 'r') as file:
+        with open('C:\\Users\\aryan\\Desktop\\eng-intern-assessment-data\\sql\\task1.sql', 'r') as file:
             sql_query = file.read()
 
         self.cur.execute(sql_query)
