@@ -72,11 +72,14 @@ WITH UserConsecutiveOrderDays AS (
 
 SELECT DISTINCT
   UC1.user_id,
-  Users.username
+  U.username
 FROM UserConsecutiveOrderDays UC1
 JOIN UserConsecutiveOrderDays UC2 ON UC1.user_id = UC2.user_id
 JOIN UserConsecutiveOrderDays UC3 ON UC1.user_id = UC3.user_id
-WHERE UC1.prev_order_date = DATE_SUB(UC1.order_date, INTERVAL 1 DAY)
-  AND UC2.prev_order_date = DATE_SUB(UC2.order_date, INTERVAL 1 DAY)
-  AND UC3.prev_order_date = DATE_SUB(UC3.order_date, INTERVAL 1 DAY);
+JOIN Users U ON UC1.user_id = U.user_id  -- Added join condition for Users table
+WHERE UC1.prev_order_date = UC1.order_date - INTERVAL '1 day'
+  AND UC2.prev_order_date = UC2.order_date - INTERVAL '1 day'
+  AND UC3.prev_order_date = UC3.order_date - INTERVAL '1 day';
+
+
 
