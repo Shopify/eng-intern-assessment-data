@@ -36,7 +36,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task2(self):
         # Task 2: Example SQL query in task2.sql
-        with open('C:\\Users\\aryan\\Desktop\\eng-intern-assessment-data\\sql\\task1.sql', 'r') as file:
+        with open('C:\\Users\\aryan\\Desktop\\eng-intern-assessment-data\\sql\\task2.sql', 'r') as file:
             sql_query = file.read()
 
         self.cur.execute(sql_query)
@@ -48,6 +48,21 @@ class TestSQLQueries(unittest.TestCase):
         ]
 
         self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
+    
+    def test_task3(self):
+        # Task 2: Example SQL query in task2.sql
+        with open('C:\\Users\\aryan\\Desktop\\eng-intern-assessment-data\\sql\\task3.sql', 'r') as file:
+            sql_query = file.read()
+
+        self.cur.execute(sql_query)
+        result = self.cur.fetchall()
+
+        # Define expected outcome for Task 2 and compare
+        expected_result = [
+            # Define expected rows or values here based on the query output
+        ]
+
+        self.assertEqual(result, expected_result, "Task 3: Query output doesn't match expected result.")
 
     # Add more test methods for additional SQL tasks
 
