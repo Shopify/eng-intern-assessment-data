@@ -1,4 +1,9 @@
 --Problem 9
+-- Select category id,name to be shown
+--Get the total_sales_amount of quantity and unit_price by multiplying them
+--Join the category_table with product_table using category_id
+--Join the product_table with order_items_data_table using product_id
+--Order sales in descending amount and limit to 3 to get highest values
 SELECT c.category_id, c.category_name, SUM(odi.quantity * odi.unit_price) AS total_sales_amount
 FROM category_data c
 JOIN product_data p ON c.category_id = p.category_id
@@ -10,8 +15,9 @@ LIMIT 3;
 --Problem 10
 --Selecting id and username of users from user_data tables
 --Joining the order_data table and user_data table with primary key user_id
---Second join is to check the second day of buying a product from the same user_id
---Third join is to check the third day of buying a product from the same user_id
+--Second join is to join the product_table with order_table using order_id
+--Third join is to join the category_table with product_table using category_id
+--And only list out the users who ordered from Toys and Games
 SELECT u.user_id, u.username
 FROM user_data u
 JOIN order_data o ON u.user_id = o.user_id
