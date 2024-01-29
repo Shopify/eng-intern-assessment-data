@@ -1,3 +1,8 @@
+# LINK TO THE PULL REQUEST
+https://github.com/Shopify/eng-intern-assessment-data/pull/151
+
+
+
 # Data Engineer Intern Assessment
 
 Welcome to the Data Engineer Intern assessment for Shopify! This assessment is designed to evaluate your skills in SQL, data manipulation, and problem-solving. Please follow the instructions below to complete the assessment.
