@@ -17,3 +17,5 @@ JOIN review_data rd ON pd.product_id = rd.product_id
 WHERE rd.review_text IS NULL AND rd.rating IS NULL
 
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
+SELECT ud.user_id, ud.username FROM user_data ud
+JOIN 
