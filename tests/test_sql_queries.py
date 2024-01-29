@@ -1,11 +1,11 @@
 import unittest
-import psycopg2  # Replace with appropriate database connector based on your database
+import psycopg2_binary  # Replace with appropriate database connector based on your database
 
 class TestSQLQueries(unittest.TestCase):
 
     def setUp(self):
         # Establish a connection to your test database
-        self.conn = psycopg2.connect(
+        self.conn = psycopg2_binary.connect(
             dbname='your_dbname',
             user='your_username',
             password='your_password',
