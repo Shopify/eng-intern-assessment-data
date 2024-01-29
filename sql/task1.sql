@@ -1,4 +1,4 @@
--- Problem 1:-- Retrieve all products in the Sports category
+-- Problem 1:--Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
 
 -- joining Categories table to products table then selecting only the products in the specfic category
@@ -10,7 +10,7 @@ INNER JOIN Categories ON Products.category_id = Categories.category_id
 -- WHERE Categories.category_name = 'Sports';
 WHERE Categories.category_name = 'Electronics';
 
--- Problem 2: Retrieve the total number of orders for each user
+-- Problem 2:--Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
 
@@ -24,7 +24,7 @@ LEFT JOIN Orders ON Users.user_id = Orders.user_id -- need to join orders and us
 GROUP BY Users.user_id, Users.username -- need both since they are not part of count()
 ORDER BY total_orders DESC, Users.user_id ASC; -- thought it would be good to order them by total number of orders, in descending order, then user id
 
--- Problem 3:-- Retrieve the average rating for each product
+-- Problem 3:--Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
 
@@ -39,7 +39,7 @@ GROUP BY Products.product_id, Products.product_name -- need both since they are 
 ORDER BY average_rating DESC, Products.product_id ASC; -- thought it would be good to order them by average rating, in descending order, then product id
 
 
--- Problem 4:-- Retrieve the top 5 users with the highest total amount spent on orders
+-- Problem 4:--Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
 
