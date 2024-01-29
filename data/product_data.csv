@@ -15,3 +15,4 @@ product_id,product_name,description,price,category_id
 14,Weighted Blanket,Experience deep relaxation and improved sleep with this weighted blanket.,100.00,7
 15,Mountain Bike,Conquer the trails with this high-performance mountain bike.,1000.00,8
 16,Tennis Racket,Take your tennis game to the next level with this professional-grade racket.,54.00,8
+17,Honda Civic Tire,Tire specific for Honda Civic. Generated data by Richard Kim since it was missing., 300.00, 9
