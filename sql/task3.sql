@@ -22,6 +22,8 @@ JOIN order_items ON orders.order_id = order_items.order_id
 JOIN products ON order_items.product_id = products.product_id
 WHERE products.category_id = (SELECT category_id FROM categories WHERE category_name = 'Toys & Games')
 GROUP BY users.user_id, users.username
+-- The logic here is that if the number of distinct products that the user has ordered from is equal to the total number of products in the Toys & Games category,
+-- then the user has placed orders for all products in the Toys & Games category
 HAVING COUNT(DISTINCT products.product_id) = (SELECT COUNT(*) FROM products WHERE category_id = (SELECT category_id FROM categories WHERE category_name = 'Toys & Games'));
 
 -- Problem 11: Retrieve the products that have the highest price within each category
@@ -31,6 +33,7 @@ HAVING COUNT(DISTINCT products.product_id) = (SELECT COUNT(*) FROM products WHER
 SELECT products.product_id, products.product_name, products.category_id, products.price 
 FROM products
 JOIN categories ON products.category_id = categories.category_id
+-- The subquery selects the highest price for each category
 WHERE products.price = (SELECT MAX(price) FROM products WHERE category_id = categories.category_id);
 
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
@@ -47,5 +50,7 @@ WITH cte AS (
 
 SELECT DISTINCT user_id, username
 FROM cte
+-- If the previous order date is one and two days before the current order date, 
+-- then the user has made consecutive orders on at three days.
 WHERE order_date BETWEEN DATE_ADD(previous_order_date, INTERVAL 1 DAY) 
 AND DATE_ADD(previous_order_date, INTERVAL 2 DAY);
