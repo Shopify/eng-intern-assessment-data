@@ -1,10 +1,10 @@
 --Problem 9
-SELECT c.category_id, c.category_name, SUM(odi.quantity * odi_
+SELECT c.category_id, c.category_name, SUM(odi.quantity * odi.unit_price) AS total_sales_amount
 FROM category_data c
-JOIN order_data o1 on u.user_id = o1.user_id
-JOIN 
-JOIN 
-GROUP BY u.user_id, u.username
+JOIN product_data p ON c.category_id = p.category_id
+JOIN order_items_data odi ON p.product_id = odi.product_id
+GROUP BY c.category_id, c.category_name
+ORDER BY total_sales_amount DESC
 LIMIT 3;
 
 --Problem 10
