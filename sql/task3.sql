@@ -3,6 +3,8 @@
 -- The result should include the category ID, category name, and the total sales amount.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
 
+
+-- Get total sales from quantity x unit price, order by highest to lowest
 SELECT category_id, category_name, sum(quantity*unit_price) AS total_sales_amount
 FROM order_items
 JOIN products USING (product_id)
@@ -15,6 +17,8 @@ LIMIT 3;
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
+
+-- Find the products in toys and games, then find the users who have ordered all the distinct products from the toys category
 
 SELECT u.user_id, u.username
 FROM users u
@@ -42,6 +46,8 @@ HAVING
 -- The result should include the product ID, product name, category ID, and price.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
+-- Use window function to find row number sorted by price of each category, then display everything with a ranking of 1
+
 WITH ranked_products AS (
     SELECT product_id, product_name, category_id,price,
         ROW_NUMBER() OVER (PARTITION BY category_id ORDER BY price DESC) AS rn
@@ -56,6 +62,8 @@ WHERE rn = 1;
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
+
+-- Use window function to group by user and sort by order dates, then find those that have more than 3 orders in consecurive days
 SELECT
     user_id,
     MIN(order_date) AS startdate,

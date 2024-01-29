@@ -3,6 +3,7 @@
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
 
+-- First find all average ratings, then filter for highest average
 WITH avg_rating AS (
     SELECT product_id, product_name, AVG(rating) as average_rating
     FROM products
@@ -18,6 +19,7 @@ WHERE average_rating = (SELECT max(average_rating) FROM avg_rating);
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or joins to solve this problem.
 
+-- First find information on each category, then calculate number of categories and users for each category
 with category_info as (
     select user_id, username, order_id, order_item_id, product_id, category_id
     from users
@@ -60,6 +62,8 @@ WHERE product_id NOT IN (
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
 
+
+-- Find a column with the last order date the user has made, then use this to find if there is a date difference of 1 for consecutive
 WITH ordered_orders AS (
     SELECT
         order_id,
