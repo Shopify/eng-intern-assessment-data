@@ -25,19 +25,16 @@ limit 3;
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
-with toys_buyers as (
-select user_id
-from Orders join Order_Items on Orders.order_id = Order_Items.order_id join Products on Products.product_id = Order_Items.product_id join Categories on Categories.category_id = Products.category_id
+with num_of_prod as (
+select count(distinct Products.product_id) as n
+from Products join Categories on Products.category_id = Categories.category_id
 where Categories.category_name like '%Toys & Games%'
-), -- people who bougth things from categories than Toys & Games
-other_buyers as (
-select user_id
-from Orders join Order_Items on Orders.order_id = Order_Items.order_id join Products on Products.product_id = Order_Items.product_id join Categories on Categories.category_id = Products.category_id
-where Categories.category_name not like '%Toys & Games%'
-) -- people who bougth things from categories different than Toys & Games
-select Users.user_id, Users.username
-from Users
-where Users.user_id in (select * from toys_buyers) and Users.user_id not in (select * from other_buyers)
+) -- get num of distinct items in category
+select Users.user_id , Users.username, count(distinct Order_Items.product_id) as prod_num
+from Users join Orders on Users.user_id = Orders.user_id join Order_Items on Orders.order_id = Order_Items.order_id join Products on Products.product_id = Order_Items.product_id join Categories on Categories.category_id = Products.category_id
+where Categories.category_name like '%Toys & Games%'
+group by Users.user_id, Users.username
+having prod_num in (select n from num_of_prod)
 
 
 -- Problem 11: Retrieve the products that have the highest price within each category
