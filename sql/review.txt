@@ -1,0 +1,13 @@
+1. Understanding the Task: I begin by examining the instructions provided by Shopify. 
+
+2. Analyzing the Database Schema: After gaining a clear understanding of the instructions, I proceed to analyze the schema.sql file. 
+This file provide structure, including the tables it comprises and the relationships between them.
+
+3. Creating an Entity Relationship Diagram (ERD): To further understanding of the database, I create an Entity Relationship Diagram (ERD) using drawio. 
+This visual representation helps identify the relationships between different tables, whether they are one-to-many or one-to-one. 
+
+4. Solving Tasks: Armed with a thorough understanding of the database and its structure, I then tackle the tasks at hand. 
+I use the data provided, the database schema, and the ERD as my primary tools.
+
+5.Testing Queries: Finally, I test the accuracy of all the queries using Python’s pandasql package. 
+This step ensures the integrity of my work and to confirm that the queries return the expected results.
