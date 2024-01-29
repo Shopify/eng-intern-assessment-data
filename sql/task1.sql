@@ -1,8 +1,8 @@
 -- Problem 1: Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
-SELECT * 
-FROM Products
-where category_id = 8;
+SELECT *
+FROM products
+WHERE category_id = 8;
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
@@ -13,7 +13,7 @@ SELECT
   COUNT(o.order_id) AS total_orders
 FROM
   users u
-LEFT JOIN
+  LEFT JOIN
   orders o ON u.user_id = o.user_id
 GROUP BY
   u.user_id, u.username;
@@ -27,7 +27,7 @@ SELECT
   AVG(r.rating) as average_rating
 FROM
   products p
-LEFT JOIN
+  LEFT JOIN
   reviews r ON p.product_id = r.product_id
 GROUP BY
   p.product_id, p.product_name;
@@ -41,12 +41,11 @@ SELECT TOP 5
   SUM(o.total_amount) AS amount_spent
 FROM
   users u
-LEFT JOIN
+  LEFT JOIN
   orders o ON u.user_id = o.user_id
 GROUP BY
   u.user_id, u.username
 ORDER BY
   amount_spent DESC;
-
 -- could also be LIMIT 5 in the end instead of "select top 5" but VSCode gives me an error
 -- if I use LIMIT 5
