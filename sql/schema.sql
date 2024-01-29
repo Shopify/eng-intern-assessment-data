@@ -1,11 +1,15 @@
--- Table: Categories
-CREATE TABLE Categories (
+USE assessment;
+
+CREATE TABLE Categories
+(
   category_id INT PRIMARY KEY,
   category_name VARCHAR(255)
 );
 
 -- Table: Products
-CREATE TABLE Products (
+-- imported
+CREATE TABLE Products
+(
   product_id INT PRIMARY KEY,
   product_name VARCHAR(255),
   description TEXT,
@@ -15,7 +19,9 @@ CREATE TABLE Products (
 );
 
 -- Table: Users
-CREATE TABLE Users (
+-- imported
+CREATE TABLE Users
+(
   user_id INT PRIMARY KEY,
   username VARCHAR(255),
   email VARCHAR(255),
@@ -25,7 +31,9 @@ CREATE TABLE Users (
 );
 
 -- Table: Orders
-CREATE TABLE Orders (
+-- imported
+CREATE TABLE Orders
+(
   order_id INT PRIMARY KEY,
   user_id INT,
   order_date DATE,
@@ -34,7 +42,9 @@ CREATE TABLE Orders (
 );
 
 -- Table: Order_Items
-CREATE TABLE Order_Items (
+-- imported
+CREATE TABLE Order_Items
+(
   order_item_id INT PRIMARY KEY,
   order_id INT,
   product_id INT,
@@ -45,7 +55,9 @@ CREATE TABLE Order_Items (
 );
 
 -- Table: Reviews
-CREATE TABLE Reviews (
+-- imported
+CREATE TABLE Reviews
+(
   review_id INT PRIMARY KEY,
   user_id INT,
   product_id INT,
@@ -57,14 +69,18 @@ CREATE TABLE Reviews (
 );
 
 -- Table: Cart
-CREATE TABLE Cart (
+-- imported
+CREATE TABLE Cart
+(
   cart_id INT PRIMARY KEY,
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 -- Table: Cart_Items
-CREATE TABLE Cart_Items (
+-- imported
+CREATE TABLE Cart_Items
+(
   cart_item_id INT PRIMARY KEY,
   cart_id INT,
   product_id INT,
@@ -74,7 +90,9 @@ CREATE TABLE Cart_Items (
 );
 
 -- Table: Payments
-CREATE TABLE Payments (
+-- imported
+CREATE TABLE Payments
+(
   payment_id INT PRIMARY KEY,
   order_id INT,
   payment_date DATE,
@@ -84,7 +102,9 @@ CREATE TABLE Payments (
 );
 
 -- Table: Shipping
-CREATE TABLE Shipping (
+-- imported
+CREATE TABLE Shipping
+(
   shipping_id INT PRIMARY KEY,
   order_id INT,
   shipping_date DATE,
