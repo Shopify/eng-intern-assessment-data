@@ -16,7 +16,7 @@ JOIN (
     FROM 
         Reviews
     GROUP BY 
-        product_id
+        product_id -- Groups results by product_id
 ) Reviews ON Products.product_id = Reviews.product_id -- Joins the subquery with the Products table
 WHERE 
     Reviews.average_rating = (
@@ -27,7 +27,7 @@ WHERE
             FROM 
                 Reviews
             GROUP BY 
-                product_id
+                product_id -- Groups results by product_id
         ) AS subquery
     );
 
