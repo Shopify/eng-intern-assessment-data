@@ -19,16 +19,15 @@ WITH Ratings AS (
         p.product_id,
         p.product_name
 )
-
 -- Main query to select the products with the highest average rating
 SELECT 
     product_id,
     product_name,
     average_rating
 FROM 
-   Ratings
-WHERE 
-    average_rating = (                           -- Filter to include only products with the highest average rating
+   Ratings	
+WHERE                                                  
+    average_rating = (                                   
 		SELECT MAX(average_rating) FROM Ratings  -- Subquery to find the maximum average rating across all products
     );
 	
