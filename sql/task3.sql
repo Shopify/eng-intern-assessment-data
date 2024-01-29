@@ -60,6 +60,6 @@ LAG(Orders.order_date) over (partition by Users.user_id order by Orders.order_da
 lead(Orders.order_date) over (partition by Users.user_id order by Orders.order_date) as next_date -- next date to compare
 from Users left join Orders on Users.user_id = Orders.order_id
 )
-select Users.user_id, Users.username
+select distinct Users.user_id, Users.username
 from Users join cons on Users.user_id = cons.user_id
 where cons.next_date = DATE_ADD(cons.order_date, INTERVAl 1 DAY) and cons.order_date = DATE_ADD(cons.prev_date, INTERVAL 1 DAY) -- check if the orders have consecutive dates
