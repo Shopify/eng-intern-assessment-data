@@ -14,10 +14,10 @@ JOIN
 JOIN 
     Order_Items ON Products.product_id = Order_Items.product_id -- Joins Products with Order_Items
 GROUP BY 
-    Categories.category_id, Categories.category_name
+    Categories.category_id, Categories.category_name -- Groups results by category_id and category_name
 ORDER BY 
-    total_sales DESC -- Orders total sales in descending order
-LIMIT 3; -- Limits to top 3 categories
+    total_sales DESC -- Orders by the total sales in descending order
+LIMIT 3; -- Limits the results to the top 3 categories
 
 -- Problem 10: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
@@ -40,7 +40,7 @@ JOIN
 WHERE 
     Categories.category_name = 'Toys & Games' -- Filters to the "Toys & Games" category
 GROUP BY 
-    Users.user_id, Users.username
+    Users.user_id, Users.username -- Groups results by user_id and username
 HAVING 
     COUNT(DISTINCT Products.product_id) = ( -- Ensures the user has ordered all products in the category
         SELECT COUNT(product_id) FROM Products WHERE category_id = (
@@ -67,7 +67,7 @@ INNER JOIN (
     FROM 
         Products 
     GROUP BY 
-        category_id
+        category_id -- Groups results by category_id
 ) AS max_prices ON Products.category_id = max_prices.category_id AND Products.price = max_prices.max_price;
 
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
