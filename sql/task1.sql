@@ -4,9 +4,9 @@
 SELECT 
     * -- Selects everything
 FROM 
-    Products -- From the product_data table
+    Products
 JOIN 
-    Categories ON Products.category_id = Categories.category_id -- Joins the category_data table
+    Categories ON Products.category_id = Categories.category_id -- Joins the Categories table
 WHERE 
     Categories.category_name = "Sports & Outdoors"; -- Filters products in the "Sports & Outdoors" category
 
@@ -19,7 +19,7 @@ SELECT
     Users.username, -- Selects username
     count(Orders.order_id) -- Counts the number of orders per user
 FROM 
-    Users -- From the user_data table
+    Users
 LEFT JOIN 
     Orders ON Users.user_id = Orders.user_id -- Left joins the order_data table
 GROUP BY 
@@ -34,9 +34,9 @@ SELECT
     Products.product_name, -- Selects product_name
     AVG(Reviews.rating) -- Calculates the average rating per product
 FROM 
-    Products -- From the product_data table
+    Products
 LEFT JOIN 
-    Reviews ON Products.product_id = Reviews.product_id -- Left joins the review_data table
+    Reviews ON Products.product_id = Reviews.product_id -- Left joins the Reviews table
 GROUP BY 
     Products.product_id, Products.product_name; -- Groups results by product_id and product_name
 
@@ -49,9 +49,9 @@ SELECT
     Users.username, -- Selects username
     SUM(Orders.total_amount) -- Sums the total amount spent on orders per user
 FROM 
-    Users -- From the user_data table
+    Users
 JOIN 
-    Orders ON Users.user_id = Orders.user_id  -- Joins with the order_data table
+    Orders ON Users.user_id = Orders.user_id  -- Joins with the Orders table
 GROUP BY 
     Users.user_id, Users.username -- Groups results by user_id and username
 ORDER BY 
