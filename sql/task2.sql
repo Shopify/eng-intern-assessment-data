@@ -46,6 +46,6 @@ with cons as (
 select Users.user_id, Orders.order_date, lead(Orders.order_date) over (partition by Users.user_id order by Orders.order_date) as next_date #choosing leading value from partition
 from Users left join Orders on Users.user_id = Orders.order_id
 ) -- we create the window with order_date -> next_date pair
-select Users.user_id, Users.username
+select distinct Users.user_id, Users.username
 from Users join cons on Users.user_id = cons.user_id
 where cons.next_date = DATE_ADD(cons.order_date, INTERVAl 1 DAY) -- checking if order_date -> next_date pair is of the consecutive days
