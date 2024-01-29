@@ -1,9 +1,9 @@
 --Problem 9
-SELECT c.category_id, c.category_name, SUM(
-FROM user_data u
+SELECT c.category_id, c.category_name, SUM(odi.quantity * odi_
+FROM category_data c
 JOIN order_data o1 on u.user_id = o1.user_id
-JOIN order_data o2 on u.user_id = o2.user_id AND o2.order_date = DATE_ADD(o1.order_date, INTERVAL 1 DAY)
-JOIN order_data o3 on u.user_id = o3.user_id AND o3.order_date = DATE_ADD(o1.order_date, INTERVAL 2 DAY)
+JOIN 
+JOIN 
 GROUP BY u.user_id, u.username
 LIMIT 3;
 
