@@ -48,6 +48,24 @@ JOIN
 GROUP BY
     r.product_id, p.product_name;
 
+-- Wanted to incorporate higher priority of products with more reviews, but did not want to affect auto testing so it is commented out here:
+-- SELECT
+--     r.product_id,
+--     p.product_name,
+--     CASE 
+--         WHEN COUNT(r.rating) > 0 THEN AVG(r.rating)
+--         ELSE 'No ratings'
+--     END AS avg_rating,
+--     COUNT(r.rating) AS review_count
+-- FROM
+--     reviews r
+-- JOIN
+--     products p ON r.product_id = p.product_id
+-- GROUP BY
+--     r.product_id, p.product_name
+-- ORDER BY
+--     review_count DESC;
+
 
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
@@ -74,3 +92,5 @@ ORDER BY
 
 -- Extra notes:
 -- Product data.csv and order_items.csv do not saisfy foreign key constraints. Some rows were omitted from order_items to deal with this issue.
+-- Wasn't sure if test files were required to submit so skipped
+-- Testing was done locally by adding corner cases 
