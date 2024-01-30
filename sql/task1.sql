@@ -51,4 +51,4 @@ GROUP BY
 	users.user_id 
 ORDER BY 
 	total_spent DESC
-LIMIT 5;
+LIMIT 5; -- Only retrieve the top 5 users
