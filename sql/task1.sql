@@ -14,7 +14,7 @@ where category_name = 'Sports & Outdoors';
 
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
--- The result should include the user ID, username, and the total number of orders
+-- The result should include the user ID, username, and the total number of orders.
 
 -- We group by user id to see how many orders there are per id
 -- Note that to test this, it was necessary to change the data so that there was
