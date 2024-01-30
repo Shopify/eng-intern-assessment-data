@@ -17,6 +17,7 @@ avg_rating AS (
 SELECT * FROM avg_rating
     WHERE avg_rating = (SELECT MAX(avg_rating) FROM avg_rating) --include only rows where the avg_rating is equal to the maximum average rating
 
+-- *************************************************************************************************************************************************************
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
 -- The result should include the user ID and username.
@@ -38,6 +39,7 @@ DistinctCategories AS (
 SELECT user_id, username FROM DistinctCategories
 WHERE dist_cat_n = (SELECT COUNT(DISTINCT category_id) FROM Categories) --filters the results to include only users who have ordered from all distinct categories
 
+-- *************************************************************************************************************************************************************
 -- Problem 7:
 -- Question: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
@@ -51,6 +53,7 @@ WHERE dist_cat_n = (SELECT COUNT(DISTINCT category_id) FROM Categories) --filter
 SELECT product_id, product_name FROM Products
 WHERE product_id not in (SELECT DISTINCT product_id FROM Reviews) -- Subquery to get distinct product IDs from the Reviews table
 
+-- *************************************************************************************************************************************************************
 -- Problem 8:
 -- Question: Retrieve the users who have made consecutive orders on consecutive days
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
