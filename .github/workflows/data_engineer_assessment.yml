@@ -1,37 +1,89 @@
 name: Data Engineer Assessment
 
-on:
-  pull_request:
-    branches:
-      - master  # Consider changing the branch name if needed
+on: push
 
 jobs:
   assessment:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  # Choose appropriate Python version
+          python-version: '3.10.12'
+      
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade pip psycopg2-binary
 
-      - name: Set up PostgreSQL  # Replace with appropriate database setup steps
+      - name: Install PostgreSQL client
         run: |
           sudo apt-get update
           sudo apt-get install postgresql
-          # Additional setup commands for creating a test database and loading data
 
-      - name: Run SQL Tests
+      - name: Connect to PostgreSQL
         run: |
-          # Execute SQL test scripts against the test database
-          # Validate SQL queries and transformations
+          PGPASSWORD=password psql -h localhost -U user -d testdb<<EOF
+            SELECT 1;
+            \conninfo
+          EOF
+
+      - name: Set up SQL database
+        run: |
+          PGPASSWORD=password psql -h localhost -U user -d testdb <<EOF
+            \i sql/schema.sql
+
+            \copy Users(user_id, username, email, password, address, phone_number) FROM 'data/user_data.csv' DELIMITER ',' CSV HEADER
+
+            \copy Categories(category_id, category_name) FROM 'data/category_data.csv' DELIMITER ',' CSV HEADER
+
+            \copy Products(product_id, product_name, description, price, category_id) FROM 'data/product_data.csv' DELIMITER ',' CSV HEADER
+
+            \copy Cart(cart_id, user_id) FROM 'data/cart_data.csv' DELIMITER ',' CSV HEADER
+
+            \copy Orders(order_id, user_id, order_date, total_amount) FROM 'data/order_data.csv' DELIMITER ',' CSV HEADER
+
+            \copy Order_Items(order_item_id, order_id, product_id, quantity, unit_price) FROM 'data/order_items_data.csv' DELIMITER ',' CSV HEADER
+
+            \copy Reviews(review_id, user_id, product_id, rating, review_text, review_date) FROM 'data/review_data.csv' DELIMITER ',' CSV HEADER
+          EOF
+      
+      - name: Run SQL tests
+        run: |
+          PGPASSWORD=password psql -h localhost -U user -d testdb <<EOF
+            \d
+            \d users
+            \d categories
+            \d products
+            \d cart
+            \d orders
+            \d payments
+            \d shipping
+            SELECT 'Users' AS table_name, COUNT(*) FROM Users;
+            SELECT 'Categories' AS table_name, COUNT(*) FROM Categories;
+            SELECT 'Products' AS table_name, COUNT(*) FROM Products;
+            SELECT 'Cart' AS table_name, COUNT(*) FROM Cart;
+            SELECT 'Orders' AS table_name, COUNT(*) FROM Orders;
+            SELECT 'Payments' AS table_name, COUNT(*) FROM Payments;
+            SELECT 'Shipping' AS table_name, COUNT(*) FROM Shipping;
+          EOF
 
       - name: Run Problem-solving Tests
         run: |
-          # Execute problem-solving test scripts
-          # Validate problem-solving approaches
-
-      # Additional steps for generating reports, providing feedback, or scoring
+          python3 -m unittest tests/test_sql_queries.py

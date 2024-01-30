@@ -1,94 +1,104 @@
 -- Table: Categories
-CREATE TABLE Categories (
-  category_id INT PRIMARY KEY,
-  category_name VARCHAR(255)
+CREATE TABLE
+Categories (
+    Category_Id INT PRIMARY KEY,
+    Category_Name VARCHAR(255)
 );
 
 -- Table: Products
-CREATE TABLE Products (
-  product_id INT PRIMARY KEY,
-  product_name VARCHAR(255),
-  description TEXT,
-  price DECIMAL(10, 2),
-  category_id INT,
-  FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+CREATE TABLE
+Products (
+    Product_Id INT PRIMARY KEY,
+    Product_Name VARCHAR(255),
+    Description TEXT,
+    Price DECIMAL(10, 2),
+    Category_Id INT,
+    FOREIGN KEY (Category_Id) REFERENCES Categories (Category_Id)
 );
 
 -- Table: Users
-CREATE TABLE Users (
-  user_id INT PRIMARY KEY,
-  username VARCHAR(255),
-  email VARCHAR(255),
-  password VARCHAR(255),
-  address VARCHAR(255),
-  phone_number VARCHAR(20)
+CREATE TABLE
+Users (
+    User_Id INT PRIMARY KEY,
+    Username VARCHAR(255),
+    Email VARCHAR(255),
+    Password VARCHAR(255),
+    Address VARCHAR(255),
+    Phone_Number VARCHAR(20)
 );
 
 -- Table: Orders
-CREATE TABLE Orders (
-  order_id INT PRIMARY KEY,
-  user_id INT,
-  order_date DATE,
-  total_amount DECIMAL(10, 2),
-  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+CREATE TABLE
+Orders (
+    Order_Id INT PRIMARY KEY,
+    User_Id INT,
+    Order_Date DATE,
+    Total_Amount DECIMAL(10, 2),
+    FOREIGN KEY (User_Id) REFERENCES Users (User_Id)
 );
 
 -- Table: Order_Items
-CREATE TABLE Order_Items (
-  order_item_id INT PRIMARY KEY,
-  order_id INT,
-  product_id INT,
-  quantity INT,
-  unit_price DECIMAL(10, 2),
-  FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+CREATE TABLE
+Order_Items (
+    Order_Item_Id INT PRIMARY KEY,
+    Order_Id INT,
+    Product_Id INT,
+    Quantity INT,
+    Unit_Price DECIMAL(10, 2),
+    FOREIGN KEY (Order_Id) REFERENCES Orders (Order_Id),
+    FOREIGN KEY (Product_Id) REFERENCES Products (Product_Id)
 );
 
 -- Table: Reviews
-CREATE TABLE Reviews (
-  review_id INT PRIMARY KEY,
-  user_id INT,
-  product_id INT,
-  rating INT,
-  review_text TEXT,
-  review_date DATE,
-  FOREIGN KEY (user_id) REFERENCES Users(user_id),
-  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+CREATE TABLE
+Reviews (
+    Review_Id INT PRIMARY KEY,
+    User_Id INT,
+    Product_Id INT,
+    Rating INT,
+    Review_Text TEXT,
+    Review_Date DATE,
+    FOREIGN KEY (User_Id) REFERENCES Users (User_Id),
+    FOREIGN KEY (Product_Id) REFERENCES Products (Product_Id)
 );
 
 -- Table: Cart
-CREATE TABLE Cart (
-  cart_id INT PRIMARY KEY,
-  user_id INT,
-  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+CREATE TABLE
+Cart (
+    Cart_Id INT PRIMARY KEY,
+    User_Id INT,
+    FOREIGN KEY (User_Id) REFERENCES Users (User_Id)
 );
 
 -- Table: Cart_Items
-CREATE TABLE Cart_Items (
-  cart_item_id INT PRIMARY KEY,
-  cart_id INT,
-  product_id INT,
-  quantity INT,
-  FOREIGN KEY (cart_id) REFERENCES Cart(cart_id),
-  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+CREATE TABLE
+Cart_Items (
+    Cart_Item_Id INT PRIMARY KEY,
+    Cart_Id INT,
+    Product_Id INT,
+    Quantity INT,
+    FOREIGN KEY (Cart_Id) REFERENCES Cart (Cart_Id),
+    FOREIGN KEY (Product_Id) REFERENCES Products (Product_Id)
 );
 
 -- Table: Payments
-CREATE TABLE Payments (
-  payment_id INT PRIMARY KEY,
-  order_id INT,
-  payment_date DATE,
-  payment_method VARCHAR(255),
-  amount DECIMAL(10, 2),
-  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+CREATE TABLE
+Payments (
+    Payment_Id INT PRIMARY KEY,
+    Order_Id INT,
+    Payment_Date DATE,
+    Payment_Method VARCHAR(255),
+    Amount DECIMAL(10, 2),
+    FOREIGN KEY (Order_Id) REFERENCES Orders (Order_Id)
 );
 
 -- Table: Shipping
-CREATE TABLE Shipping (
-  shipping_id INT PRIMARY KEY,
-  order_id INT,
-  shipping_date DATE,
-  shipping_address VARCHAR(255),
-  tracking_number VARCHAR(255),
-  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+CREATE TABLE
+Shipping (
+    Shipping_Id INT PRIMARY KEY,
+    Order_Id INT,
+    Shipping_Date DATE,
+    Shipping_Address VARCHAR(255),
+    Tracking_Number VARCHAR(255),
+    FOREIGN KEY (Order_Id) REFERENCES Orders (Order_Id)
 );
