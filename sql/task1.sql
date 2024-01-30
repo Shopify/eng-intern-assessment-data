@@ -5,7 +5,7 @@
     WITH sports_id AS (
         SELECT category_id 
         FROM Categories 
-        WHERE category_name = 'Sports'
+        WHERE category_name = 'Sports & Outdoors'
     )
     -- Retrieve all products in the Sports category using the variable above
     SELECT *
