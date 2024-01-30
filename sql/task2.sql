@@ -68,5 +68,5 @@ SELECT DISTINCT
     username
 FROM
     Users
-    JOIN Orders O1 ON U.user_id = O1.user_id
-    JOIN Orders O2 ON U.user_id = O2.user_id AND O1.order_date = DATE_ADD(O2.order_date, INTERVAL 1 DAY);
+    JOIN Orders O1 ON user_id = O1.user_id
+    JOIN Orders O2 ON user_id = O2.user_id AND O1.order_date = DATE_ADD(O2.order_date, INTERVAL 1 DAY);
