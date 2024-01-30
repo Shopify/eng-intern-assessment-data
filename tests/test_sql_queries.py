@@ -92,7 +92,7 @@ class TestSQLQueries(unittest.TestCase):
         expected_results_t1 = [expected_result_p1, expected_result_p2,
                             expected_result_p3, expected_result_p4]
 
-        with open('/home/mehdi/eng-intern-assessment-data/sql/task1.sql', 'r') as file:
+        with open('sql/task1.sql', 'r') as file:
             sql_queries = file.read().split(";")
 
         for i, query in enumerate(sql_queries):
@@ -122,7 +122,7 @@ class TestSQLQueries(unittest.TestCase):
         expected_results_t2 = [expected_result_p5, expected_result_p6,
                             expected_result_p7, expected_result_p8]
 
-        with open('/home/mehdi/eng-intern-assessment-data/sql/task2.sql', 'r') as file:
+        with open('sql/task2.sql', 'r') as file:
             sql_queries = file.read().split(';')
 
         for i, query in enumerate(sql_queries):
@@ -159,7 +159,7 @@ class TestSQLQueries(unittest.TestCase):
         expected_results_t3 = [expected_result_p9, expected_result_p10,
                             expected_result_p11, expected_result_p12]
 
-        with open('/home/mehdi/eng-intern-assessment-data/sql/task3.sql', 'r') as file:
+        with open('sql/task3.sql', 'r') as file:
             sql_queries = file.read().split(';')
 
         for i, query in enumerate(sql_queries):
