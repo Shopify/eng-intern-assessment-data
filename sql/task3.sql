@@ -32,6 +32,7 @@ ORDER BY
     cts.total_sales_amount DESC     --orders the result by total_sales_amount in descending order
 LIMIT 3;                            --Need the top 3 categories.
 
+-- *************************************************************************************************************************************************************
 -- Problem 10:
 -- Question: Retrieve the users who have placed orders for all products in the Toys & Games
 -- Write an SQL query to retrieve the users who have placed orders for all products in the Toys & Games
@@ -64,6 +65,7 @@ GROUP BY
 HAVING
     COUNT(DISTINCT ptg.product_id) = (SELECT COUNT(*) FROM ProductsInToysAndGames); -- Ensure the count of distinct product_ids equals the count of the number of products in the Toys and Games category.
 
+-- *************************************************************************************************************************************************************
 -- Problem 11:
 -- Question: Retrieve the products that have the highest price within each category
 -- Write an SQL query to retrieve the products that have the highest price within each category.
@@ -76,6 +78,7 @@ SELECT p.product_id, p.product_name, c.category_id, MAX(p.price) FROM Products p
         ON p.category_id=c.category_id -- join the Products and Category Tables
     GROUP BY c.category_id  -- Maximum needs to be determined for each category
 
+-- *************************************************************************************************************************************************************
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
 -- The result should include the user ID and username.
