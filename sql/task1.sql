@@ -7,7 +7,7 @@ SELECT
     description,
     price,
 FROM Products
-INNER JOIN Categories ON Categories.user_id = Products.user_id
+INNER JOIN Categories ON Categories.category_id = Products.category_id
 WHERE category_name = 'Sports & Outdoors';
 
 -- Problem 2: Retrieve the total number of orders for each user
@@ -38,7 +38,8 @@ GROUP BY P.product_id;
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
 
-SELECT
+-- OLD VERSION:
+/*SELECT
     user_id,
     username,
     total_amount_spent
@@ -51,5 +52,15 @@ FROM (
     INNER JOIN Orders ON Orders.user_id = Users.user_id
     GROUP BY U.user_id
 ) AS T
+ORDER BY total_amount_spent DESC
+LIMIT 5;*/
+
+SELECT 
+    user_id,
+    username,
+    SUM(total_amount) AS total_amount_spent
+FROM Users U
+INNER JOIN Orders ON Orders.user_id = Users.user_id
+GROUP BY U.user_id
 ORDER BY total_amount_spent DESC
 LIMIT 5;
