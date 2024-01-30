@@ -52,21 +52,12 @@ WHERE row_num = 1;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
-/*
-With ConsecutiveOrders AS (
-SELECT
-    user_id,
-    order_date,
-    LEAD(order_date, 1) OVER (ORDER BY order_id) as next_order_date,
-    LEAD(user_id, 1) OVER (ORDER BY order_id) as next_user_id 
-  FROM
-    Orders
-)
-SELECT DISTINCT
-  u.user_id,
-    u.username
+
+SELECT DISTINCT u.user_id, u.username
 FROM Users u
-JOIN ConsecutiveOrders co ON u.user_id = co.user_id
-WHERE co.user_id = co.next_user_id AND
-  co.next_order_date = DATE_ADD(co.order_date, INTERVAL 1 DAY)
-*/
+JOIN Orders o1 ON u.user_id = o1.user_id
+JOIN Orders o2 ON u.user_id = o2.user_id
+JOIN Orders o3 ON u.user_id = o3.user_id
+WHERE o1.order_date = o2.order_date - INTERVAL 1 DAY 
+	AND o2.order_date = o3.order_date - INTERVAL 1 DAY;
+    
