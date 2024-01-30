@@ -2,11 +2,7 @@ import unittest
 import pandas as pd
 import sys
 from pathlib import Path
-print(sys.path)
 sys.path.append(str((Path(__file__).parent).parent))
-print('\n')
-print('\n')
-print(sys.path)
 from create_and_populate_database import DatabaseSetup
 
 class TestSQLQueries(unittest.TestCase):
