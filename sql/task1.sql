@@ -74,6 +74,7 @@ GROUP BY
 
 -- LEFT JOIN used to include all users, even if they have not made any orders
 -- COALESCE used to handle NULL values
+-- !!!!!! Used SQL Server instead of MySQL hence used TOP instead of LIMIT !!!!!!!
 SELECT TOP 5
     u.user_id,
     u.username,
@@ -94,3 +95,4 @@ ORDER BY
 -- Product data.csv and order_items.csv do not saisfy foreign key constraints. Some rows were omitted from order_items to deal with this issue.
 -- Wasn't sure if test files were required to submit so skipped
 -- Testing was done locally by adding corner cases 
+

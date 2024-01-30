@@ -24,7 +24,7 @@ JOIN
     avg_rating ON p.product_id = avg_rating.product_id
 WHERE
     avg_rating.avg_rating = (
-        -- get naximum average rating to match the where clause
+        -- get maximum average rating to match to the where clause
         SELECT
             MAX(avg_rating)
         FROM
@@ -71,7 +71,7 @@ HAVING
 -- Hint: You may need to use subqueries or left joins to solve this problem.
 
 
--- DISTINCT is used to get only unique product IDs
+-- DISTINCT to get only unique product IDs
 -- CTE was not necessary here but used for readability
 WITH reviewed_products AS (
     SELECT DISTINCT product_id
