@@ -3,10 +3,29 @@
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
 
+
+SELECT
+    product_id,
+    product_name,
+    average_rating
+FROM (
+    SELECT 
+        product_id,
+        product_name,
+        AVG(rating) AS average_rating
+    FROM Products P
+    INNER JOIN Reviews ON Reviews.product_id = Products.product_id
+    GROUP BY P.product_id;
+) AS T
+ORDER BY average_rating ASC
+LIMIT 1;
+
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or joins to solve this problem.
+
+
 
 -- Problem 7: Retrieve the products that have not received any reviews
 -- Write an SQL query to retrieve the products that have not received any reviews.
