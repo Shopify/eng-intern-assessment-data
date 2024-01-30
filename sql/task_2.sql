@@ -1,4 +1,9 @@
 -- Problem 5: Retrieve the products with the highest average rating
+-- Assigning the product data table an alias and selecting all the columns that need to be retrieved from the product data table 
+-- Assigning the review data table an alias and renaming column rating as average rating
+-- Used AVG to average the ratings for each product from the review data table
+-- Joining the two tables together based on the column name that is identical in both product data table and review data table
+-- Ordering the average_rating column in the table in descending order and displaying the top 5 highest average ratings
 SELECT pd.product_id, pd.product_name, AVG(rd.rating) AS average_rating FROM product_data pd
 JOIN review_data rd ON pd.product_id = rd.product_id
 GROUP BY pd.product_id, pd.product_name
