@@ -8,10 +8,10 @@ SELECT
     category_name,
     SUM(unit_price * quantity) AS total_sales_amount
 FROM
-    Categories
+    Categories C
     JOIN Products ON Categories.category_id = Products.product_id
     JOIN Order_Items ON Products.product_id = Order_Items.product_id
-GROUP BY category_id
+GROUP BY C.category_id
 ORDER BY total_sales_amount DESC 
 LIMIT 3;
 
@@ -53,9 +53,9 @@ SELECT
     product_name,
     category_id,
     MAX(price)
-FROM Products
+FROM Products P
 JOIN Categories ON Categories.category_id = Products.product_id
-GROUP BY category_id;
+GROUP BY P.category_id;
 
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.

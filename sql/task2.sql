@@ -33,12 +33,12 @@ FROM (
         username,
         COUNT(DISTINCT category_name) AS distinct_categories
     FROM
-            Users
+            Users U
             JOIN Orders ON Orders.user_id = Users.user_id
             JOIN Order_Items ON Order_Items.order_id = Orders.order_id
             JOIN Products ON Products.product_id = Order_Items.product_id
             JOIN Products ON Products.category_id = Categories.category_id
-            GROUP BY user_id
+            GROUP BY U.user_id
 ) AS T
 WHERE distinct_categories = (SELECT 
                                 COUNT(DISTINCT category_id) 
@@ -68,5 +68,5 @@ SELECT DISTINCT
     username
 FROM
     Users
-    JOIN Orders O1 ON user_id = O1.user_id
+    JOIN Orders O1 ON user_id = O1.user_idF
     JOIN Orders O2 ON user_id = O2.user_id AND O1.order_date = DATE_ADD(O2.order_date, INTERVAL 1 DAY);
