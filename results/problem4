@@ -1,0 +1,6 @@
+user_id,username,sum(o.total_amount)
+12,jasonrodriguez,160.0
+4,robertbrown,155.0
+8,chrisharris,150.0
+24,jamesrogers,150.0
+17,olivialopez,145.0

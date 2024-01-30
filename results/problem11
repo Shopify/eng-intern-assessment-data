@@ -1,0 +1,9 @@
+product_id,product_name,category_id,MAX(p.price)
+1,Smartphone X,1,500.0
+3,Laptop Pro,2,1200.0
+6,Designer Dress,3,300.0
+7,Coffee Maker,4,80.0
+9,Action Camera,5,200.0
+12,Skincare Set,6,150.0
+14,Weighted Blanket,7,100.0
+15,Mountain Bike,8,1000.0
