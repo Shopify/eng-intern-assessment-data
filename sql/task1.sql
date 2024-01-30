@@ -19,8 +19,8 @@ SELECT
     username, 
     COUNT(DISTINCT order_id) AS total_orders        -- Get count without duplicate of the same orders
 FROM Users
-	 LEFT JOIN Orders USING(user_id)                -- Left join so as to include users with no orders
-     LEFT JOIN Order_Items USING(order_id)          -- Count will return 0 for users with no orders
+	LEFT JOIN Orders USING(user_id)                 -- Left join so as to include users with no orders
+    LEFT JOIN Order_Items USING(order_id)           -- Count will return 0 for users with no orders
 GROUP BY user_id, username;                         -- Group by user to get orders by user
 
 -- Problem 3: Retrieve the average rating for each product
