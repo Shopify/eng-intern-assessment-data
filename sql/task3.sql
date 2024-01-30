@@ -21,6 +21,8 @@ LIMIT 3;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and aggregate functions to solve this problem.
 
+-- COMMENT: checking disctinct product_id count for each user for the Toys & Games category
+
 SELECT u.user_id, u.username
 FROM Users u
 JOIN Orders o ON u.user_id = o.user_id
@@ -41,6 +43,8 @@ HAVING COUNT(DISTINCT p.product_id) = (SELECT COUNT(*)
 -- The result should include the product ID, product name, category ID, and price.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
+-- COMMENT: taking row 1 from products ordered descending by price for each category
+
 SELECT product_id, product_name, category_id, price
 FROM (SELECT p.product_id, p.product_name, p.category_id, p.price, 
       ROW_NUMBER() OVER (PARTITION BY p.category_id ORDER BY p.price DESC) AS row_num
@@ -52,6 +56,7 @@ WHERE row_num = 1;
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
 
+-- COMMENT: considering all combinations of 3 orders of the same user
 
 SELECT DISTINCT u.user_id, u.username
 FROM Users u

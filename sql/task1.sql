@@ -4,6 +4,7 @@
 -- Write an SQL query to retrieve all products in a specific category.
 
 -- COMMENT: Assumed there might be several sport categories, using pattern to match all of them
+
 SELECT *
 FROM Products
 WHERE category_id = (SELECT category_id 
@@ -15,6 +16,8 @@ WHERE category_id = (SELECT category_id
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
 
+-- COMMENT: left join because we need every user's data
+
 SELECT u.user_id, u.username, COUNT(o.order_id) AS total_orders
 FROM Users u
 LEFT JOIN Orders o ON u.user_id = o.user_id
@@ -24,6 +27,8 @@ GROUP BY u.user_id, u.username;
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
+
+-- COMMENT: left join because we need every product's data
 
 SELECT p.product_id, p.product_name, AVG(r.rating) AS avg_rating
 FROM Products p

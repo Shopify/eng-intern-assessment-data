@@ -5,6 +5,8 @@
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
 
+-- COMMENT: comparing every product avg to max avg
+
 SELECT p.product_id, p.product_name, AVG(r.rating) AS avg_rating
 FROM Products p
 LEFT JOIN Reviews r ON p.product_id = r.product_id
@@ -14,10 +16,13 @@ HAVING avg_rating = (SELECT MAX(avg_rating1)
                            FROM Reviews 
                            GROUP BY product_id) AS product_avg_ratings);
 
+
 -- Problem 6: Retrieve the users who have made at least one order in each category
 -- Write an SQL query to retrieve the users who have made at least one order in each category.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or joins to solve this problem.
+
+-- COMMENT: comparing user's categories count to total categories count
 
 SELECT Users.user_id, Users.username
 FROM Users
@@ -40,10 +45,13 @@ FROM Products p
 LEFT JOIN Reviews r ON p.product_id = r.product_id
 WHERE r.review_id IS NULL;
 
+
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
+
+-- COMMENT: comparing consecutive rows order dates because looking for consecutive orders
 
 With ConsecutiveOrders AS (
 SELECT user_id,
