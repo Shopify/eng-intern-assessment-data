@@ -56,6 +56,7 @@ class TestSQLQueries(unittest.TestCase):
                 data = pd.read_csv(file_path)
                 columns = list(data.columns)
                 values = data.values.tolist()
+                # Adds data to the database
                 query =  f"INSERT INTO {table} ({', '.join(columns)}) VALUES %s"
                 extras.execute_values(self.cur, query, values)
                 self.conn.commit()
