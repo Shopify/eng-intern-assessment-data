@@ -20,10 +20,10 @@ GROUP BY Users.user_id, Users.username;
 SELECT
   Products.product_id,
   Products.product_name,
-  AVG(Reviews.rating) AS average_rating
-FROM Products
-LEFT JOIN Reviews ON Products.product_id = Reviews.product_id
-GROUP BY Products.product_id, Products.product_name;
+  (SELECT AVG(rating) FROM Reviews WHERE Reviews.product_id = Products.product_id) AS average_rating
+FROM
+  Products;
+
 
 
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
