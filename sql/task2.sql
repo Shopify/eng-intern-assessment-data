@@ -5,7 +5,9 @@
 
 WITH AvgRating AS (
     SELECT 
-        products.product_id, products.product_name, AVG(rating) AS product_average_rating
+        products.product_id, 
+        products.product_name, 
+        AVG(rating) AS product_average_rating
     FROM 
         reviews
     JOIN 
@@ -15,7 +17,9 @@ WITH AvgRating AS (
 ) -- This block of code creates the CTE
 
 SELECT 
-    product_id, product_name, product_average_rating
+    product_id, 
+    product_name, 
+    product_average_rating
 FROM 
     AvgRating
 WHERE 
@@ -54,7 +58,37 @@ WHERE (
 -- The result should include the product ID and product name.
 -- Hint: You may need to use subqueries or left joins to solve this problem.
 
+SELECT 
+    product_id, product_name
+FROM 
+    products
+WHERE 
+    product_id NOT IN (
+        SELECT 
+            product_id
+        FROM 
+            reviews
+    ); -- Used a subquery to retrieve the products without reviews
+
+-- There are no products without reviews!
+    
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries or window functions to solve this problem.
+
+SELECT DISTINCT 
+	ub.user_id, 
+    ub.username
+FROM (
+	SELECT 
+		u.user_id, 
+        u.username,
+		datediff(o.order_date, LAG(o.order_date, 1) OVER (PARTITION BY u.user_id ORDER BY o.order_date)) AS difference
+	FROM
+		users u, orders o
+	WHERE 
+		u.user_id = o.user_id 
+) ub
+WHERE 
+	ub.difference is not null and ub.difference = 1 -- return if it was a consecutive day
