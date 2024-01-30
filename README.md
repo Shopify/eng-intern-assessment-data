@@ -21,3 +21,8 @@ The assessment is based on a simulated dataset containing sales information from
 - Feel free to ask any clarifying questions by creating an issue in this repository.
 
 Good luck, and we look forward to reviewing your work!
+
+
+## Instructions for running tests
+1. Build the Docker image: `docker build -f Dockerfile -t ayanstests .`
+2. Run the Docker image: `docker run --rm ayanstests`
