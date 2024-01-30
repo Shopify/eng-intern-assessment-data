@@ -2,7 +2,7 @@
 -- Write an SQL query to retrieve all products in a specific category.
 SELECT *
 FROM Products
-WHERE category_id = (SELECT category_id FROM Categories WHERE category_name = 'Sports');
+WHERE category_id = (SELECT category_id FROM Categories WHERE category_name = 'Sports & Outdoors');
 
 
 -- Problem 2: Retrieve the total number of orders for each user
