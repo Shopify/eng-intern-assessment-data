@@ -18,6 +18,7 @@ SELECT p.* FROM Products p   -- Selects all columns from the 'Products' table
         ON p.category_id=c.category_id  ---- Left join with 'Categories' table
     WHERE LOWER(c.category_name) like '%sports%'  -- Filters products where the category name contains 'sports' in a case-insensitive manner
 
+-- *************************************************************************************************************************************************************
 -- Problem 2:
 -- Question: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
@@ -37,6 +38,7 @@ SELECT u.user_id, u.username, count(o.order_id) FROM Users u
         ON u.user_id=o.user_id  -- Joining Users and Orders tables based on user_id
     GROUP BY u.user_id          -- Grouping the results by user_id
 
+-- *************************************************************************************************************************************************************
 -- Problem 3:
 -- Question: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
@@ -56,6 +58,7 @@ SELECT r.product_id, p.product_name, AVG(r.rating) FROM Products p
         ON p.product_id=r.product_id  -- Joining Products and Reviews tables based on product_id
     GROUP BY r.product_id             -- Grouping the results by product_id
 
+-- *************************************************************************************************************************************************************
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
