@@ -7,9 +7,9 @@ WHERE category_id = (SELECT category_id FROM Categories WHERE category_name = 'S
 -- Problem 2: Retrieve the total number of orders for each user
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
-SELECT u.user_id, u.username, COUNT(o.order_id) AS total_orders
-FROM Users u LEFT JOIN Orders o ON u.user_id = o.user_id
-GROUP BY u.user_id, u.username;
+SELECT Users.user_id, Users.username,
+  (SELECT COUNT(*) FROM Orders WHERE Orders.user_id = Users.user_id) AS total_orders
+FROM Users;
 
 -- Problem 3: Retrieve the average rating for each product
 -- Write an SQL query to retrieve the average rating for each product.
