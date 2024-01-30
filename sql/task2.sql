@@ -3,7 +3,6 @@
 -- The result should include the product ID, product name, and the average rating.
 -- Hint: You may need to use subqueries or common table expressions (CTEs) to solve this problem.
 
-
 SELECT
     product_id,
     product_name,
@@ -17,7 +16,7 @@ FROM (
     INNER JOIN Reviews ON Reviews.product_id = Products.product_id
     GROUP BY P.product_id;
 ) AS T
-ORDER BY average_rating ASC
+ORDER BY average_rating DESC
 LIMIT 1;
 
 -- Problem 6: Retrieve the users who have made at least one order in each category
@@ -31,6 +30,15 @@ LIMIT 1;
 -- Write an SQL query to retrieve the products that have not received any reviews.
 -- The result should include the product ID and product name.
 -- Hint: You may need to use subqueries or left joins to solve this problem.
+
+SELECT 
+    product_id,
+    product_name
+FROM 
+    Products
+WHERE product_id NOT IN (SELECT 
+                            DISTINCT product_id 
+                            FROM Reviews)
 
 -- Problem 8: Retrieve the users who have made consecutive orders on consecutive days
 -- Write an SQL query to retrieve the users who have made consecutive orders on consecutive days.
