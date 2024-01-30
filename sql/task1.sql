@@ -51,5 +51,5 @@ FROM (
     INNER JOIN Orders ON Orders.user_id = Users.user_id
     GROUP BY U.user_id
 ) AS T
-ORDER BY total_amount_spent ASC
+ORDER BY total_amount_spent DESC
 LIMIT 5;
