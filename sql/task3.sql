@@ -80,4 +80,24 @@ WHERE
 -- Problem 12: Retrieve the users who have placed orders on consecutive days for at least 3 days
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
 -- The result should include the user ID and username.
--- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
+-- Hint: You may need to use subqueries, joins, and window functions to solve this problem
+
+WITH OrderDateRank AS ( 
+    SELECT 
+        ordered.user_id,
+        ordered.order_date,
+        RANK() OVER (PARTITION BY ordered.user_id ORDER BY ordered.order_date) AS ranked
+    FROM Orders ordered
+)
+
+SELECT 
+    users.user_id,
+    users.username
+FROM 
+	OrderDateRank ordered
+INNER JOIN 
+	Users users ON ordered.user_id = users.user_id
+WHERE 
+	ordered.ranked >= 3;
+    
+    -- There are no users who retrieved orders on consecutive days
