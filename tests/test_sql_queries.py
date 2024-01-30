@@ -6,11 +6,11 @@ class TestSQLQueries(unittest.TestCase):
     def setUp(self):
         # Establish a connection to your test database
         self.conn = psycopg2.connect(
-            dbname='your_dbname',
-            user='your_username',
-            password='your_password',
-            host='your_host',
-            port='your_port'
+        dbname='test_db',
+        user='test_user',
+        password='test_password',
+        host='localhost',
+        port='5432'
         )
         self.cur = self.conn.cursor()
 
