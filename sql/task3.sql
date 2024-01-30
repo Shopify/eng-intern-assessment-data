@@ -57,7 +57,7 @@ WHERE price_rank = 1;
 -- Write an SQL query to retrieve the users who have placed orders on consecutive days for at least 3 days.
 -- The result should include the user ID and username.
 -- Hint: You may need to use subqueries, joins, and window functions to solve this problem.
-
+-- ee
 
 -- Identify consecutive order days for each user
 WITH consecutivedays AS (
