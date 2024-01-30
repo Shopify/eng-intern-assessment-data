@@ -1,0 +1,3 @@
+The "create_and_populate_database.py" program creates and populates a SQL database. 
+A results folder has been created. It has the expected results for each of the problems. 
+The "test_sql_queries.py" program executes the three SQL files, and compares the expected results against the actual results. The outcome is displayed in the console. 
