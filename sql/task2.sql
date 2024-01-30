@@ -9,9 +9,9 @@ SELECT
     AVG(R.rating) AS avg_rating
 FROM 
     Products P
-    JOIN Reviews R ON P.product_id = R.product_id
+    JOIN Reviews R ON P.product_id = R.product_id -- group reviews by product id
 GROUP BY
-    P.product_id
+    P.product_id -- group results by product id
 ORDER BY
     avg_rating DESC 
 LIMIT 5; -- change to select how many of the top n you would like
@@ -43,8 +43,8 @@ SELECT
     P.product_name
 FROM
     Products P
-    INNER JOIN Reviews R ON R.product_id = P.product_id
-WHERE P.product_id NOT IN (
+    JOIN Reviews R ON R.product_id = P.product_id 
+WHERE P.product_id NOT IN ( -- select those without reviews: select product id's which are not present in reviews table
     SELECT R.user_id FROM Reviews
 )
 GROUP BY
@@ -59,9 +59,9 @@ GROUP BY
 SELECT
     U.user_id,
     U.username
-FROM
+FROM -- selects unique user_ids which have an order date and another the day after
     Users U
-    JOIN Orders O1 ON U.user_id = O1.user_id
+    JOIN Orders O1 ON U.user_id = O1.user_id 
     JOIN Orders O2 ON U.user_id = O2.user_id AND O1.order_date = DATE_ADD(O2.order_date, INTERVAL 1 DAY)
 
 
