@@ -1,6 +1,5 @@
 -- Problem 1: Retrieve all products in the Sports category
 -- Write an SQL query to retrieve all products in a specific category.
-
 -- Load data from files .csv files:
 
 SELECT 
@@ -15,9 +14,8 @@ WHERE
 -- Write an SQL query to retrieve the total number of orders for each user.
 -- The result should include the user ID, username, and the total number of orders.
 
-
 SELECT 
-	users.user_id, users.username, COUNT(order_id) as total_orders
+	users.user_id, users.username, COUNT(order_id) AS total_orders
 FROM 
 	orders
 JOIN 
@@ -29,8 +27,28 @@ GROUP BY
 -- Write an SQL query to retrieve the average rating for each product.
 -- The result should include the product ID, product name, and the average rating.
 
+SELECT 
+	products.product_id, products.product_name, AVG(rating) AS average_rating
+FROM 
+	reviews
+JOIN 
+	products ON products.product_id = reviews.product_id -- Ensures that we get the average for each product
+GROUP BY 
+	products.product_id;
 
 
 -- Problem 4: Retrieve the top 5 users with the highest total amount spent on orders
 -- Write an SQL query to retrieve the top 5 users with the highest total amount spent on orders.
 -- The result should include the user ID, username, and the total amount spent.
+
+SELECT 
+	users.user_id, username, SUM(total_amount) AS total_spent
+FROM 
+	users, orders
+WHERE 
+	users.user_id = orders.user_id 
+GROUP BY 
+	users.user_id 
+ORDER BY 
+	total_spent DESC
+LIMIT 5;
