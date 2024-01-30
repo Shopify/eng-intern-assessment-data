@@ -18,7 +18,7 @@ SELECT
   average_rating
 FROM ProductAvgRating
 ORDER BY average_rating DESC
-LIMIT 1;
+LIMIT 5;
 
 
 -- Problem 6: Retrieve the users who have made at least one order in each category
