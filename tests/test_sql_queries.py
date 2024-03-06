@@ -7,7 +7,7 @@ class TestSQLQueries(unittest.TestCase):
         # Establish a connection to your test database
         self.conn = mysql.connector.connect(
             user='root',
-            password='Nikita@021003',
+            password='',
             host='localhost',
             database='shopify',
             port='3306'
