@@ -1,23 +1,54 @@
-# Data Engineer Intern Assessment
 
-Welcome to the Data Engineer Intern assessment for Shopify! This assessment is designed to evaluate your skills in SQL, data manipulation, and problem-solving. Please follow the instructions below to complete the assessment.
+# 🤗 Introduction to My Shopify Data Engineering Intern Assessment Solution
 
-## Dataset
+Welcome to the GitHub repository for my solution to the Shopify Data Engineering Intern Assessment. This project showcases my approach to the challenging and exciting problems presented in the assessment. As an aspiring data engineer, I have employed a combination of Python programming, MySQL queries, and innovative problem-solving techniques to address the tasks at hand. My solution aims to demonstrate not only technical proficiency but also a clear understanding of data engineering principles and practices. 
 
-The assessment is based on a simulated dataset containing sales information from an e-commerce platform. The dataset is provided in the `/data` directory as a number of CSV files named `<table-name>_data.csv`. These dataset includes columns such as `product_id`, `sales_amount`, `customer_id`, etc.
+## 🆕 Changes Made:
+In this update to the Shopify Data Engineering Intern Assessment solution, significant enhancements have been made to the SQL queries. The files `task1.sql, task2.sql, and task3.sql` address specific questions that arise from the provided `schema.sql`. My approach involved utilizing various SQL techniques such as `GROUP BY`, `JOIN`, and others to answer these questions effectively.
 
-## Instructions
+## 🧪 Testing:
+To ensure the accuracy and efficiency of the SQL queries, modifications were made to the `test_sql_queries.py` file. These changes include the addition of comprehensive test cases for each task file. The successful execution of these tests confirms the reliability and correctness of the queries in line with the assessment requirements. This thorough testing process not only validates the functionality of the queries but also ensures they meet the specified criteria in the assessment.
 
-1. **Fork the Repository:** Start by forking this repository to your local machine.
-2. **Create a new Branch:** Create a new branch to store your work in 
-3. **Data Understanding:** Review the `schema.sql` file and data `.csv` files and understand its structure and columns.
-4. **Write SQL Queries:** Create SQL files (`task1.sql`, `task2.sql`, `task3.sql`) in the `/sql` directory to solve each task mentioned above.
-5. **Submit your Work:** Once completed, create a pull request with your changes to the Shopify `main` branch and submit the link to your PR
+## 🔑 Violating Foreign Key Constraints
 
-## Notes
+### Overview
+In the specified database schema, there are multiple tables (Order_Items, Reviews, and Cart_Items) that reference the `product_id` column from the `Products` table as a foreign key.
 
-- Ensure your SQL files contain clear and commented queries for each task.
-- Use the provided datasets (`<table-name>_data.csv`) for all tasks.
-- Feel free to ask any clarifying questions by creating an issue in this repository.
+### Schema Definition
+```sql
+CREATE TABLE Order_Items (
+  order_item_id INT PRIMARY KEY,
+  order_id INT,
+  product_id INT,
+  quantity INT,
+  unit_price DECIMAL(10, 2),
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
 
-Good luck, and we look forward to reviewing your work!
+CREATE TABLE Reviews (
+  review_id INT PRIMARY KEY,
+  user_id INT,
+  product_id INT,
+  rating INT,
+  review_text TEXT,
+  review_date DATE,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id),
+  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+CREATE TABLE Cart_Items (
+  cart_item_id INT PRIMARY KEY,
+  cart_id INT,
+  product_id INT,
+  quantity INT,
+  FOREIGN KEY (cart_id) REFERENCES Cart(cart_id),
+  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+```
+
+## ⚠️ Issue/ Limitation
+The `Products` table contains only 16 product IDs. Consequently, inserting data into any of the tables (Order_Items, Reviews, or Cart_Items) that reference the `product_id` from the `Products` table can cause an issue. This is because the FOREIGN KEY constraint in these tables enforces that every `product_id` referenced must already exist in the `Products` table. However, if there are more than 16 entries in the Order_Items, Reviews, and Cart_Items tables, this leads to a violation of the foreign key constraint, resulting in an error.
+
+## ✅ Solution
+The issue was resolved by truncating the size of the Order_Items, Reviews, and Cart_Items tables to 17 entries, ensuring that no invalid `product_id` references occur.
