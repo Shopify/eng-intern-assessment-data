@@ -1,0 +1,17 @@
+product_id,product_name,description,price,category_id
+1,Smartphone X,The Smartphone X is a powerful and feature-rich device that offers a seamless user experience. It comes with a high-resolution display,500.00,1
+2,Wireless Headphones,Experience the freedom of wireless audio with these high-quality headphones. They offer crystal-clear sound and a comfortable fit,150.00,1
+3,Laptop Pro,The Laptop Pro is a sleek and powerful device that is perfect for both work and play. It features a high-performance processor,1200.00,2
+4,Smart TV,Transform your living room into an entertainment hub with this Smart TV.,800.00,2
+5,Running Shoes,Get ready to hit the road with these lightweight and comfortable running shoes.,100.00,3
+6,Designer Dress,Make a statement with this elegant designer dress,300.00,3
+7,Coffee Maker,Start your day with a perfect cup of coffee brewed with this advanced coffee maker.,80.00,4
+8,Toaster Oven,Upgrade your kitchen with this versatile toaster oven. It allows you to toast,70.00,4
+9,Action Camera,Capture your adventures in stunning detail with this action camera.,200.00,5
+10,Board Game Collection,Enjoy hours of fun with this diverse collection of board games.,50.00,5
+11,Yoga Mat,Enhance your yoga practice with this premium yoga mat.,30.00,6
+12,Skincare Set,Pamper your skin with this luxurious skincare set.,150.00,6
+13,Vitamin C Supplement,Boost your immune system and promote overall health with this vitamin C supplement.,20.00,7
+14,Weighted Blanket,Experience deep relaxation and improved sleep with this weighted blanket.,100.00,7
+15,Mountain Bike,Conquer the trails with this high-performance mountain bike.,1000.00,8
+16,Tennis Racket,Take your tennis game to the next level with this professional-grade racket.,54.00,8
