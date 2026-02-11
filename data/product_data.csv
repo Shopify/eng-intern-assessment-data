@@ -1,17 +1,51 @@
 product_id,product_name,description,price,category_id
-1,Smartphone X,The Smartphone X is a powerful and feature-rich device that offers a seamless user experience. It comes with a high-resolution display,500.00,1
-2,Wireless Headphones,Experience the freedom of wireless audio with these high-quality headphones. They offer crystal-clear sound and a comfortable fit,150.00,1
-3,Laptop Pro,The Laptop Pro is a sleek and powerful device that is perfect for both work and play. It features a high-performance processor,1200.00,2
-4,Smart TV,Transform your living room into an entertainment hub with this Smart TV.,800.00,2
-5,Running Shoes,Get ready to hit the road with these lightweight and comfortable running shoes.,100.00,3
-6,Designer Dress,Make a statement with this elegant designer dress,300.00,3
-7,Coffee Maker,Start your day with a perfect cup of coffee brewed with this advanced coffee maker.,80.00,4
-8,Toaster Oven,Upgrade your kitchen with this versatile toaster oven. It allows you to toast,70.00,4
-9,Action Camera,Capture your adventures in stunning detail with this action camera.,200.00,5
-10,Board Game Collection,Enjoy hours of fun with this diverse collection of board games.,50.00,5
-11,Yoga Mat,Enhance your yoga practice with this premium yoga mat.,30.00,6
-12,Skincare Set,Pamper your skin with this luxurious skincare set.,150.00,6
-13,Vitamin C Supplement,Boost your immune system and promote overall health with this vitamin C supplement.,20.00,7
-14,Weighted Blanket,Experience deep relaxation and improved sleep with this weighted blanket.,100.00,7
-15,Mountain Bike,Conquer the trails with this high-performance mountain bike.,1000.00,8
-16,Tennis Racket,Take your tennis game to the next level with this professional-grade racket.,54.00,8
+1,"Smartphone X","The Smartphone X is a powerful and feature-rich device that offers a seamless user experience. It comes with a high-resolution display",500.00,1
+2,"Wireless Headphones","Experience the freedom of wireless audio with these high-quality headphones. They offer crystal-clear sound and a comfortable fit",150.00,1
+3,"Laptop Pro","The Laptop Pro is a sleek and powerful device that is perfect for both work and play. It features a high-performance processor",1200.00,2
+4,"Smart TV","Transform your living room into an entertainment hub with this Smart TV.",800.00,2
+5,"Running Shoes","Get ready to hit the road with these lightweight and comfortable running shoes.",100.00,3
+6,"Designer Dress","Make a statement with this elegant designer dress",300.00,3
+7,"Coffee Maker","Start your day with a perfect cup of coffee brewed with this advanced coffee maker.",80.00,4
+8,"Toaster Oven","Upgrade your kitchen with this versatile toaster oven. It allows you to toast",70.00,4
+9,"Action Camera","Capture your adventures in stunning detail with this action camera.",200.00,5
+10,"Board Game Collection","Enjoy hours of fun with this diverse collection of board games.",50.00,5
+11,"Yoga Mat","Enhance your yoga practice with this premium yoga mat.",30.00,6
+12,"Skincare Set","Pamper your skin with this luxurious skincare set.",150.00,6
+13,"Vitamin C Supplement","Boost your immune system and promote overall health with this vitamin C supplement.",20.00,7
+14,"Weighted Blanket","Experience deep relaxation and improved sleep with this weighted blanket.",100.00,7
+15,"Mountain Bike","Conquer the trails with this high-performance mountain bike.",1000.00,8
+16,"Tennis Racket","Take your tennis game to the next level with this professional-grade racket.",54.00,8
+17,"Product 17","Description for Product 17",39.72,9
+18,"Product 18","Description for Product 18",962.12,10
+19,"Product 19","Description for Product 19",287.34,11
+20,"Product 20","Description for Product 20",833.29,12
+21,"Product 21","Description for Product 21",828.37,13
+22,"Product 22","Description for Product 22",321.34,14
+23,"Product 23","Description for Product 23",924.24,15
+24,"Product 24","Description for Product 24",81.09,16
+25,"Product 25","Description for Product 25",394.50,17
+26,"Product 26","Description for Product 26",313.03,18
+27,"Product 27","Description for Product 27",181.19,19
+28,"Product 28","Description for Product 28",628.64,20
+29,"Product 29","Description for Product 29",693.93,21
+30,"Product 30","Description for Product 30",900.66,22
+31,"Product 31","Description for Product 31",912.92,23
+32,"Product 32","Description for Product 32",28.76,24
+33,"Product 33","Description for Product 33",226.54,25
+34,"Product 34","Description for Product 34",237.07,26
+35,"Product 35","Description for Product 35",490.67,27
+36,"Product 36","Description for Product 36",257.05,28
+37,"Product 37","Description for Product 37",751.31,29
+38,"Product 38","Description for Product 38",14.61,30
+39,"Product 39","Description for Product 39",534.62,31
+40,"Product 40","Description for Product 40",481.80,32
+41,"Product 41","Description for Product 41",366.50,33
+42,"Product 42","Description for Product 42",528.34,34
+43,"Product 43","Description for Product 43",790.88,35
+44,"Product 44","Description for Product 44",75.01,36
+45,"Product 45","Description for Product 45",734.62,37
+46,"Product 46","Description for Product 46",766.84,38
+47,"Product 47","Description for Product 47",564.81,39
+48,"Product 48","Description for Product 48",138.25,40
+49,"Product 49","Description for Product 49",925.08,41
+50,"Product 50","Description for Product 50",15.62,42
