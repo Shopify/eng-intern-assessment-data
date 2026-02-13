@@ -15,3 +15,23 @@ product_id,product_name,description,price,category_id
 14,Weighted Blanket,Experience deep relaxation and improved sleep with this weighted blanket.,100.00,7
 15,Mountain Bike,Conquer the trails with this high-performance mountain bike.,1000.00,8
 16,Tennis Racket,Take your tennis game to the next level with this professional-grade racket.,54.00,8
+17,product 17,Description for Product 17,15.00,9
+18,product 18,Description for Product 18,10.00,9
+19,product 19,Description for Product 19,30.00,10
+20,product 20,Description for Product 20,25.00,10
+21,product 21,Description for Product 21,20.00,11
+22,product 22,Description for Product 22,15.00,11
+23,product 23,Description for Product 23,25.00,12
+24,product 24,Description for Product 24,30.00,12
+25,product 25,Description for Product 25,40.00,13
+26,product 26,Description for Product 26,35.00,13
+27,product 27,Description for Product 27,15.00,14
+28,product 28,Description for Product 28,10.00,14
+29,product 29,Description for Product 29,30.00,15
+30,product 30,Description for Product 30,25.00,15
+31,product 31,Description for Product 31,1.00,16
+32,product 32,Description for Product 32,1.00,16
+33,product 33,Description for Product 33,1.00,17
+34,product 34,Description for Product 34,1.00,17
+35,product 35,Description for Product 35,1.00,18
+36,product 36,Description for Product 36,1.00,18
