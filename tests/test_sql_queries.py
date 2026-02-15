@@ -1,16 +1,17 @@
 import unittest
-import psycopg2  # Replace with appropriate database connector based on your database
+# import psycopg2 
+import mysql.connector
+import pandas as pd
 
 class TestSQLQueries(unittest.TestCase):
-
     def setUp(self):
-        # Establish a connection to your test database
-        self.conn = psycopg2.connect(
-            dbname='your_dbname',
-            user='your_username',
-            password='your_password',
-            host='your_host',
-            port='your_port'
+        # Establish a connection to shopify local database
+        self.conn =  mysql.connector.connect(
+            database='shopify_test2',
+            user='sam-admin',
+            passwd='14121822sS@',
+            host='127.0.0.1',
+            port='3306'
         )
         self.cur = self.conn.cursor()
 
@@ -19,37 +20,79 @@ class TestSQLQueries(unittest.TestCase):
         self.cur.close()
         self.conn.close()
 
+    # Tests task 1
     def test_task1(self):
-        # Task 1: Example SQL query in task1.sql
-        with open('/sql/task1.sql', 'r') as file:
+        task_num = 1
+        with open(f'./sql/task{task_num}.sql', 'r') as file:
             sql_query = file.read()
 
-        self.cur.execute(sql_query)
-        result = self.cur.fetchall()
+        queries = self.sql_query_separator(sql_query)
 
-        # Define expected outcome for Task 1 and compare
-        expected_result = [
-            # Define expected rows or values here based on the query output
-        ]
+        for i in range(len(queries)):
+            self.cur.execute(queries[i])
+            result = self.cur.fetchall()
 
-        self.assertEqual(result, expected_result, "Task 1: Query output doesn't match expected result.")
+            expected_result = self.expected_results(task_num=task_num, problem= i + 1)
 
+            self.assertEqual(result, expected_result, f"Task {task_num} Problem {i + 1}: Query output doesn't match expected result.")
+        
+    # Tests task 2
     def test_task2(self):
-        # Task 2: Example SQL query in task2.sql
-        with open('/sql/task2.sql', 'r') as file:
+        task_num = 2
+        with open(f'./sql/task{task_num}.sql', 'r') as file:
             sql_query = file.read()
 
-        self.cur.execute(sql_query)
-        result = self.cur.fetchall()
+        queries = self.sql_query_separator(sql_query)
 
-        # Define expected outcome for Task 2 and compare
-        expected_result = [
-            # Define expected rows or values here based on the query output
-        ]
+        for i in range(len(queries)):
+            self.cur.execute(queries[i])
+            result = self.cur.fetchall()
 
-        self.assertEqual(result, expected_result, "Task 2: Query output doesn't match expected result.")
+            expected_result = self.expected_results(task_num=task_num, problem= i + 1)
 
-    # Add more test methods for additional SQL tasks
+            self.assertEqual(result, expected_result, f"Task {task_num} Problem {i + 1}: Query output doesn't match expected result.")
+    
+    # Tests task 3
+    def test_task3(self):
+        task_num = 3
+        with open(f'./sql/task{task_num}.sql', 'r') as file:
+            sql_query = file.read()
+
+        queries = self.sql_query_separator(sql_query)
+
+        for i in range(len(queries)):
+            self.cur.execute(queries[i])
+            result = self.cur.fetchall()
+
+            expected_result = self.expected_results(task_num=task_num, problem= i + 1)
+
+            self.assertEqual(result, expected_result, f"Task {task_num} Problem {i + 1}: Query output doesn't match expected result.")
+    
+
+    def sql_query_separator(sql_query):
+        lines = sql_query.split("\n")
+        all_queries = []
+        query = []
+        for line in lines:
+            if line.startswith("--"):
+                continue
+            line = line.strip()
+            query.append(line)
+            if line.endswith(";"):
+                all_queries.append("\n".join(query))
+                query = []
+        return all_queries
+    
+    def expected_results(task_num, problem):
+        problem_num = 4 * (task_num - 1) + problem
+        # Read CSV file into a pandas DataFrame, excluding the header
+        data = pd.read_csv(f'./tests/results/{problem_num}.csv', header=None)
+
+        # Convert the DataFrame to the test readable format
+        formatted_data = [tuple(row) for row in data.values]
+
+        return formatted_data
+
 
 if __name__ == '__main__':
     unittest.main()
