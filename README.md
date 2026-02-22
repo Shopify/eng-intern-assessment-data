@@ -1,3 +1,12 @@
+## Solution & Reflection
+My solution for the Shopify Data Engineering Intern Assessment introduces significant improvements to the SQL queries. Specifically, modifications have been made to the task1.sql, task2.sql, and task3.sql files to address distinct queries derived from the provided schema.sql. My methodology involved leveraging diverse SQL techniques, such as GROUP BY, JOIN, and aggregate functions, to effectively respond to these questions. 
+
+## Testing:
+To ensure the precision and efficacy of the SQL queries, adjustments were applied to the test_sql_queries.py file. These modifications encompass the addition of comprehensive test cases for each main task. 
+
+## Limitation: 
+The Products table in the database comprises only 16 product IDs, posing a potential challenge during data insertion into related tables such as order_items, reviews, or cart_items. This complexity arises from the FOREIGN KEY constraint within these tables, mandating that every product_id reference must preexist in the Products table. Consequently, if entries in  order_items, reviews, or cart_items exceed 16, it leads to a violation of the foreign key constraint, triggering an error.
+
 # Data Engineer Intern Assessment
 
 Welcome to the Data Engineer Intern assessment for Shopify! This assessment is designed to evaluate your skills in SQL, data manipulation, and problem-solving. Please follow the instructions below to complete the assessment.
