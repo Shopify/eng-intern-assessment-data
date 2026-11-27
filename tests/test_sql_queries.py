@@ -1,16 +1,16 @@
 import unittest
-import psycopg2  # Replace with appropriate database connector based on your database
+import mysql.connector  # Replace with appropriate database connector based on your database
 
 class TestSQLQueries(unittest.TestCase):
 
     def setUp(self):
         # Establish a connection to your test database
-        self.conn = psycopg2.connect(
-            dbname='your_dbname',
-            user='your_username',
-            password='your_password',
-            host='your_host',
-            port='your_port'
+        self.conn = mysql.connector.connect(
+            database='shopify',
+            user='root',
+            password='1999821pjcq.',
+            host='localhost',
+            port='3306'
         )
         self.cur = self.conn.cursor()
 
@@ -21,7 +21,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task1(self):
         # Task 1: Example SQL query in task1.sql
-        with open('/sql/task1.sql', 'r') as file:
+        with open('./sql/task1.sql', 'r') as file:
             sql_query = file.read()
 
         self.cur.execute(sql_query)
@@ -36,7 +36,7 @@ class TestSQLQueries(unittest.TestCase):
 
     def test_task2(self):
         # Task 2: Example SQL query in task2.sql
-        with open('/sql/task2.sql', 'r') as file:
+        with open('./sql/task2.sql', 'r') as file:
             sql_query = file.read()
 
         self.cur.execute(sql_query)
