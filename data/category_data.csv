@@ -1,51 +1,17 @@
-category_id,category_name
-1,Electronics
-2,Books
-3,Clothing
-4,Home & Kitchen
-5,Toys & Games
-6,Beauty & Personal Care
-7,Health & Household
-8,Sports & Outdoors
-9,Automotive
-10,Tools & Home Improvement
-11,Grocery & Gourmet Food
-12,Pet Supplies
-13,Office Products
-14,Music
-15,Movies & TV
-16,Arts
-17,Industrial & Scientific
-18,Electronics Accessories
-19,Cell Phones & Accessories
-20,Video Games
-21,Computers
-22,Appliances
-23,Software
-24,Kindle Store
-25,Home Audio & Theater
-26,Camera & Photo
-27,Shoes
-28,Jewelry
-29,Handmade
-30,CDs & Vinyl
-31,Baby
-32,Collectibles & Fine Art
-33,Instrument Accessories
-34,Power & Hand Tools
-35,Outdoor Recreation
-36,Home Décor
-37,Kitchen & Dining
-38,Health Care
-39,Office & School Supplies
-40,Industrial Electrical
-41,Industrial Hardware
-42,Industrial Power & Hand Tools
-43,Industrial Scientific
-44,Lab & Scientific Products
-45,Janitorial & Sanitation Supplies
-46,Test
-47,Occupational Health & Safety Products
-48,Science Education
-49,Raw Materials
-50,Food Service Equipment & Supplies
+product_id,product_name,description,price,category_id
+1,Smartphone X,The Smartphone X is a powerful and feature-rich device that offers a seamless user experience. It comes with a high-resolution display,500,1
+2,Wireless Headphones,Experience the freedom of wireless audio with these high-quality headphones. They offer crystal-clear sound and a comfortable fit,150,1
+3,Laptop Pro,The Laptop Pro is a sleek and powerful device that is perfect for both work and play. It features a high-performance processor,1200,2
+4,Smart TV,Transform your living room into an entertainment hub with this Smart TV.,800,2
+5,Running Shoes,Get ready to hit the road with these lightweight and comfortable running shoes.,100,3
+6,Designer Dress,Make a statement with this elegant designer dress,300,3
+7,Coffee Maker,Start your day with a perfect cup of coffee brewed with this advanced coffee maker.,80,4
+8,Toaster Oven,Upgrade your kitchen with this versatile toaster oven. It allows you to toast,70,4
+9,Action Camera,Capture your adventures in stunning detail with this action camera.,200,5
+10,Board Game Collection,Enjoy hours of fun with this diverse collection of board games.,50,5
+11,Yoga Mat,Enhance your yoga practice with this premium yoga mat.,30,6
+12,Skincare Set,Pamper your skin with this luxurious skincare set.,150,6
+13,Vitamin C Supplement,Boost your immune system and promote overall health with this vitamin C supplement.,20,7
+14,Weighted Blanket,Experience deep relaxation and improved sleep with this weighted blanket.,100,7
+15,Mountain Bike,Conquer the trails with this high-performance mountain bike.,1000,8
+16,Tennis Racket,Take your tennis game to the next level with this professional-grade racket.,54,8
