@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS shopify_assessment;
+USE shopify_assessment;
+
 -- Table: Categories
 CREATE TABLE Categories (
   category_id INT PRIMARY KEY,
