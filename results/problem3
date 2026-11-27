@@ -1,0 +1,17 @@
+product_id,product_name,AVG(r.rating)
+1,Smartphone X,5.0
+2,Wireless Headphones,4.0
+3,Laptop Pro,3.0
+4,Smart TV,5.0
+5,Running Shoes,2.0
+6,Designer Dress,4.0
+7,Coffee Maker,5.0
+8,Toaster Oven,3.0
+9,Action Camera,4.0
+10,Board Game Collection,1.0
+11,Yoga Mat,5.0
+12,Skincare Set,4.0
+13,Vitamin C Supplement,2.0
+14,Weighted Blanket,3.0
+15,Mountain Bike,5.0
+16,Tennis Racket,4.0
