@@ -15,17 +15,3 @@ review_id,user_id,product_id,rating,review_text,review_date
 14,14,14,3,"Decent product.",2022-02-10
 15,15,15,5,"Absolutely love it!",2022-03-15
 16,16,16,4,"Great customer service.",2022-04-20
-17,17,17,3,"Average performance.",2022-05-25
-18,18,18,5,"Best purchase ever!",2022-06-30
-19,19,19,2,"Regret buying it.",2022-07-05
-20,20,20,4,"Good overall experience.",2022-08-10
-21,21,21,5,"Exceeded my expectations!",2022-09-15
-22,22,22,3,"Just okay.",2022-10-20
-23,23,23,4,"Happy with the product.",2022-11-25
-24,24,24,1,"Terrible quality.",2022-12-30
-25,25,25,5,"Highly satisfied!",2023-01-05
-26,26,26,4,"Good value for money.",2023-02-10
-27,27,27,2,"Not recommended.",2023-03-15
-28,28,28,3,"Average product.",2023-04-20
-29,29,29,5,"Impressed with the features.",2023-05-25
-30,30,30,4,"Great customer service.",2023-06-30
