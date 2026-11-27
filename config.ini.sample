@@ -1,0 +1,12 @@
+[database]
+host = dummy_host
+port = 1234
+username = dummy_username
+password = dummy_password
+database = dummy_database
+data_dir = dummy_data_dir
+
+[paths]
+data_dir = dummy_data_dir
+sql_dir = dummy_sql_dir
+```

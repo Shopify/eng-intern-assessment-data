@@ -15,3 +15,27 @@ product_id,product_name,description,price,category_id
 14,Weighted Blanket,Experience deep relaxation and improved sleep with this weighted blanket.,100.00,7
 15,Mountain Bike,Conquer the trails with this high-performance mountain bike.,1000.00,8
 16,Tennis Racket,Take your tennis game to the next level with this professional-grade racket.,54.00,8
+17,Backpack,Carry all your essentials in style with this durable backpack.,40.00,9
+18,Travel Bag,Travel in style with this spacious and durable bag.,60.00,9
+19,Bluetooth Speaker,Enjoy your favorite music anywhere with this portable Bluetooth speaker.,50.00,10
+20,Wireless Earbuds,Listen to your favorite music on the go with these wireless earbuds.,100.00,10
+21,Smartwatch,Stay connected with this stylish and functional smartwatch.,200.00,11
+22,Wireless Mouse,Increase your productivity with this ergonomic wireless mouse.,20.00,11
+23,Wireless Keyboard,Upgrade your workspace with this sleek and stylish wireless keyboard.,30.00,12
+24,External Hard Drive,Back up your files and free up space on your computer with this external hard drive.,100.00,12
+25,Portable Monitor,Boost your productivity with this portable monitor.,200.00,13
+26,External SSD,Store your files securely and access them from anywhere with this external SSD.,150.00,13
+27,Wireless Charger,Charge your phone wirelessly with this convenient wireless charger.,30.00,14
+28,Power Bank,Keep your devices charged on the go with this high-capacity power bank.,50.00,14
+29,Wireless Router,Enjoy fast and reliable internet with this powerful wireless router.,100.00,15
+30,Mesh Wi-Fi System,Eliminate dead zones and enjoy seamless Wi-Fi coverage with this mesh Wi-Fi system.,200.00,15
+31,Smart Thermostat,Control your home's temperature from anywhere with this smart thermostat.,100.00,16
+32,Smart Light Bulb,Control your lights from anywhere with this smart light bulb.,20.00,16
+33,Smart Plug,Turn any device into a smart device with this smart plug.,30.00,17
+34,Smart Doorbell,Monitor your home from anywhere with this smart doorbell.,100.00,17
+35,Robot Vacuum,Keep your floors clean without lifting a finger with this robot vacuum.,200.00,18
+36,Smart Vacuum,Keep your floors clean without lifting a finger with this smart vacuum.,300.00,18
+37,Smart Microwave,Control your microwave from anywhere with this smart microwave.,100.00,19
+38,Smart Fridge,Keep your food fresh and organized with this smart fridge.,200.00,19
+39,Smart Oven,Control your oven from anywhere with this smart oven.,300.00,20
+40,Smart Dishwasher,Control your dishwasher from anywhere with this smart dishwasher.,400.00,20
